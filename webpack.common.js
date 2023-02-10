@@ -5,7 +5,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: './src/index.js',
+    jak: './src/index.js',
   },
   plugins: [
     new CopyPlugin({
@@ -31,7 +31,7 @@ module.exports = {
     new ESLintPlugin({})
   ],
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
     clean: true
   },
