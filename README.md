@@ -1,7 +1,5 @@
 # InformationApplicationProject
 
-## vaatimukset
-
 Projektissa on tehtävänä rakentaa toimiva infosovellus Metropolian käyttöön sisältäen sekä DS- että PWA-käyttöliittymät.
 Projektille on varattu pääosin viimeiset kaksi ja puoli viikkoa esittelypäivään asti; opettajat ovat paikalla lukujärjestyksen mukaisesti. Tiimien (max. 3 hlö) projektit esitellään seminaarissa kurssin viimeisellä viikolla, lisäohjeita lähempänä ajankohtaa.
 Ryhmät voivat työskennellä muutoin vapaasti omien aikataulujen mukaisesti, mutta 7. opetusviikolla pidetään pakolliset (läsnäolopakko kaikilla koko tilaisuuden ajan) projektin tilannekatsaukset. Tällöin käydään ryhmäkohtaisesti (max 10 min/ryhmä) läpi:
