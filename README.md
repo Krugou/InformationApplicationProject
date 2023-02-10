@@ -9,13 +9,14 @@ mitä saatu aikaan?
 kuka on tehnyt mitäkin?
 isoimmat ongelmat tähän asti?
 seuraavat askeleet projektissa?
+
 ## Minimivaatimukset (arvosana 1-2)
 
 toimiva pwa-sovellus
 toimiva ds-sovellus
 käyttäjätestaus / palaute
 
-## Tekniset vaatimukset:
+## Tekniset vaatimukset
 
 sovelluslogiikka toteutettava ainakin pääosin client-päässä “vanilla” JavaScriptillä
 ES6+ ominaisuuksien ja JS-harjoitusten käytäntöjen hyödyntäminen suotavaa
