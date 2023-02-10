@@ -9,11 +9,14 @@ mitä saatu aikaan?
 kuka on tehnyt mitäkin?
 isoimmat ongelmat tähän asti?
 seuraavat askeleet projektissa?
-Minimivaatimukset (arvosana 1-2)
+## Minimivaatimukset (arvosana 1-2)
+
 toimiva pwa-sovellus
 toimiva ds-sovellus
 käyttäjätestaus / palaute
-Tekniset vaatimukset:
+
+## Tekniset vaatimukset:
+
 sovelluslogiikka toteutettava ainakin pääosin client-päässä “vanilla” JavaScriptillä
 ES6+ ominaisuuksien ja JS-harjoitusten käytäntöjen hyödyntäminen suotavaa
 Angular/React/JQuery/tms. front-end sovelluskehysten tai kirjastojen käyttö kielletty
@@ -29,7 +32,9 @@ sovelluksen on selkeästi näytettävä hinnoittelu ja otettava huomioon erityis
 sovelluksesta on pystyttävä määrittelemään minkä ravintolan ruokalista näytetään
 toimipaikkaan liittyvää HSL-informaatioa (<https://www.hsl.fi/avoindata>, reititys-API)
 lisäksi jotain toimipaikan kannalta oleellista tietoa vapaavalintaisesta avoimesta APIsta
-Lisäominaisuudet (arvosana 3-5; koko listausta ei tarvitse toteuttaa arvosanaan 5)
+
+## Lisäominaisuudet (arvosana 3-5; koko listausta ei tarvitse toteuttaa arvosanaan 5)
+
 minimivaatimukset
 visuaalisuus ja toiminnallisuus hiottu
 responsiivinen, mukautuva sisältö
