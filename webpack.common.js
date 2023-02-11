@@ -2,8 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
-const ImageWebpackLoader = require('image-webpack-loader');
+
 module.exports = {
   entry: {
     jak: './src/index.js',
@@ -17,9 +16,6 @@ module.exports = {
           context: 'src/',
         },
       ]
-    }),
-    new ImageminWebpackPlugin({
-      test: /\.(jpe?g|png|gif|svg)$/i,
     }),
 
     new HtmlWebpackPlugin({
@@ -58,45 +54,7 @@ module.exports = {
           'sass-loader',
         ],
       },
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        type: 'asset/resource'
-      },
-      {
-        test: /\.(png|jpe?g|gif)$/i,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-            },
-          },
-          {
-            loader: ImageWebpackLoader,
-            options: {
-              mozjpeg: {
-                progressive: true,
-                quality: 65
-              },
-              // optipng.enabled: false will disable optipng
-              optipng: {
-                enabled: false,
-              },
-              pngquant: {
-                quality: [0.65, 0.90],
-                speed: 4
-              },
-              gifsicle: {
-                interlaced: false,
-              },
-              // the webp option will enable WEBP
-              webp: {
-                quality: 75
-              }
-            }
-          },
-        ],
-      },
+
     ],
   },
 
