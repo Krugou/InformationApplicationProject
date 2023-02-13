@@ -48,16 +48,20 @@ body {
     color: var(--metropoliagray);
     height: 90vh;
 
-    .leftside {}
+    .leftside {
+      font-size: calc(1rem + 1vw);
 
-    .rightside {}
+    }
+
+    .rightside {
+      font-size: calc(2rem + 1vw);
+    }
 
     .sides {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-size: xx-large;
     }
   }
 }
