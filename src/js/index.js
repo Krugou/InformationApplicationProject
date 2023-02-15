@@ -1,4 +1,4 @@
-import '../assets/sass/main.scss';
+import '../styles/main.scss';
 import karamalmiData from './modules/karamalmiMenu';
 
 

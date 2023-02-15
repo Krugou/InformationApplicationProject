@@ -57,7 +57,7 @@ $breakpoints: (
   'small': 320px,
   'medium': 768px,
   'large': 1024px,
-) !default;
+  ) !default;
 
 
 
@@ -69,3 +69,19 @@ $breakpoints: (
 /// @example scss - When using a CDN
 ///   $base-url: 'https://cdn.example.com/assets/';
 $base-url: '/assets/' !default;
+
+
+// metropolia colors
+$metropoliaorange: #E95C0C;
+$metropoliagray: #696B6F;
+$metropoliaorange-light: #F9A03F;
+
+
+// background colors
+$background-color: #F9F9F9;
+$background-color-light: #F2F2F2;
+$background-color-dark: #e5e5e5c2;
+
+
+
+

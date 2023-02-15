@@ -1,0 +1,25 @@
+      main {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        background-color: $background-color;
+        color: $metropoliagray;
+        height: 90vh;
+
+        .leftside {
+          font-size: calc(1rem + 1vw);
+
+        }
+
+        .rightside {
+          font-size: calc(2rem + 1vw);
+        }
+
+        .sides {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+      }
