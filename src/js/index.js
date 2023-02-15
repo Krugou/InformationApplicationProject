@@ -1,5 +1,5 @@
 import karamalmiData from './modules/karamalmiMenu';
-import './styles/styles.scss';
+import '../assets/css/styles.scss';
 
 
 const initiate = async () => {

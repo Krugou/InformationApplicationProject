@@ -5,7 +5,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
-    jak: './src/index.js',
+    jak: './src/js/index.js',
   },
   plugins: [
     new CopyPlugin({
