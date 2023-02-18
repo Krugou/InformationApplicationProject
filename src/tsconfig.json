@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"target": "es6",
+		"module": "commonjs",
+		"strict": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"allowUnreachableCode": false,
+		"pretty": true,
+		"noImplicitAny": true,
+		"outDir": "./jsts"
+	},
+	"include": ["ts/**/*.ts"],
+	"exclude": ["node_modules", "**/*.spec.ts"]
+}
