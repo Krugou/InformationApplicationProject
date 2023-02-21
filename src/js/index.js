@@ -2,7 +2,8 @@ import '../styles/main.scss';
 import karamalmiData from './modules/karamalmiMenu';
 
 
-const initiate = async () => {
+const renderEnv = async () => {
+
   const menu = await karamalmiData.getDailyMenu('3208', 'fi');
   const rightside = document.querySelector('.rightside');
   const leftside = document.querySelector('.leftside');
@@ -22,5 +23,8 @@ const initiate = async () => {
   leftside.appendChild(menuDiv2);
 
 };
+const initiate = async () => {
+  renderEnv();
 
+};
 initiate();

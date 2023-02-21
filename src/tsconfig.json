@@ -13,3 +13,12 @@
 	"include": ["ts/**/*.ts"],
 	"exclude": ["node_modules", "**/*.spec.ts"]
 }
+// tämä tiedosto on typescriptin konfiguraatio joten jos eksyit tänne älä välitä tästä.
+
+// tsconfig.json on TypeScript-kielen konfiguraatiotiedosto, joka sisältää TypeScript-kääntäjän asetukset. Tämä tiedosto määrittelee, miten TypeScript-kääntäjä käyttäytyy projektissa, mitä tiedostoja se kääntää, missä kohdehakemisto on ja miten TypeScript-koodi käsitellään.
+
+// tsconfig.json-tiedosto on pakollinen, jos käytät TypeScriptia projektissasi. Tämä tiedosto kertoo TypeScript-kääntäjälle, miten koodisi tulisi kääntyä JavaScriptiksi. Voit määrittää kääntäjän asetukset tsconfig.json-tiedostossa, jotta voit mukauttaa TypeScript-projektisi tarpeisiin.
+
+// Tämä tiedosto sisältää erilaisia asetuksia, kuten compilerOptions (määrittää kääntäjän asetukset), include (määrittää, mitkä tiedostot tulee sisällyttää käännökseen), exclude (määrittää, mitkä tiedostot tulee jättää pois käännöksestä) ja monia muita. Näitä asetuksia voidaan käyttää mukauttamaan TypeScript-kääntäjän käyttäytymistä projektisi vaatimusten mukaan.
+
+// tsconfig.json-tiedosto on kirjoitettava JSON-formaatissa, joka sisältää TypeScript-kääntäjän konfiguraatioasetukset. Tämä tiedosto on usein luotu projektin alussa ja se voi muuttua projektin aikana sen mukaan, miten tarpeesi muuttuvat.

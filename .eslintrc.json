@@ -1,6 +1,6 @@
 {
   "parserOptions": {
-    "ecmaVersion": 8,
+    "ecmaVersion": "latest",
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
@@ -11,6 +11,11 @@
     "node": true
   },
   "extends": "eslint:recommended",
+  // Jotkut esimerkit eslint:recommended-säännöistä ovat:
+  //   no-console: estää console.log()-tapahtumien käytön koodissa
+  // no-debugger: estää debugger-lauseiden käytön koodissa
+  // no-extra-semi: estää ylimääräisten puolipisteiden käytön koodissa
+  // no-unused-vars: estää käyttämättömien muuttujien käytön koodissa
   "rules": {
     "semi": "error",
     "quotes": ["warn", "single"],
