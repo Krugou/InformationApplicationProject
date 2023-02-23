@@ -1,3 +1,10 @@
 // -----------------------------------------------------------------------------
 // This file contains all @font-face declarations, if any.
 // -----------------------------------------------------------------------------
+@font-face {
+  font-family: "HCo Gotham Rounded";
+  src:          url("../assets/fonts/GothamRnd-Medium_Web.woff2") format("woff2"),
+  url("../assets/fonts/GothamRnd-Medium_Web.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}

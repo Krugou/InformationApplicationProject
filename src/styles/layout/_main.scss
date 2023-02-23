@@ -8,21 +8,26 @@
 
         .leftside {
           justify-content: space-between;
+          font-family: "HCo Gotham Rounded";
 
           .video {
             width: 27vw;
             max-width: 100%;
           }
+          .hsl {
+            border: 1px solid black;
+          }
         }
 
         .rightside {
+          border: 1px solid black;
           .restaurant-logo {
             width: 10em;
           }
         }
 
         .sides {
-          border: 1px solid black;
+
           flex:1;
           display: flex;
           flex-direction: column;

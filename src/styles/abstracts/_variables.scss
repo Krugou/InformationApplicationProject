@@ -19,7 +19,6 @@ $font-size: 30px !default;
 
 
 
-
 /// Copy text color
 /// @type Color
 $text-color: rgb(34, 34, 34) !default;
@@ -74,15 +73,49 @@ $base-url: '/assets/' !default;
 
 
 // metropolia colors
-$metropoliaorange: #E95C0C;
-$metropoliagray: #696B6F;
+$metropoliaorange: #ff5000;
+$metropoliagray: #53565a;
 $metropoliaorange-light: #F9A03F;
 
 
-// background colors
+// assistance colors
 $background-color: #F9F9F9;
 $background-color-light: #F2F2F2;
 $background-color-dark: #e5e5e5c2;
+$background-color-red: #cb2228;
+$background-color-blue: #4046a8;
+$background-color-yellow: #fff000;
+$background-color-pink: #e384c4;
+$background-color-lightblue: #5db1e4;
+$background-color-green: #3ba88f;
+
+// HSl colors
+$hsl-sininen: rgb(0,122,201); // HSL sininen
+$hsl-pinkki: rgb(240,146,205); // HSL pinkki
+$hsl-raitiovaunu-vihrea: rgb(0,152,95); // HSL Raitiovaunu vihreä
+$hsl-lahijuna-violetti: rgb(140,71,153); // HSL Lähijuna violetti
+$hsl-metro-oranssi: rgb(255,99,25); // HSL Metro oranssi
+$hsl-lautan-sininen: rgb(0,185,228); // HSL Lautan sininen
+$pikaratikka-turkoosi: rgb(0,178,169); // Pikaratikka turkoosi
+$vaaleanvihrea: rgb(100,190,30); // Vaaleanvihreä
+$vaalennettu-lautan-sininen: rgb(190,228,248); // Vaalennettu Lautan sininen
+$vaalea-pinkki: rgb(244,222,234); // Vaalea Pinkki
+$huomiokeltainen: rgb(254,209,0); // Huomiokeltainen
+$varoituspunainen: rgb(220,4,81); // Varoituspunainen 
+$hsl-vaalennettu-vihrea: rgb(208,230,189); // HSL Vaalennettu vihreä
+$k-80: rgb(51,51,51); // K 80%
+$k-40: rgb(102,102,102); // K 40%
+$k-10: rgb(221,221,220); // K 10% 
+$hsl-black: rgb(51,51,51); // Black
+$hsl-dark-grey: rgb(102,102,102); // Dark Grey
+$hsl-medium-grey: rgb(136,136,136); // Medium Grey
+$hsl-light-grey: rgb(204,204,204); // Light Grey
+$hsl-lighter-grey: rgb(221,221,221); // Lighter Grey
+$background-grey-web: rgb(242,245,247); // Background Grey (Web)
+$background-grey-app: rgb(244,244,245); // Background Grey (App)
+$hsl-white: rgb(255,255,255); // White
+
+
 
 
 
