@@ -5,7 +5,6 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
-    pwa: './src/js/pwa.js',
     ds: './src/js/ds.js',
     index: './src/js/index.js'
   },
@@ -20,21 +19,9 @@ module.exports = {
       ]
     }),
 
+
     new HtmlWebpackPlugin({
-      title: 'Info App Project PWA',
-      meta: {
-        viewport: 'width=device-width, initial-scale=1.0'
-      },
-      template: './src/pwa.html',
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true
-      },
-      filename: 'pwa.html',
-      chunks: ['pwa']
-    }),
-    new HtmlWebpackPlugin({
-      title: 'Info App Project Digital Signage',
+      title: 'Digital Signage',
       meta: {
         viewport: 'width=device-width, initial-scale=1.0'
       },
@@ -47,7 +34,7 @@ module.exports = {
       chunks: ['ds']
     }),
     new HtmlWebpackPlugin({
-      title: 'Info App Project',
+      title: ' PWA',
       meta: {
         viewport: 'width=device-width, initial-scale=1.0'
       },
