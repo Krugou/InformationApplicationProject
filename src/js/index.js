@@ -1,6 +1,13 @@
 import '../styles/main.scss';
 import karamalmiData from './modules/karamalmiMenu';
 
+const allRestaurants = [
+  { name: 'Myyrmäki', id: 152, type: 'Sodexo' },
+  { name: 'Karamalmi', id: 3208, type: 'Fazer' },
+  { name: 'Myllypuro', id: 158, type: 'Sodexo' },
+  { name: 'Arabia', id: 1251, type: 'Fazer' },
+];
+
 
 const renderEnv = async () => {
 
