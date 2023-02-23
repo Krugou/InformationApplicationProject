@@ -30,7 +30,7 @@ module.exports = {
         collapseWhitespace: true
       },
       filename: 'ds.html',
-      chunks: ['index']
+      chunks: ['jak']
     }),
     new HtmlWebpackPlugin({
       title: ' PWA',
@@ -43,7 +43,7 @@ module.exports = {
         collapseWhitespace: true
       },
       filename: 'index.html',
-      chunks: ['index']
+      chunks: ['jak']
     }),
     new ESLintPlugin({})
   ],
