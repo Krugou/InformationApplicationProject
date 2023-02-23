@@ -1,11 +1,10 @@
-      main {
+        main {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
         background-color: $background-color;
         color: $metropoliagray;
-        height: 90vh;
 
         .leftside {
           font-size: calc(1rem + 1vw);
@@ -21,5 +20,7 @@
           flex-direction: column;
           align-items: center;
           justify-content: center;
+          font-size: $font-size;
+
         }
       }

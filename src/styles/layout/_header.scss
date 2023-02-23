@@ -4,6 +4,9 @@
 header {
   background-color: white;
   color: black;
+  display:flex;
+  align-items: center;
+  gap: 10em;
 
   .logo {
     display: flex;
@@ -14,6 +17,9 @@ header {
 
     height: 100%;
     margin: 1rem;
+  }
+  .weather_report, .domain {
+    font-size: $font-size;
   }
 
   height: 10vh;
