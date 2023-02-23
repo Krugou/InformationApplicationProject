@@ -35,7 +35,7 @@ const fetchWeather = async (lat, lon, hoursfromnow) => {
       const searchquery2 = '[*|id="BsWfsElement.1.' + hoursfromnow + '.2"]';
       let tomorrowTemp = parseFloat(xmlDOM.querySelector(searchquery).querySelector('ParameterValue').textContent);
       let tomorrowWind = parseFloat(xmlDOM.querySelector(searchquery2).querySelector('ParameterValue').textContent);
-      let saaTiedot = document.querySelector('.extrainfotab');
+      let saaTiedot = document.querySelector('.weather-report');
 
       try {
         const tomorrowWeatherInfo = document.createElement('div');

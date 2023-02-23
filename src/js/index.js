@@ -1,6 +1,6 @@
 import '../styles/main.scss';
 import karamalmiData from './modules/karamalmiMenu';
-
+import fetchWeatherLocalorDefault from './modules/weather-data';
 const allRestaurants = [
   { name: 'Myyrmäki', id: 152, type: 'Sodexo' },
   { name: 'Karamalmi', id: 3208, type: 'Fazer' },
@@ -31,6 +31,7 @@ const renderEnv = async () => {
 
 };
 const initiate = async () => {
+  fetchWeatherLocalorDefault(1);
   renderEnv();
 
 };
