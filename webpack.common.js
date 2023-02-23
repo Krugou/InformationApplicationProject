@@ -5,8 +5,9 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
-    pwa: './src/js/index.js',
-    ds: './src/js/ds.js'
+    pwa: './src/js/pwa.js',
+    ds: './src/js/ds.js',
+    index: './src/js/index.js'
   },
   plugins: [
     new CopyPlugin({
@@ -24,12 +25,12 @@ module.exports = {
       meta: {
         viewport: 'width=device-width, initial-scale=1.0'
       },
-      template: './src/index.html',
+      template: './src/pwa.html',
       minify: {
         removeComments: true,
         collapseWhitespace: true
       },
-      filename: 'index.html',
+      filename: 'pwa.html',
       chunks: ['pwa']
     }),
     new HtmlWebpackPlugin({
@@ -37,13 +38,26 @@ module.exports = {
       meta: {
         viewport: 'width=device-width, initial-scale=1.0'
       },
-      template: './src/digitalsignage.html',
+      template: './src/ds.html',
       minify: {
         removeComments: true,
         collapseWhitespace: true
       },
-      filename: 'digitalsignage.html',
+      filename: 'ds.html',
       chunks: ['ds']
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Info App Project',
+      meta: {
+        viewport: 'width=device-width, initial-scale=1.0'
+      },
+      template: './src/index.html',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true
+      },
+      filename: 'index.html',
+      chunks: ['index']
     }),
     new ESLintPlugin({})
   ],
