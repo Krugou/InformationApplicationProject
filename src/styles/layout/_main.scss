@@ -7,12 +7,11 @@
         color: $metropoliagray;
 
         .leftside {
-          font-size: calc(1rem + 1vw);
 
         }
 
         .rightside {
-          font-size: calc(2rem + 1vw);
+
         }
 
         .sides {
@@ -20,7 +19,6 @@
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          font-size: $font-size;
 
         }
       }
