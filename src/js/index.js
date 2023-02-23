@@ -7,7 +7,7 @@ const allRestaurants = [
   { name: 'Myllypuro', id: 158, type: 'Sodexo' },
   { name: 'Arabia', id: 1251, type: 'Fazer' },
 ];
-
+console.log(allRestaurants);
 
 const renderEnv = async () => {
 
