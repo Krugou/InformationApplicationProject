@@ -41,7 +41,7 @@ const parseMenu = (dailyMenu) => {
   }
   const mealNames = dailyMenu.menuPackages.map((menuPackage) => {
     return menuPackage.meals.map((mealItem) => {
-      return mealItem.name + '|('+ mealItem.diets + ')|';
+      return mealItem.name + '|('+ mealItem.diets.join(', ') + ')|';
     }).join('');
   });
   const mealPrices = dailyMenu.menuPackages.map((menuPackage) => {
