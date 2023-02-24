@@ -87,6 +87,7 @@ const renderMenu = async () => {
           // do nothing
         } else {
           const p = document.createElement('p');
+          p.classList.add('menu-item-title');
           p.textContent = item;
           li.append(p);
         }
@@ -97,6 +98,8 @@ const renderMenu = async () => {
         dietItems.forEach((dietItem) => {
 
           const p = document.createElement('p');
+          p.classList.add('menu-item-diet');
+
           p.textContent = dietPreferences(dietItem);
           li.append(p);
         });
@@ -115,6 +118,8 @@ const renderMenu = async () => {
             priceItem = priceItem + '€';
           }
           const p = document.createElement('p');
+          p.classList.add('menu-item-price');
+
           p.textContent = priceItem;
           li.append(p);
         });
