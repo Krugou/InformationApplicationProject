@@ -115,7 +115,7 @@ const renderMenu = async () => {
         priceItems.forEach((priceItem) => {
           if (restaurantType === 'Food & Co') {
             // add euro sign to each priceItem
-            priceItem = priceItem + '€';
+            priceItem = priceItem + ' €';
           }
           const p = document.createElement('p');
           p.classList.add('menu-item-price');
