@@ -40,8 +40,13 @@ const parseMenu = (menu, lang) =>  {
     const failedFetch = [];
     return failedFetch[0] = ['no data'];
   }
-  const coursesEn = Object.values(menu.courses).map((course) => course.title_en);
-  const coursesFi = Object.values(menu.courses).map((course) => course.title_fi);
+
+  const coursesEn = Object.values(menu.courses).map((course) => {
+     return course.title_en + '|('+ course.dietcodes + ')|' + course.price; }
+     );
+  const coursesFi = Object.values(menu.courses).map((course) => {
+    console.log(course);
+  return course.title_fi + '|('+ course.dietcodes + ')|' + course.price; });
   return lang === 'en' ? coursesEn : coursesFi;
 };
 

@@ -41,7 +41,7 @@ const parseMenu = (dailyMenu) => {
   }
   const mealNames = dailyMenu.menuPackages.map((menuPackage) => {
     return menuPackage.meals.map((mealItem) => {
-      return mealItem.name + '|'+ mealItem.diets + '|';
+      return mealItem.name + '|('+ mealItem.diets + ')|';
     }).join('');
   });
   const mealPrices = dailyMenu.menuPackages.map((menuPackage) => {
@@ -55,7 +55,11 @@ const parseMenu = (dailyMenu) => {
   });
 */
   for (let i = 0; i < mealNames.length; i++) {
-    mealNames[i]+=mealPrices[i];
+    if (mealPrices[i]!==''){
+      mealNames[i]+=mealPrices[i];
+    } else {
+      mealNames[i]+='Price not found';
+    }
   }
  // console.log(mealDiets);
   console.log(mealPrices);
