@@ -2,6 +2,7 @@ import '../styles/main.scss';
 import hslRender from './modules/hsl/hsl-render';
 import foodcoData from './modules/restaurant/foodcoMenu';
 import sodexoMenu from './modules/restaurant/sodexomenu';
+import dietPreferences from './modules/utils/diet-choices';
 import fetchWeatherLocalorDefault from './modules/weather/weather-data';
 const allRestaurants = [
   { name: 'Myyrmäki', id: 152, type: 'Sodexo' },
@@ -76,27 +77,68 @@ const renderMenu = async () => {
   menu.forEach((menuItem) => {
     const underline = document.createElement('div');
     const li = document.createElement('li');
+    // in menuItem make new p element after every | and append it to li
+    const menuItems = menuItem.split('|');
+    console.log('🚀 ~ file: index.js:83 ~ menu.forEach ~ menuItems:', menuItems);
+    menuItems.forEach((item) => {
 
-   let asd = (menuItem.split('|'));
-    console.log(asd);
-    for (let i=0; i<asd.length; i++) {
-      li.innerHTML += asd[i]+='<br>';
+      if (item.match(/([a-zA-ZäöåÄÖÅ]+(?:-[a-zA-ZäöåÄÖÅ]+)?)(?:,|$)/g)) {
+        if (item.match(/[,]/)) {
+          // do nothing
+        } else {
+          const p = document.createElement('p');
+          p.textContent = item;
+          li.append(p);
+}
+
+      }
+      if (item.match(/[(),]/)) {
+        const dietItems = item.split(',');
+        dietItems.forEach((dietItem) => {
+
+          const p = document.createElement('p');
+          p.textContent = dietPreferences(dietItem);
+          li.append(p);
+        });
+      }
+
+      // if (item.match()) {
+      //   const p = document.createElement('p');
+      //   p.textContent = dietPreferences(item);
+      //   li.append(p);
+      // }
+      if (item.match(/\d,\d\d/)) {
+        const priceItems = item.split('/');
+        priceItems.forEach((priceItem) => {
+          // add euro sign to each priceItem
+          priceItem = priceItem + '€';
+          const p = document.createElement('p');
+          p.textContent = priceItem;
+          li.append(p);
+        });
+
+
+        // const p = document.createElement('p');
+        // p.textContent = item;
+        // li.append(p);
+      }
+
+      li.append(underline);
+      menuListElement.append(li);
+
+    });
+    restaurantNameElement.textContent = restaurantName;
+
+    // Change restaurant image
+    if (restaurantType === 'Sodexo') {
+      restaurantImgElement.src = '../assets/logos/sodexo.png';
+      restaurantImgElement.alt = 'Sodexo logo';
     }
-    li.append(underline);
-    menuListElement.append(li);
-
+    if (restaurantType === 'Food & Co') {
+      restaurantImgElement.src = '../assets/logos/foodco.png';
+      restaurantImgElement.alt = 'Food & Co logo';
+    }
   });
-  restaurantNameElement.textContent = restaurantName;
-
-  // Change restaurant image
-  if (restaurantType === 'Sodexo') {
-    restaurantImgElement.src = '../assets/logos/sodexo.png';
-    restaurantImgElement.alt = 'Sodexo logo';
-  }
-  if (restaurantType === 'Food & Co') {
-    restaurantImgElement.src = '../assets/logos/foodco.png';
-    restaurantImgElement.alt = 'Food & Co logo';
-  }
 };
 
 // const MassTransitStops = [
