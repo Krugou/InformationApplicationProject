@@ -20,7 +20,7 @@ const getDailyMenu = async (restaurantId, lang) => {
   const menu = weeklyMenu.menus[getWeekdayIndex()];
 
   if (menu === undefined) {
-   // alert('no Fazer data for today, trying to show past fridays data');
+    alert('no Fazer data for today, trying to show past fridays data');
     return weeklyMenu.menus[4];
   }
   return weeklyMenu.menus[getWeekdayIndex()];
@@ -33,16 +33,29 @@ const getDailyMenu = async (restaurantId, lang) => {
  * @returns meal names from array or a 'nodata' menu if data is undefined (this means API fetch failed)
  */
 const parseMenu = (dailyMenu) => {
+  //const diets = [];
+  //const diets2 = [];
   if (dailyMenu === undefined) {
     const failedFetch = [];
     return failedFetch[0] = ['no data'];
   }
-  const parsedMenu = dailyMenu.menuPackages.map((menuPackage) => {
+  const mealNames = dailyMenu.menuPackages.map((menuPackage) => {
     return menuPackage.meals.map((mealItem) => {
       return mealItem.name;
     }).join(', ');
    });
-  return parsedMenu;
+   const mealPrices = dailyMenu.menuPackages.map((menuPackage) => {
+    return menuPackage.price;
+   });
+   const mealDiets = dailyMenu.menuPackages.map((menuPackage) => {
+    return menuPackage.meals.map((mealItem) => {
+      return mealItem.diets;
+    }).join(', ');
+   });
+   console.log(mealDiets);
+   console.log(mealPrices);
+   console.log(mealNames);
+  return mealNames;
 };
 
 
