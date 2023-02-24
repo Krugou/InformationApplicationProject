@@ -23,6 +23,7 @@ let lang = 'fi';
 languageButton.addEventListener('click', () => {
   if (lang === 'fi') lang = 'en';
   else if (lang === 'en') lang = 'fi';
+  renderMenu();
 });
 
 // Event listener for changing the selected campus
@@ -61,7 +62,6 @@ const getCurrentMenu = async () => {
   return { currentMenu, name };
 
 };
-
 
 /** Function for rendering a menu
  *
