@@ -1,5 +1,6 @@
 import HSL from './hsl-data';
 
+
 const renderHSLData = async (target, stop) => {
   try {
     // Get the routes for the stop
@@ -13,6 +14,7 @@ const renderHSLData = async (target, stop) => {
 
     // Loop through the routes
     for (const route of routes) {
+      console.log('🚀 ~ file: hsl-render.js:17 ~ renderHSLData ~ route:', route);
       // Create a list element for the route
       const hslContainerList = document.createElement('li');
       hslContainerList.classList.add('hsl-container-list');
@@ -37,6 +39,8 @@ const renderHSLData = async (target, stop) => {
 
       // Append the list to the container
       hslContainer.append(hslContainerList);
+
+
     }
   } catch (error) {
     console.error(error);
