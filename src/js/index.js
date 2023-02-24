@@ -10,12 +10,22 @@ const allRestaurants = [
   { name: 'Arabia', id: 1251, type: 'Food & Co' },
 ];
 
-
+// DOM Elements
 const campusSelector = document.querySelector('#domain-select');
+const languageButton = document.querySelector('#language-button');
+
 let selectedCampus = document.querySelector('#domain-select').value;
 
+//default language
 let lang = 'fi';
 
+// Event listener for changing the selected language
+languageButton.addEventListener('click', () => {
+  if (lang === 'fi') lang = 'en';
+  else if (lang === 'en') lang = 'fi';
+});
+
+// Event listener for changing the selected campus
 campusSelector.addEventListener('change', () => {
   selectedCampus = document.querySelector('#domain-select').value;
   console.log(selectedCampus);
@@ -46,10 +56,8 @@ const renderMenu = async () => {
 };
 renderMenu();
 
-
 // const MassTransitStops = [
 // ];
-
 
 // temp campus is myllypuro
 const campus = 'myllypuro';
