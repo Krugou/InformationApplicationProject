@@ -5,10 +5,13 @@
           color: $metropoliagray;
           column-gap: 5em;
           margin-top: 5em;
+          padding: 2em;
 
           .leftside {
             justify-content: space-between;
             font-family: "HCo Gotham Rounded";
+            flex: 3;
+
 
             .video {
               width: 27vw;
@@ -22,6 +25,7 @@
 
           .rightside {
             border: 1px solid black;
+            flex: 1;
 
             .restaurant-logo {
               width: 10em;
@@ -34,11 +38,9 @@
               li {
                 margin-bottom: 1.5em;
                 font-size: 1.5rem;
-                text-align:center;
 
                 div{
                   background-color: $metropoliaorange;
-                  width: 60%;
                   height: 2px;
                   margin:5px auto auto auto;
 
@@ -48,11 +50,10 @@
           }
 
           .sides {
-            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 2em;
+
             height:fit-content;
           }
 
