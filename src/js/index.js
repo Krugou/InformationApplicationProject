@@ -84,7 +84,27 @@ const renderMenu = async () => {
 
       if (item.match(/([a-zA-ZäöåÄÖÅ]+(?:-[a-zA-ZäöåÄÖÅ]+)?)(?:,|$)/g)) {
         if (item.match(/[,]/)) {
-          // do nothing
+          const nameItems = item.split('(');
+          nameItems.forEach((item) => {
+            if (item.match(/[,]/)) {
+              const dietItems = item.split(',');
+
+              dietItems.forEach((dietItem) => {
+
+                const p = document.createElement('p');
+                p.classList.add('menu-item-diet');
+
+                p.textContent = dietPreferences(dietItem);
+                li.append(p);
+              }
+              );
+            } else {
+              const p = document.createElement('p');
+              p.classList.add('menu-item-title');
+              p.textContent = item;
+              li.append(p);
+            }
+          });
         } else {
           const p = document.createElement('p');
           p.classList.add('menu-item-title');
@@ -93,7 +113,7 @@ const renderMenu = async () => {
         }
 
       }
-      if (item.match(/[(),]/)) {
+      if (item.match(/[),]/)) {
         const dietItems = item.split(',');
         dietItems.forEach((dietItem) => {
 
