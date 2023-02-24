@@ -29,13 +29,11 @@ languageButton.addEventListener('click', () => {
 // Event listener for changing the selected campus
 campusSelector.addEventListener('change', () => {
   selectedCampus = document.querySelector('#domain-select').value;
-  console.log(selectedCampus);
   renderMenu();
   //renderAll
 });
 
 
-console.log(selectedCampus);
 
 console.log('🚀 ~ file: index.js:11 ~ allRestaurants:', allRestaurants);
 
@@ -76,7 +74,6 @@ const renderMenu = async () => {
   // Clear list
   menuListElement.innerHTML = '';
   menu.forEach((menuItem) => {
-    console.log(menuItem);
     const li = document.createElement('li');
     li.textContent = menuItem;
     menuListElement.append(li);
