@@ -37,4 +37,14 @@
             padding: 2em;
           }
 
+          .hsl {
+            h2 {
+              text-align: center;
+            }
+
+            .hsl-list {
+              display: flex;
+              flex-direction: row;
+            }
+          }
         }
