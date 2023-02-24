@@ -89,7 +89,7 @@ const renderMenu = async () => {
           const p = document.createElement('p');
           p.textContent = item;
           li.append(p);
-}
+        }
 
       }
       if (item.match(/[(),]/)) {
@@ -110,8 +110,10 @@ const renderMenu = async () => {
       if (item.match(/\d,\d\d/)) {
         const priceItems = item.split('/');
         priceItems.forEach((priceItem) => {
-          // add euro sign to each priceItem
-          priceItem = priceItem + '€';
+          if (restaurantType === 'Food & Co') {
+            // add euro sign to each priceItem
+            priceItem = priceItem + '€';
+          }
           const p = document.createElement('p');
           p.textContent = priceItem;
           li.append(p);
