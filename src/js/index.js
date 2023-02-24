@@ -98,6 +98,7 @@ const renderMenu = async () => {
 
 const renderEnv = async () => {
   const hsl = document.querySelector('.hsl-list');
+  hsl.innerHTML = '';
   // const menu = await karamalmiData.getDailyMenu('3208', 'fi');
   // const rightside = document.querySelector('.rightside');
   // const leftside = document.querySelector('.leftside');
