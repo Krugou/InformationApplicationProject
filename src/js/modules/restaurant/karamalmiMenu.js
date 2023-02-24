@@ -1,13 +1,14 @@
 'use strict';
 
-const weeklyurlKaraportti = 'https://www.compass-group.fi/menuapi/feed/json?costNumber=';
+const weeklyurlFoodco = 'https://www.compass-group.fi/menuapi/feed/json?costNumber=';
 
 
 import { doFetch } from '../network-proxy';
 
+
 const getDailyMenu = async (restaurantId, lang) => {
   try {
-    const weeklyMenu = await doFetch(`${weeklyurlKaraportti}${restaurantId}&language=${lang}`, true);
+    const weeklyMenu = await doFetch(`${weeklyurlFoodco}${restaurantId}&language=${lang}`, true);
     let courses = weeklyMenu.MenusForDays[0].SetMenus.map(
       (menuItem) => {
         return menuItem.Components.join(', ');
@@ -20,6 +21,6 @@ const getDailyMenu = async (restaurantId, lang) => {
   }
 };
 
-const karamalmiData = { getDailyMenu };
+const foodcoData = { getDailyMenu };
 
-export default karamalmiData;
+export default foodcoData;

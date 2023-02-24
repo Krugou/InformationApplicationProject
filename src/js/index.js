@@ -1,14 +1,34 @@
 import '../styles/main.scss';
 import hslRender from './modules/hsl/hsl-render';
-// import karamalmiData from './modules/karamalmiMenu';
+//import foodcoData from './modules/karamalmiMenu';
 import fetchWeatherLocalorDefault from './modules/weather/weather-data';
 const allRestaurants = [
   { name: 'Myyrmäki', id: 152, type: 'Sodexo' },
-  { name: 'Karamalmi', id: 3208, type: 'Fazer' },
+  { name: 'Karamalmi', id: 3208, type: 'Food & Co' },
   { name: 'Myllypuro', id: 158, type: 'Sodexo' },
-  { name: 'Arabia', id: 1251, type: 'Fazer' },
+  { name: 'Arabia', id: 1251, type: 'Food & Co' },
 ];
+
+
+const campusSelector = document.querySelector('#domain-select');
+let selectedCampus = document.querySelector('#domain-select').value;
+
+campusSelector.addEventListener('change', () => {
+  selectedCampus = document.querySelector('#domain-select').value;
+  console.log(selectedCampus);
+// renderAll(selectedCampus);
+});
+
+console.log(selectedCampus);
+
 console.log('🚀 ~ file: index.js:11 ~ allRestaurants:', allRestaurants);
+
+/*
+const renderMenu = () => {
+
+
+};
+*/
 
 
 // const MassTransitStops = [
