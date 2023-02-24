@@ -8,10 +8,11 @@
 import { doFetch, getWeekdayIndex } from '../network-proxy';
 
 
-const getDailyMenu = async (lang, restaurantId) => {
+const getDailyMenu = async (restaurantId, lang) => {
 
   try {
-  const today = new Date().toISOString().split('T').shift();
+  //const today = new Date().toISOString().split('T').shift();
+  const today = '2023-02-28'; //Kovakoodattuna koska ei oo viel dataa
   const menuUrl = 'https://www.compass-group.fi/menuapi/week-menus?costCenter='+restaurantId+'&language='+lang+'&date='+today;
   const weeklyMenu = await doFetch(menuUrl, true);
   console.log(weeklyMenu);
