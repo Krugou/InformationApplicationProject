@@ -26,8 +26,25 @@ const getDailyMenu = async (restaurantId, lang) => {
   } catch (error){
     console.error('getFazerMenu', error);
   }
-
 };
-const foodcoData = { getDailyMenu };
+/** Function for parsing fazer menu
+ * @param {*} weeklyMenu Array containing daily Fazer menu
+ * @returns meal names from array or a 'nodata' menu if data is undefined (this means API fetch failed)
+ */
+const parseMenu = (dailyMenu) => {
+  if (dailyMenu === undefined) {
+    const failedFetch = [];
+    return failedFetch[0] = ['no data'];
+  }
+  const parsedMenu = dailyMenu.menuPackages.map((menuPackage) => {
+    return menuPackage.meals.map((mealItem) => {
+      return mealItem.name;
+    }).join(', ');
+   });
+  return parsedMenu;
+};
+
+
+const foodcoData = { getDailyMenu, parseMenu };
 
 export default foodcoData;

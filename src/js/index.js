@@ -29,7 +29,8 @@ languageButton.addEventListener('click', () => {
 campusSelector.addEventListener('change', () => {
   selectedCampus = document.querySelector('#domain-select').value;
   console.log(selectedCampus);
-// renderAll(selectedCampus);
+  renderMenu();
+  //renderAll
 });
 
 
@@ -37,22 +38,38 @@ console.log(selectedCampus);
 
 console.log('🚀 ~ file: index.js:11 ~ allRestaurants:', allRestaurants);
 
+/** Function for getting the selected menu
+ *
+ * @returns array containing meal menu
+ */
+const getCurrentMenu = async () => {
+  let Currentmenu = [];
+  // Find the selectedmenus info from the allrestaurants array
+  const currentMenuInfo = allRestaurants.filter((restaurant) => {
+    return restaurant.name === selectedCampus;
+  })[0];
+
+  // Get the correct menu and save it menu array
+  if (currentMenuInfo.type === 'Food & Co') {
+   menu = foodcoData.parseMenu (await foodcoData.getDailyMenu(currentMenu.id, lang));
+
+  }
+  if (currentMenuInfo.type === 'Sodexo') {
+   menu = sodexoMenu.parseMenu(await sodexoMenu.getDailyMenu(currentMenu.id), lang);
+  }
+    return Currentmenu;
+
+};
+
+
 /** Function for rendering a menu
  *
  */
 const renderMenu = async () => {
-  // Find the selectedmenus info from the allrestaurants array
-  const currentMenu = allRestaurants.filter((restaurant) => {
-    return restaurant.name === selectedCampus;
-  })[0];
 
-  if (currentMenu.type === 'Food & Co') {
-    console.log(await foodcoData.getDailyMenu(currentMenu.id, lang));
+  const menu = await getCurrentMenu();
+  console.log(menu);
 
-  }
-  if (currentMenu.type === 'Sodexo') {
-    sodexoMenu.getDailyMenu(currentMenu.id);
-  }
 };
 renderMenu();
 
