@@ -8,6 +8,8 @@ const getQueryForNextRidesByStopId = (id) => {
   return `{
     stop(id: "HSL:${id}") {
       name
+      lat
+      lon
       stoptimesWithoutPatterns {
         scheduledArrival
         realtimeArrival
@@ -44,7 +46,8 @@ const getRoutesByStopId = async (id) => {
     body: getQueryForNextRidesByStopId(id),
   };
   const routeData = await doFetch(apiUrl, false, options);
-  console.log(routeData);
+  console.log('🚀 ~ file: hsl-data.js:49 ~ getRoutesByStopId ~ routeData:', routeData);
+
   return routeData.data.stop.stoptimesWithoutPatterns.map((route) => {
     return {
       name: route.trip.routeShortName,
