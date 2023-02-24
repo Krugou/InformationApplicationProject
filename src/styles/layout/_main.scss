@@ -1,38 +1,40 @@
         main {
-        display: flex;
-        flex-direction: row;
-        background-color: $background-color;
-        color: $metropoliagray;
-        column-gap: 5em;
+          display: flex;
+          flex-direction: row;
+          background-color: $background-color;
+          color: $metropoliagray;
+          column-gap: 5em;
           margin-top: 5em;
 
-        .leftside {
-          justify-content: space-between;
-          font-family: "HCo Gotham Rounded";
+          .leftside {
+            justify-content: space-between;
+            font-family: "HCo Gotham Rounded";
 
-          .video {
-            width: 27vw;
-            max-width: 100%;
+            .video {
+              width: 27vw;
+              max-width: 100%;
+            }
+
+            .hsl {
+              border: 1px solid black;
+            }
           }
-          .hsl {
+
+          .rightside {
             border: 1px solid black;
+
+            .restaurant-logo {
+              width: 10em;
+            }
           }
-        }
 
-        .rightside {
-          border: 1px solid black;
-          .restaurant-logo {
-            width: 10em;
+          .sides {
+
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2em;
           }
+
         }
-
-        .sides {
-
-          flex:1;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          padding: 2em;
-        }
-
-      }

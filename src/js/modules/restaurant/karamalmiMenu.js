@@ -3,7 +3,7 @@
 const weeklyurlKaraportti = 'https://www.compass-group.fi/menuapi/feed/json?costNumber=';
 
 
-import { doFetch } from './network-proxy';
+import { doFetch } from '../network-proxy';
 
 const getDailyMenu = async (restaurantId, lang) => {
   try {

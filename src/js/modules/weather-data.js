@@ -32,27 +32,27 @@ const fetchWeather = async (lat, lon, hoursfromnow) => {
       const parser = new DOMParser();
       const xmlDOM = parser.parseFromString(xml, 'application/xml');
       const searchquery = '[*|id="BsWfsElement.1.' + hoursfromnow + '.1"]';
-      const searchquery2 = '[*|id="BsWfsElement.1.' + hoursfromnow + '.2"]';
+      // const searchquery2 = '[*|id="BsWfsElement.1.' + hoursfromnow + '.2"]';
       let tomorrowTemp = parseFloat(xmlDOM.querySelector(searchquery).querySelector('ParameterValue').textContent);
-      let tomorrowWind = parseFloat(xmlDOM.querySelector(searchquery2).querySelector('ParameterValue').textContent);
+      // let tomorrowWind = parseFloat(xmlDOM.querySelector(searchquery2).querySelector('ParameterValue').textContent);
       let saaTiedot = document.querySelector('.weather-report');
 
       try {
         const tomorrowWeatherInfo = document.createElement('div');
         tomorrowWeatherInfo.id = 'weather-info';
-        const welcomeWeather = document.createElement('h3');
+        // const welcomeWeather = document.createElement('h3');
         const tomorrowContainerParagraphs = document.createElement('div');
         const tomorrowTempInfo = document.createElement('p');
-        const tomorrowWindInfo = document.createElement('p');
-        tomorrowWindInfo.innerText = windDescription(tomorrowWind) + ' ' + tomorrowWind + ' m/s';
-        if (tomorrowWindInfo.innerText === 'Tyyntä NaN m/s') {
-          tomorrowWindInfo.innerText = 'Tyyntä';
-        }
+        // const tomorrowWindInfo = document.createElement('p');
+        // tomorrowWindInfo.innerText = windDescription(tomorrowWind) + ' ' + tomorrowWind + ' m/s';
+        // if (tomorrowWindInfo.innerText === 'Tyyntä NaN m/s') {
+        //   tomorrowWindInfo.innerText = 'Tyyntä';
+        // }
         tomorrowTempInfo.innerText = `Lämmintä ${tomorrowTemp} °C`;
-        welcomeWeather.innerText = `Sää ${hoursfromnow}h päästä: `;
-        tomorrowWeatherInfo.appendChild(welcomeWeather);
+        // welcomeWeather.innerText = `Sää ${hoursfromnow}h päästä: `;
+        // tomorrowWeatherInfo.appendChild(welcomeWeather);
         tomorrowContainerParagraphs.appendChild(tomorrowTempInfo);
-        tomorrowContainerParagraphs.appendChild(tomorrowWindInfo);
+        // tomorrowContainerParagraphs.appendChild(tomorrowWindInfo);
         tomorrowWeatherInfo.appendChild(tomorrowContainerParagraphs);
 
         saaTiedot.appendChild(tomorrowWeatherInfo);
@@ -68,22 +68,22 @@ const fetchWeather = async (lat, lon, hoursfromnow) => {
   }
 };
 
-const windDescription = windSpeed => {
-  if (windSpeed >= 1 && windSpeed <= 3) {
-    return 'Tyyntä';
-  } else if (windSpeed >= 4 && windSpeed <= 7) {
-    return 'Heikkoa tuulta';
-  } else if (windSpeed >= 8 && windSpeed <= 13) {
-    return 'Kohtalaista tuulta';
-  } else if (windSpeed >= 14 && windSpeed <= 20) {
-    return 'Navakkaa tuulta';
-  } else if (windSpeed >= 21 && windSpeed <= 32) {
-    return 'Myrskyä';
-  } else if (windSpeed >= 33) {
-    return 'Hirmumyrskyä';
-  } else {
-    return 'Tyyntä';
-  }
-};
+// const windDescription = windSpeed => {
+//   if (windSpeed >= 1 && windSpeed <= 3) {
+//     return 'Tyyntä';
+//   } else if (windSpeed >= 4 && windSpeed <= 7) {
+//     return 'Heikkoa tuulta';
+//   } else if (windSpeed >= 8 && windSpeed <= 13) {
+//     return 'Kohtalaista tuulta';
+//   } else if (windSpeed >= 14 && windSpeed <= 20) {
+//     return 'Navakkaa tuulta';
+//   } else if (windSpeed >= 21 && windSpeed <= 32) {
+//     return 'Myrskyä';
+//   } else if (windSpeed >= 33) {
+//     return 'Hirmumyrskyä';
+//   } else {
+//     return 'Tyyntä';
+//   }
+// };
 
 export default fetchWeatherLocalorDefault;

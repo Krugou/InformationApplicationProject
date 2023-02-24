@@ -1,4 +1,4 @@
-import { doFetch } from './network-proxy';
+import { doFetch } from '../network-proxy';
 
 const apiUrl =
   'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql';
