@@ -33,7 +33,7 @@ const getDailyMenu = async (restaurantId) => {
  *
  * @param {*} menu object containing daily Sodexo menu
  * @param {*} lang selected language for meal titles
- * @returns meal names or a 'nodata' menu if data is undefined (this means API fetch failed)
+ * @returns meal names, price and allergies or a 'nodata' menu if data is undefined (this means API fetch failed)
  */
 const parseMenu = (menu, lang) =>  {
   if (menu === undefined){
