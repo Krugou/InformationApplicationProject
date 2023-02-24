@@ -19,16 +19,26 @@ campusSelector.addEventListener('change', () => {
 // renderAll(selectedCampus);
 });
 
+
 console.log(selectedCampus);
 
 console.log('🚀 ~ file: index.js:11 ~ allRestaurants:', allRestaurants);
 
-/*
+/** Function for rendering a menu
+ *
+ */
 const renderMenu = () => {
+
+  // Find the selectedmenus info from the allrestaurants array
+  const currentMenu = allRestaurants.filter((restaurant) => {
+    return restaurant.name === selectedCampus;
+  });
+  console.log(currentMenu);
+
 
 
 };
-*/
+renderMenu();
 
 
 // const MassTransitStops = [
