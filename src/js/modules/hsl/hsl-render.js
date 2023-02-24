@@ -5,7 +5,7 @@ const renderHSLData = async (target, stop) => {
   try {
     // Get the routes for the stop
     const routes = await HSL.getRoutesByStopId(stop);
-    console.table('🚀 ~ file: hsl-render.js:5 ~ renderHSLData ~ routes:', routes);
+    // console.table('🚀 ~ file: hsl-render.js:5 ~ renderHSLData ~ routes:', routes);
 
     // Create the container and append it to the target
     const hslContainer = document.createElement('ul');
@@ -14,7 +14,7 @@ const renderHSLData = async (target, stop) => {
 
     // Loop through the routes
     for (const route of routes) {
-      console.log('🚀 ~ file: hsl-render.js:17 ~ renderHSLData ~ route:', route);
+      // console.log('🚀 ~ file: hsl-render.js:17 ~ renderHSLData ~ route:', route);
       // Create a list element for the route
       const hslContainerList = document.createElement('li');
       hslContainerList.classList.add('hsl-container-list');
