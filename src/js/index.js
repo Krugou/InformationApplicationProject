@@ -45,18 +45,14 @@ const getCurrentMenu = async () => {
   const currentMenuInfo = allRestaurants.filter((restaurant) => {
     return restaurant.name === selectedCampus;
   })[0];
-
   // Get the correct menu and save it menu array
   if (currentMenuInfo.type === 'Food & Co') {
     currentMenu = foodcoData.parseMenu(await foodcoData.getDailyMenu(currentMenuInfo.id, lang));
-
   }
   if (currentMenuInfo.type === 'Sodexo') {
     currentMenu = sodexoMenu.parseMenu(await sodexoMenu.getDailyMenu(currentMenuInfo.id), lang);
   }
-  const name = currentMenuInfo.name;
-  return { currentMenu, name };
-
+  return { currentMenu, currentMenuInfo };
 };
 
 /** Function for rendering a menu
@@ -65,9 +61,13 @@ const getCurrentMenu = async () => {
 const renderMenu = async () => {
   const restaurantNameElement = document.querySelector('.restaurant-name');
   const menuListElement = document.querySelector('#menu');
+  const restaurantImgElement = document.querySelector('.restaurant-logo');
+
   const menuInfo = await getCurrentMenu();
   const menu = menuInfo.currentMenu;
-  const restaurantName = menuInfo.name;
+  const restaurantName = menuInfo.currentMenuInfo.name;
+  const restaurantType = menuInfo.currentMenuInfo.type;
+  console.log(restaurantType);
 
   // Clear list
   menuListElement.innerHTML = '';
@@ -78,8 +78,17 @@ const renderMenu = async () => {
 
   });
   restaurantNameElement.textContent = restaurantName;
+
+  // Change restaurant image
+  if (restaurantType === 'Sodexo') {
+    restaurantImgElement.src = '../assets/logos/sodexo.png';
+    restaurantImgElement.alt = 'Sodexo logo';
+  }
+  if (restaurantType === 'Food & Co') {
+    restaurantImgElement.src = '../assets/logos/foodco.png';
+    restaurantImgElement.alt = 'Food & Co logo';
+  }
 };
-renderMenu();
 
 // const MassTransitStops = [
 // ];
@@ -140,6 +149,7 @@ const renderEnv = async () => {
 const initiate = async () => {
   fetchWeatherLocalorDefault(1);
   renderEnv();
+  renderMenu();
 
 
 };
