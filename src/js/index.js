@@ -30,6 +30,8 @@ languageButton.addEventListener('click', () => {
 campusSelector.addEventListener('change', () => {
   selectedCampus = document.querySelector('#domain-select').value;
   renderMenu();
+  renderEnv();
+
   //renderAll
 });
 
