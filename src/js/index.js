@@ -1,6 +1,7 @@
 import '../styles/main.scss';
 import hslRender from './modules/hsl/hsl-render';
-//import foodcoData from './modules/karamalmiMenu';
+import foodcoData from './modules/restaurant/foodcoMenu';
+import sodexoMenu from './modules/restaurant/sodexomenu';
 import fetchWeatherLocalorDefault from './modules/weather/weather-data';
 const allRestaurants = [
   { name: 'Myyrmäki', id: 152, type: 'Sodexo' },
@@ -12,6 +13,8 @@ const allRestaurants = [
 
 const campusSelector = document.querySelector('#domain-select');
 let selectedCampus = document.querySelector('#domain-select').value;
+
+let lang = 'fi';
 
 campusSelector.addEventListener('change', () => {
   selectedCampus = document.querySelector('#domain-select').value;
@@ -27,14 +30,19 @@ console.log('🚀 ~ file: index.js:11 ~ allRestaurants:', allRestaurants);
 /** Function for rendering a menu
  *
  */
-const renderMenu = () => {
-
+const renderMenu = async () => {
   // Find the selectedmenus info from the allrestaurants array
   const currentMenu = allRestaurants.filter((restaurant) => {
     return restaurant.name === selectedCampus;
-  });
-  console.log(currentMenu);
+  })[0];
 
+  if (currentMenu.type === 'Food & Co') {
+    console.log(await foodcoData.getDailyMenu(currentMenu.id, lang));
+
+  }
+  if (currentMenu.type === 'Sodexo') {
+    sodexoMenu.getDailyMenu(currentMenu.id);
+  }
 };
 renderMenu();
 

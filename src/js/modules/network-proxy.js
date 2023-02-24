@@ -34,6 +34,14 @@ const doFetch = async (url, useProxy = false, options) => {
   }
 };
 
+/**
+ *
+ * @returns API compatible index number of weekday
+ */
+const getWeekdayIndex = () => {
+  const index =  new Date().getDay()-1;
+  return index === -1 ? 6 : index;
+};
 
-export { doFetch };
+export { doFetch, getWeekdayIndex };
 
