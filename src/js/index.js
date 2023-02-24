@@ -73,6 +73,7 @@ const renderMenu = async () => {
   const menu = menuInfo.currentMenu;
   const restaurantName = menuInfo.name;
 
+  // Clear list
   menuListElement.innerHTML = '';
   menu.forEach((menuItem) => {
     console.log(menuItem);
