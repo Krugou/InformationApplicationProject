@@ -93,8 +93,6 @@ const renderMenu = async () => {
 // const MassTransitStops = [
 // ];
 
-// temp campus is myllypuro
-const campus = 'myllypuro';
 
 const renderEnv = async () => {
   const hsl = document.querySelector('.hsl-list');
@@ -115,7 +113,7 @@ const renderEnv = async () => {
   // menuDiv2.innerHTML = menu.join('<br>');
 
   // leftside.appendChild(menuDiv2);
-  if (campus === 'karamalmi') {
+  if (selectedCampus === 'Karamalmi') {
     // pysäkki lähellä 2132207,2132208 , 2132225, 2132226, 2133224,2133225
 
     hslRender.renderHSLData(hsl, 2132208);
@@ -124,7 +122,7 @@ const renderEnv = async () => {
     hslRender.renderHSLData(hsl, 2132226);
     hslRender.renderHSLData(hsl, 2133224);
     hslRender.renderHSLData(hsl, 2133225);
-  } else if (campus === 'myyrmaki') {
+  } else if (selectedCampus === 'Myyrmaki') {
     // pysäkki lähellä 4150269,4150268 , 4150228, 4150296, 4150201
 
     hslRender.renderHSLData(hsl, 4150269);
@@ -132,13 +130,13 @@ const renderEnv = async () => {
     hslRender.renderHSLData(hsl, 4150228);
     hslRender.renderHSLData(hsl, 4150296);
     hslRender.renderHSLData(hsl, 4150201);
-  } else if (campus === 'myllypuro') {
+  } else if (selectedCampus === 'Myllypuro') {
     // pysäkki lähellä 1454601,1454602 , 1454140, 1454141
     hslRender.renderHSLData(hsl, 1454601);
     hslRender.renderHSLData(hsl, 1454602);
     hslRender.renderHSLData(hsl, 1454140);
     hslRender.renderHSLData(hsl, 1454141);
-  } else if (campus === 'arabia') {
+  } else if (selectedCampus === 'Arabia') {
     // pysäkki lähellä 1230201,1230101
     hslRender.renderHSLData(hsl, 1230201);
     hslRender.renderHSLData(hsl, 1230101);
