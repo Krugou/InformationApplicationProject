@@ -43,7 +43,7 @@ console.log('🚀 ~ file: index.js:11 ~ allRestaurants:', allRestaurants);
  * @returns array containing meal menu
  */
 const getCurrentMenu = async () => {
-  let Currentmenu = [];
+  let currentMenu = [];
   // Find the selectedmenus info from the allrestaurants array
   const currentMenuInfo = allRestaurants.filter((restaurant) => {
     return restaurant.name === selectedCampus;
@@ -51,13 +51,14 @@ const getCurrentMenu = async () => {
 
   // Get the correct menu and save it menu array
   if (currentMenuInfo.type === 'Food & Co') {
-   menu = foodcoData.parseMenu (await foodcoData.getDailyMenu(currentMenu.id, lang));
+    currentMenu = foodcoData.parseMenu(await foodcoData.getDailyMenu(currentMenuInfo.id, lang));
 
   }
   if (currentMenuInfo.type === 'Sodexo') {
-   menu = sodexoMenu.parseMenu(await sodexoMenu.getDailyMenu(currentMenu.id), lang);
+    currentMenu = sodexoMenu.parseMenu(await sodexoMenu.getDailyMenu(currentMenuInfo.id), lang);
   }
-    return Currentmenu;
+  const name = currentMenuInfo.name;
+  return { currentMenu, name };
 
 };
 
@@ -66,10 +67,21 @@ const getCurrentMenu = async () => {
  *
  */
 const renderMenu = async () => {
+  const restaurantNameElement = document.querySelector('.restaurant-name');
+  const menuListElement = document.querySelector('#menu');
+  const menuInfo = await getCurrentMenu();
+  const menu = menuInfo.currentMenu;
+  const restaurantName = menuInfo.name;
 
-  const menu = await getCurrentMenu();
-  console.log(menu);
+  menuListElement.innerHTML = '';
+  menu.forEach((menuItem) => {
+    console.log(menuItem);
+    const li = document.createElement('li');
+    li.textContent = menuItem;
+    menuListElement.append(li);
 
+  });
+  restaurantNameElement.textContent = restaurantName;
 };
 renderMenu();
 
