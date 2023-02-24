@@ -76,7 +76,12 @@ const renderMenu = async () => {
   menu.forEach((menuItem) => {
     const underline = document.createElement('div');
     const li = document.createElement('li');
-    li.textContent = menuItem;
+
+   let asd = (menuItem.split('|'));
+    console.log(asd);
+    for (let i=0; i<asd.length; i++) {
+      li.innerHTML += asd[i]+='<br>';
+    }
     li.append(underline);
     menuListElement.append(li);
 
