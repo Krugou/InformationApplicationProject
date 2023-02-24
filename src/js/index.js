@@ -33,8 +33,6 @@ campusSelector.addEventListener('change', () => {
   //renderAll
 });
 
-
-
 console.log('🚀 ~ file: index.js:11 ~ allRestaurants:', allRestaurants);
 
 /** Function for getting the selected menu
