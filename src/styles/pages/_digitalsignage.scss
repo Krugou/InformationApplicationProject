@@ -11,6 +11,18 @@
   padding: 1rem;
   width: 100vw;
 
+  header {
+    justify-content: space-around;
+    margin: 0.5rem;
+    padding: 0.5rem;
+
+    #weather-info {
+      height: 100%;
+      margin: 0.5rem;
+      padding: 0.5rem;
+    }
+  }
+
   .hsl {
     h2 {
       text-align: center;

@@ -1,7 +1,7 @@
 import '../styles/main.scss';
 import hslRender from './modules/hsl/hsl-render';
 // import karamalmiData from './modules/karamalmiMenu';
-import fetchWeatherLocalorDefault from './modules/weather-data';
+import fetchWeatherLocalorDefault from './modules/weather/weather-data';
 const allRestaurants = [
   { name: 'Myyrmäki', id: 152, type: 'Sodexo' },
   { name: 'Karamalmi', id: 3208, type: 'Fazer' },
@@ -16,8 +16,8 @@ console.log('🚀 ~ file: index.js:11 ~ allRestaurants:', allRestaurants);
 
 
 // temp campus is myllypuro
-
 const campus = 'myllypuro';
+
 const renderEnv = async () => {
   const hsl = document.querySelector('.hsl-list');
   // const menu = await karamalmiData.getDailyMenu('3208', 'fi');
