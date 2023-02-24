@@ -7,7 +7,7 @@ const renderHSLData = async (target, stop) => {
   const ul = document.createElement('ul');
   for (const route of routes) {
     const li = document.createElement('li');
-    li.textContent = `${route.name} saapuu ${route.realtimeArrival}`;
+    li.textContent = `linja:${route.name}  aika:${route.realtimeArrival}`;
     ul.append(li);
   }
   target.append(ul);
