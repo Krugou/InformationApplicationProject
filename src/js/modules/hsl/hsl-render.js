@@ -19,10 +19,16 @@ const renderHSLData = async (target, stop) => {
       const hslContainerList = document.createElement('li');
       hslContainerList.classList.add('hsl-container-list');
 
+      const transitImage = document.createElement('img');
+      transitImage.src = '../../assets/images/Bussi.svg';
+      transitImage.alt = '';
+      transitImage.classList.add('bus-svg');
       // Create the transit line element and append it to the list
       const transitLine = document.createElement('p');
-      transitLine.textContent = `linja: ${route.name}`;
+      transitLine.textContent = `${route.name}`;
       transitLine.classList.add('transit-line');
+      hslContainerList.append(transitImage);
+
       hslContainerList.append(transitLine);
 
       // Create the transit line direction element and append it to the list
