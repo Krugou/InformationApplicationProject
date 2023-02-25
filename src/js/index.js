@@ -99,6 +99,8 @@ const renderMenu = async () => {
         if (item.match(/[,]/)) {
 
           const nameItems = item.split('(');
+          const dietContainer = document.createElement('div');
+          dietContainer.classList.add('diet-container');
           nameItems.forEach((item) => {
             if (item.match(/[,]/)) {
               const dietItems = item.split(',');
@@ -110,7 +112,8 @@ const renderMenu = async () => {
                   const results = dietPreferences(dietItem);
 
                   p.textContent = results;
-                  li.append(p);
+                  dietContainer.append(p);
+                  li.append(dietContainer);
                 }
                 );
 
@@ -119,7 +122,8 @@ const renderMenu = async () => {
               const p = document.createElement('p');
               p.classList.add('menu-item-title');
               p.textContent = item;
-              li.append(p);
+              dietContainer.append(p);
+              li.append(dietContainer);
             }
           });
 
@@ -135,6 +139,8 @@ const renderMenu = async () => {
 
         // 2. If the restaurant type is Sodexo, check if the menu item matches the regex
         if (item.match(/G|L|VL|M|\*|Veg|ILM|VS/)) {
+          const dietContainer = document.createElement('div');
+          dietContainer.classList.add('diet-container');
           // 3. Split the item into an array of diet items
           const dietItems = item.split(',');
           // 4. Loop through each diet item
@@ -148,8 +154,8 @@ const renderMenu = async () => {
 
             // 7. Add the diet information to the paragraph element
             p.textContent = results;
-            // 8. Append the paragraph element to the list item
-            li.append(p);
+            dietContainer.append(p);
+            li.append(dietContainer);
           });
         }
 
