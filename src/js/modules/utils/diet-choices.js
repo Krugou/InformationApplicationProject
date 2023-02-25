@@ -5,17 +5,23 @@ const dietchoices = '(*,A,G,L,M,VS)';
 
 
 const dietPreferences = (dietInfo) => {
+  console.log('🚀 ~ file: diet-choices.js:8 ~ dietPreferences ~ dietInfo:', dietInfo);
   let diet = '';
+
   if (dietInfo.includes('G')) {
     diet += 'Gluteeniton';
-  }
-  if (dietInfo.includes('L')) {
+  } if (dietInfo.includes('M') && dietInfo.includes('L')) { // if both M and L are included
+    // do nothing }
+  } else if (dietInfo.includes('L')) {
     diet += ' Laktoositon';
   }
+
   if (dietInfo.includes('VL')) {
     diet += ' Vähälaktoosinen';
   }
-  if (dietInfo.includes('M')) {
+  if (dietInfo.includes('M') && dietInfo.includes('L')) { // if both M and L are included
+    // do nothing
+  } else if (dietInfo.includes('M')) {
     diet += ' Maidoton';
   }
   if (dietInfo.includes('*')) {
