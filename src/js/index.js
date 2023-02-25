@@ -86,7 +86,7 @@ const renderMenu = async () => {
   menuListElement.innerHTML = '';
   menu.forEach((menuItem) => {
     // Create a new <div> element
-    const underline = document.createElement('div');
+    // const underline = document.createElement('div');
     // Create a new <li> element
     const li = document.createElement('li');
     // Split the 'menuItem' string into an array at the '|' character
@@ -118,6 +118,11 @@ const renderMenu = async () => {
                 );
 
               }
+            } else {
+              const p = document.createElement('p');
+              p.classList.add('menu-item-title');
+              p.textContent = item;
+              li.append(p);
             }
 
           });
@@ -179,8 +184,19 @@ const renderMenu = async () => {
       }
       if (restaurantType === 'Sodexo') {
 
-        //create an array from the list of li children
+        //create an array from the list of li  children
         const liArray = Array.from(li.children);
+        console.log('🚀 ~ file: index.js:189 ~ menuItems.forEach ~ liArray:', liArray);
+        // if liArray contains to div.diet-containers remove second;
+        if (liArray.length > 1) {
+          liArray.forEach((item) => {
+            if (item.classList.contains('diet-container')) {
+
+              item.remove();
+            }
+          });
+        }
+
         //create a new array with only unique items
         const uniqueLiArray = [...new Set(liArray.map((item) => item.textContent))].map((item) => {
           //return the first instance of the unique item
@@ -188,13 +204,13 @@ const renderMenu = async () => {
         });
         //remove all li items from the list
         li.innerHTML = '';
+
         //add the unique li items to the list
         uniqueLiArray.forEach((item) => {
           li.append(item);
         });
       }
-
-      li.append(underline);
+      // li.append(underline);
       menuListElement.append(li);
 
     });
