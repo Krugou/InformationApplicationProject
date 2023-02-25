@@ -5,7 +5,9 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
-    jak: './src/js/index.js'
+    jak: './src/js/index.js',
+    jakds: './src/js/indexds.js',
+
   },
   plugins: [
     new CopyPlugin({
@@ -30,7 +32,7 @@ module.exports = {
         collapseWhitespace: true
       },
       filename: 'ds.html',
-      chunks: ['jak']
+      chunks: ['jakds']
     }),
     new HtmlWebpackPlugin({
       title: ' PWA',
