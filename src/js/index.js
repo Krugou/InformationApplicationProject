@@ -70,34 +70,36 @@ const renderMenu = async () => {
   const menu = menuInfo.currentMenu;
   const restaurantName = menuInfo.currentMenuInfo.name;
   const restaurantType = menuInfo.currentMenuInfo.type;
-  console.log(restaurantType);
 
   // Clear list
   menuListElement.innerHTML = '';
   menu.forEach((menuItem) => {
     const underline = document.createElement('div');
     const li = document.createElement('li');
-    // in menuItem make new p element after every | and append it to li
     const menuItems = menuItem.split('|');
-    console.log('🚀 ~ file: index.js:83 ~ menu.forEach ~ menuItems:', menuItems);
+    console.log('🚀 ~ file: index.js:81 ~ menu.forEach ~ menuItems:', menuItems);
     menuItems.forEach((item) => {
 
       if (item.match(/([a-zA-ZäöåÄÖÅ]+(?:-[a-zA-ZäöåÄÖÅ]+)?)(?:,|$)/g)) {
         if (item.match(/[,]/)) {
+
           const nameItems = item.split('(');
           nameItems.forEach((item) => {
             if (item.match(/[,]/)) {
               const dietItems = item.split(',');
+              if (restaurantType === 'Food & Co') {
+                dietItems.forEach((dietItem) => {
 
-              dietItems.forEach((dietItem) => {
+                  const p = document.createElement('p');
+                  p.classList.add('menu-item-diet');
+                  const results = dietPreferences(dietItem);
 
-                const p = document.createElement('p');
-                p.classList.add('menu-item-diet');
+                  p.textContent = results;
+                  li.append(p);
+                }
+                );
 
-                p.textContent = dietPreferences(dietItem);
-                li.append(p);
               }
-              );
             } else {
               const p = document.createElement('p');
               p.classList.add('menu-item-title');
@@ -105,31 +107,31 @@ const renderMenu = async () => {
               li.append(p);
             }
           });
+
         } else {
           const p = document.createElement('p');
           p.classList.add('menu-item-title');
           p.textContent = item;
           li.append(p);
         }
+      }
+      if (restaurantType === 'Sodexo') {
+
+        if (item.match(/G|L|VL|M|\*|Veg|ILM|VS/)) {
+          const dietItems = item.split(',');
+          dietItems.forEach((dietItem) => {
+
+            const p = document.createElement('p');
+            p.classList.add('menu-item-diet');
+            const results = dietPreferences(dietItem);
+
+            p.textContent = results;
+            li.append(p);
+          });
+        }
 
       }
-      if (item.match(/[),]/)) {
-        const dietItems = item.split(',');
-        dietItems.forEach((dietItem) => {
 
-          const p = document.createElement('p');
-          p.classList.add('menu-item-diet');
-
-          p.textContent = dietPreferences(dietItem);
-          li.append(p);
-        });
-      }
-
-      // if (item.match()) {
-      //   const p = document.createElement('p');
-      //   p.textContent = dietPreferences(item);
-      //   li.append(p);
-      // }
       if (item.match(/\d,\d\d/)) {
         const priceItems = item.split('/');
         priceItems.forEach((priceItem) => {
@@ -143,12 +145,22 @@ const renderMenu = async () => {
           p.textContent = priceItem;
           li.append(p);
         });
-
-
-        // const p = document.createElement('p');
-        // p.textContent = item;
-        // li.append(p);
       }
+      if (restaurantType === 'Sodexo') {
+        // turn li into array
+        const liArray = Array.from(li.children);
+        // remove duplicate p.menu-item-diet textContent
+        const uniqueLiArray = [...new Set(liArray.map((item) => item.textContent))].map((item) => {
+          return liArray.find((element) => element.textContent === item);
+        });
+        // remove all children from li
+        li.innerHTML = '';
+        // append uniqueLiArray to li
+        uniqueLiArray.forEach((item) => {
+          li.append(item);
+        });
+      }
+
 
       li.append(underline);
       menuListElement.append(li);
@@ -168,30 +180,10 @@ const renderMenu = async () => {
   });
 };
 
-// const MassTransitStops = [
-// ];
-
 
 const renderEnv = async () => {
   const hsl = document.querySelector('.hsl-list');
   hsl.innerHTML = '';
-  // const menu = await karamalmiData.getDailyMenu('3208', 'fi');
-  // const rightside = document.querySelector('.rightside');
-  // const leftside = document.querySelector('.leftside');
-  // leftside.innerHTML = '';
-  // rightside.innerHTML = '';
-  // const menuDiv = document.createElement('div');
-  // const menuDiv2 = document.createElement('div');
-  // menuDiv.classList.add('menu');
-  // menuDiv2.classList.add('menu');
-
-  // menuDiv.innerHTML = menu.join('<br>');
-  // rightside.appendChild(menuDiv);
-
-  // menu.reverse();
-  // menuDiv2.innerHTML = menu.join('<br>');
-
-  // leftside.appendChild(menuDiv2);
   if (selectedCampus === 'Karamalmi') {
     // pysäkki lähellä 2132207,2132208 , 2132225, 2132226, 2133224,2133225
 
