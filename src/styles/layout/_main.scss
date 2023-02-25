@@ -77,6 +77,7 @@
                 display: flex;
                 flex-direction: row;
               }
+
             }
           }
 
@@ -89,5 +90,15 @@
             fill:beige;
             width: 4vmax;
             aspect-ratio: 1/1;
+          }
+          .hsl-container {
+            display: flex;
+            p {
+              margin:0;
+            }
+            .hsl-container-list {
+              border: 0.5px dashed black;
+              padding: 15px;
+            }
           }
         }

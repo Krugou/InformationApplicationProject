@@ -33,13 +33,13 @@ const renderHSLData = async (target, stop) => {
 
       // Create the transit line direction element and append it to the list
       const transitLineDirection = document.createElement('p');
-      transitLineDirection.textContent = `suunta: ${route.headsign}`;
+      transitLineDirection.textContent = `${route.headsign}`;
       transitLineDirection.classList.add('transit-line-direction');
       hslContainerList.append(transitLineDirection);
 
       // Create the arrival time element and append it to the list
       const arrivalTime = document.createElement('p');
-      arrivalTime.textContent = `saapuu: ${route.realtimeArrival}`;
+      arrivalTime.textContent = `${route.realtimeArrival}`;
       arrivalTime.classList.add('arrival-time');
       hslContainerList.append(arrivalTime);
 
