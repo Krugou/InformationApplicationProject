@@ -33,42 +33,58 @@
 
             #menu {
 
-              padding:1em;
+              padding: 1em;
 
               li {
                 margin-bottom: 1.5em;
                 font-size: 1.5rem;
 
-                div{
-                  background-color: $metropoliaorange;
-                  height: 2px;
-                  margin:5px auto auto auto;
+                div {
+                  // background-color: $metropoliaorange;
+                  // height: 2px;
+                  // margin: 5px auto auto auto;
+                  border-bottom: 2px double $metropoliaorange;
+                }
+
+                .price-container {
+                  display: flex;
+                  flex-direction: row;
+
+                  p {
+                    padding: 0.5rem;
+                  }
 
                 }
+
+                // bottom border for menu items
+
+              }
+            }
+
+            .sides {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+
+              height: fit-content;
+            }
+
+            .hsl {
+              h2 {
+                text-align: center;
+              }
+
+              .hsl-list {
+                display: flex;
+                flex-direction: row;
               }
             }
           }
 
-          .sides {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            height:fit-content;
+          .menu-item-title {
+            // font into bold
+            font-weight: bold;
           }
 
-          .hsl {
-            h2 {
-              text-align: center;
-            }
 
-            .hsl-list {
-              display: flex;
-              flex-direction: row;
-            }
-          }
         }
-.menu-item-title {
-  // font into bold
-  font-weight: bold;
-}
