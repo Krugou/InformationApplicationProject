@@ -19,6 +19,14 @@ const renderHSLData = async (target, stop) => {
       const hslContainerList = document.createElement('li');
       hslContainerList.classList.add('hsl-container-list');
 
+
+      // Create an element for the header-section of the list
+      const hslcontainerListHeader = document.createElement('div');
+      hslcontainerListHeader.classList.add('hsl-container-list-head');
+
+      const hslcontainerListHeaderRight = document.createElement('div');
+      hslcontainerListHeaderRight.classList.add('hsl-container-list-head-right');
+
       // Create the image element for the bus icon
       const transitImage = document.createElement('img');
       transitImage.src = '../../assets/images/Bussi.svg';
@@ -28,26 +36,31 @@ const renderHSLData = async (target, stop) => {
       // Create an element for the address of the line
       const transitAddress = document.createElement('p');
       transitAddress.classList.add('transit-address');
-      transitAddress.textContent = route.stopname;
+      transitAddress.textContent =  `Lähtee:${route.stopname}`;
 
       // Create the transit line element and append it to the list
       const transitLine = document.createElement('p');
 
-      console.log('HEHEEE',route.stopname);
-
 
       transitLine.textContent = `${route.name}`;
       transitLine.classList.add('transit-line');
-      hslContainerList.append(transitImage);
-      hslContainerList.append(transitAddress);
-      hslContainerList.append(transitLine);
+      //  hslContainerList.append(transitImage);
+      // hslContainerList.append(transitLine);
 
       // Create the transit line direction element and append it to the list
       const transitLineDirection = document.createElement('p');
       transitLineDirection.textContent = `${route.headsign}`;
       transitLineDirection.classList.add('transit-line-direction');
-      hslContainerList.append(transitLineDirection);
+      //hslContainerList.append(transitLineDirection);
 
+      hslcontainerListHeader.append(transitImage);
+      hslcontainerListHeaderRight.append(transitLine);
+      hslcontainerListHeaderRight.append(transitLineDirection);
+
+      hslcontainerListHeader.append(hslcontainerListHeaderRight);
+
+      hslContainerList.append(hslcontainerListHeader);
+      hslContainerList.append(transitAddress);
       // Create the arrival time element and append it to the list
       const arrivalTime = document.createElement('p');
       arrivalTime.textContent = `${route.realtimeArrival}`;

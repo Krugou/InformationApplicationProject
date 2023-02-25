@@ -88,8 +88,7 @@
 
           .bus-svg{
             fill:beige;
-            width: 4vmax;
-            aspect-ratio: 1/1;
+            width: 3em;
           }
           .hsl-container {
             display: flex;
@@ -98,7 +97,13 @@
             }
             .hsl-container-list {
               border: 0.5px dashed black;
-              padding: 15px;
+              padding: 8px;
             }
+          }
+          .hsl-container-list-head{
+            display: flex;
+          }
+          .hsl-container-list-head-right{
+           margin-left: 0.3em;
           }
         }
