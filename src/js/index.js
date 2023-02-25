@@ -118,13 +118,8 @@ const renderMenu = async () => {
                 );
 
               }
-            } else {
-              const p = document.createElement('p');
-              p.classList.add('menu-item-title');
-              p.textContent = item;
-              dietContainer.append(p);
-              li.append(dietContainer);
             }
+
           });
 
         } else {
