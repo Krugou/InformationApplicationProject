@@ -214,6 +214,38 @@ const renderMenu = async () => {
       menuListElement.append(li);
 
     });
+    const menuItemDiet = document.querySelectorAll('.menu-item-diet');
+    menuItemDiet.forEach((item) => {
+      if (item.textContent === '') {
+        item.remove();
+      }
+    });
+    // get all p elements with the class menu-item-title
+    const menuTitleElements = document.querySelectorAll('.menu-item-title');
+    // if menuTitleElements items are empty, remove it
+    menuTitleElements.forEach((item) => {
+      if (item.textContent === '') {
+        item.remove();
+      }
+    });
+    if (restaurantType === 'Sodexo') {
+
+
+      // get all li elements
+      const liElements = document.querySelectorAll('li');
+      // loop through each li element
+      liElements.forEach((li) => {
+        // get all div elements with the class diet-container
+        const dietContainers = li.querySelectorAll('.diet-container');
+        // if there is more than one diet-container, remove the second one
+        if (dietContainers.length > 1) {
+          dietContainers[1].remove();
+        }
+      }
+      );
+
+
+    }
     restaurantNameElement.textContent = restaurantName;
 
     // check which restaurant type is selected
