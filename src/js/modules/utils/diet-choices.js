@@ -1,11 +1,6 @@
-// (*,A,G,L,M,VS)
-const dietchoices = '(*,A,G,L,M,VS)';
-
 // (G) Gluteeniton, (L) Laktoositon, (VL) Vähälaktoosinen, (M) Maidoton, (*) Suomalaisten ravitsemussuositusten mukainen, (Veg) Soveltuu vegaaniruokavalioon, (ILM) Ilmastoystävällinen, (VS) Sis. tuoretta valkosipulia, (A) Sis. Allergeeneja
 
-
 const dietPreferences = (dietInfo) => {
-  console.log('🚀 ~ file: diet-choices.js:8 ~ dietPreferences ~ dietInfo:', dietInfo);
   let diet = '';
 
   if (dietInfo.includes('G')) {
@@ -42,7 +37,5 @@ const dietPreferences = (dietInfo) => {
 
   return diet;
 };
-
-console.log(dietPreferences(dietchoices));
 
 export default dietPreferences;
