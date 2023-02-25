@@ -301,8 +301,16 @@ const initiate = async () => {
   fetchWeatherLocalorDefault(1);
   renderEnv();
   renderMenu();
-
+ // changeLanguageInterval();
 
 };
 initiate();
+/*
+const changeLanguageInterval = setInterval(() => {
+  if (lang === 'fi') lang = 'en';
+  else if (lang === 'en') lang = 'fi';
+  renderMenu();
+
+}, 20000);
+*/
 
