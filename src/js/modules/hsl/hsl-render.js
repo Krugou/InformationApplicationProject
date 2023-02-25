@@ -25,11 +25,21 @@ const renderHSLData = async (target, stop) => {
       transitImage.alt = '';
       transitImage.classList.add('bus-svg');
 
+      // Create an element for the address of the line
+      const transitAddress = document.createElement('p');
+      transitAddress.classList.add('transit-address');
+      transitAddress.textContent = route.stopname;
+
       // Create the transit line element and append it to the list
       const transitLine = document.createElement('p');
+
+      console.log('HEHEEE',route.stopname);
+
+
       transitLine.textContent = `${route.name}`;
       transitLine.classList.add('transit-line');
       hslContainerList.append(transitImage);
+      hslContainerList.append(transitAddress);
       hslContainerList.append(transitLine);
 
       // Create the transit line direction element and append it to the list

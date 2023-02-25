@@ -50,6 +50,7 @@ const getRoutesByStopId = async (id) => {
 
   return routeData.data.stop.stoptimesWithoutPatterns.map((route) => {
     return {
+      stopname: routeData.data.stop.name,
       name: route.trip.routeShortName,
       headsign: route.headsign,
       scheduledArrival: convertTime(route.scheduledArrival),
