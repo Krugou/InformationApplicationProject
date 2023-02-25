@@ -36,7 +36,6 @@ campusSelector.addEventListener('change', () => {
   //renderAll
 });
 
-console.log('🚀 ~ file: index.js:11 ~ allRestaurants:', allRestaurants);
 
 /** Function for getting the selected menu
  *
@@ -91,7 +90,6 @@ const renderMenu = async () => {
     const li = document.createElement('li');
     // Split the 'menuItem' string into an array at the '|' character
     const menuItems = menuItem.split('|');
-    console.log('🚀 ~ file: index.js:81 ~ menu.forEach ~ menuItems:', menuItems);
     // Iterate through the array
     menuItems.forEach((item) => {
 
@@ -186,7 +184,6 @@ const renderMenu = async () => {
 
         //create an array from the list of li  children
         const liArray = Array.from(li.children);
-        console.log('🚀 ~ file: index.js:189 ~ menuItems.forEach ~ liArray:', liArray);
         // if liArray contains to div.diet-containers remove second;
         if (liArray.length > 1) {
           liArray.forEach((item) => {
