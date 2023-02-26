@@ -1,3 +1,16 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the button component.
 // -----------------------------------------------------------------------------
+#language-button {
+  width: 4em;
+  height: 2em;
+  border: solid 1px $metropoliaorange-button;
+  border-radius: 10px;
+  background-color: $metropoliaorange-button;
+  cursor:pointer;
+}
+
+ #language-button:hover {
+   background-color: $metropoliaorange-light;
+   border-color: $metropoliaorange-light;
+}

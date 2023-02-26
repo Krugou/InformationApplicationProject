@@ -7,7 +7,18 @@ header {
   display: flex;
   align-items: center;
   gap: 5em;
-  margin-top: 3em;
+  margin-top: 2em;
+
+  #domain-select {
+    width: 6em;
+    height: 2em;
+    background-color: $metropoliaorange-button;
+    cursor:pointer;
+  }
+  #domain-select:hover  {
+    background-color: $metropoliaorange-light;
+    border-color: $metropoliaorange-light;
+  }
 
 
   .metropolia-logo {

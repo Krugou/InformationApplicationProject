@@ -4,7 +4,7 @@
           background-color: $background-color;
           color: $metropoliagray;
           column-gap: 5em;
-          margin-top: 5em;
+          margin-top: 2em;
           padding: 2em;
 
           h2 {
@@ -18,7 +18,7 @@
 
 
             .video {
-              width: 110vw;
+              width: 30vw;
               max-width: 100%;
               margin-bottom: 2em;
             }
@@ -47,14 +47,14 @@
 
               li {
                 margin-bottom: 1.5em;
-                font-size: 1.5rem;
+                font-size: 1.25rem;
 
                 .price-container {
                   display: flex;
                   flex-direction: row;
 
                   p {
-                    padding: 0.5rem;
+                    padding: 8px;
                   }
 
                 }
@@ -95,7 +95,9 @@
           .hsl-container {
             display: flex;
             flex-direction: column;
-            padding:2em;
+            margin: 0px 0px 32px 0px;
+            padding-right: 2em;
+            font-size: 1rem;
             p {
               margin:0;
             }
