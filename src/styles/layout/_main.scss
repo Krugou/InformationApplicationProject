@@ -12,14 +12,15 @@
           }
 
           .leftside {
-            justify-content: space-between;
             font-family: "HCo Gotham Rounded";
             flex: 2;
+            height:fit-content;
 
 
             .video {
-              width: 27vw;
+              width: 110vw;
               max-width: 100%;
+              margin-bottom: 2em;
             }
 
             .hsl {
@@ -30,6 +31,7 @@
           .rightside {
             border: 1px solid black;
             flex: 1;
+            height:fit-content;
 
             figure {
               text-align: center;
@@ -46,12 +48,6 @@
               li {
                 margin-bottom: 1.5em;
                 font-size: 1.5rem;
-
-                div {
-                  // background-color: $metropoliaorange;
-                  // height: 2px;
-                  // margin: 5px auto auto auto;
-                }
 
                 .price-container {
                   display: flex;
@@ -72,7 +68,6 @@
               display: flex;
               flex-direction: column;
               align-items: center;
-              height: fit-content;
             }
 
             .hsl {
