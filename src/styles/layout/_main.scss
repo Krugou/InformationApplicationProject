@@ -7,10 +7,14 @@
           margin-top: 5em;
           padding: 2em;
 
+          h2 {
+            text-align: center;
+          }
+
           .leftside {
             justify-content: space-between;
             font-family: "HCo Gotham Rounded";
-            flex: 3;
+            flex: 2;
 
 
             .video {
@@ -26,6 +30,7 @@
           .rightside {
             border: 1px solid black;
             flex: 1;
+
 
             .restaurant-logo {
               width: 10em;
@@ -64,7 +69,6 @@
               display: flex;
               flex-direction: column;
               align-items: center;
-
               height: fit-content;
             }
 
@@ -92,16 +96,30 @@
           }
           .hsl-container {
             display: flex;
+            flex-direction: column;
+            padding:2em;
             p {
               margin:0;
             }
             .hsl-container-list {
               border: 0.5px dashed black;
-              padding: 8px;
+              padding: 8px 8px 8px 40px;
+              display: flex;
+              align-items: center;
+
+              .transit-address {
+                flex:3;
+              }
+              .arrival-time {
+                flex:1;
+              }
+
             }
           }
           .hsl-container-list-head{
             display: flex;
+            flex:3;
+            gap:10px;
           }
           .hsl-container-list-head-right{
            margin-left: 0.3em;
