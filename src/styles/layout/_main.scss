@@ -31,6 +31,9 @@
             border: 1px solid black;
             flex: 1;
 
+            figure {
+              text-align: center;
+            }
 
             .restaurant-logo {
               width: 10em;
@@ -106,6 +109,8 @@
               padding: 8px 8px 8px 40px;
               display: flex;
               align-items: center;
+              background-color:$hsl-white;
+              color:$hsl-sininen;
 
               .transit-address {
                 flex:3;
