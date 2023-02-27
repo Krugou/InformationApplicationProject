@@ -52,7 +52,7 @@ const getRoutesByStopId = async (id) => {
     return {
       stopname: routeData.data.stop.name,
       name: route.trip.routeShortName,
-      headsign: route.headsign,
+      headsign: route.trip.tripHeadsign,
       scheduledArrival: convertTime(route.scheduledArrival),
       realtimeArrival: convertTime(route.realtimeArrival),
     };

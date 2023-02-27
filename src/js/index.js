@@ -6,11 +6,11 @@ import sodexoMenu from './modules/restaurant/sodexomenu';
 import dietPreferences from './modules/utils/diet-choices';
 // import serviceWorkerFunction from './modules/utils/sw';
 import fetchWeatherLocalorDefault from './modules/weather/weather-data';
-const allRestaurants = [
-  { name: 'Myyrmäki', id: 152, type: 'Sodexo', stops: [4150269, 4150268, 4150228, 4150296, 4150201] },
-  { name: 'Karamalmi', id: 3208, type: 'Food & Co', stops: [2132207, 2132208, 2132225, 2132226, 2133224, 2133225] },
-  { name: 'Myllypuro', id: 158, type: 'Sodexo', stops: [1454601, 1454602, 1454140, 1454141] },
-  { name: 'Arabia', id: 1251, type: 'Food & Co', stops: [1230201, 1230101] },
+const allCampuses = [
+  { name: 'Myyrmäki', id: 152, type: 'Sodexo', stops: [4150296, 4150201] },
+  { name: 'Karamalmi', id: 3208, type: 'Food & Co', stops: [ 2132225, 2132226] },
+  { name: 'Myllypuro', id: 158, type: 'Sodexo', stops: [1454140, 1454141] },
+  { name: 'Arabia', id: 1251, type: 'Food & Co', stops: [1230102, 1230101] },
 ];
 
 // DOM Elements
@@ -43,8 +43,8 @@ campusSelector.addEventListener('change', () => {
 const getCurrentMenu = async () => {
   try {
     let currentMenu = [];
-    // Find the selectedmenus info from the allrestaurants array
-    const currentMenuInfo = allRestaurants.filter((restaurant) => {
+    // Find the selectedmenus info from the allCampuses array
+    const currentMenuInfo = allCampuses.filter((restaurant) => {
       return restaurant.name === selectedCampus;
     })[0];
     // Get the correct menu and save it menu array
@@ -278,7 +278,7 @@ const priceContainerRender = (item, li) => {
 const getStopsNearbyHsl = async () => {
   const hsl = document.querySelector('.hsl-list');
   hsl.innerHTML = '';
-  const selectedRestaurant = allRestaurants.find((restaurant) => restaurant.name === selectedCampus);
+  const selectedRestaurant = allCampuses.find((restaurant) => restaurant.name === selectedCampus);
 
   if (selectedRestaurant) {
     selectedRestaurant.stops.forEach((stop) => {

@@ -36,7 +36,7 @@ const HSLContainerRender = async (target, stop) => {
       // Create an element for the address of the line
       const transitAddress = document.createElement('p');
       transitAddress.classList.add('transit-address');
-      transitAddress.textContent =  `Lähtee:${route.stopname}`;
+      transitAddress.textContent =  `Pysäkki:${route.stopname}`;
 
       // Create the transit line element and append it to the list
       const transitLine = document.createElement('p');
