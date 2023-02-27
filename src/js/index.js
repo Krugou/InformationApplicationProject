@@ -5,10 +5,10 @@ import sodexoMenu from './modules/restaurant/sodexomenu';
 import dietPreferences from './modules/utils/diet-choices';
 import fetchWeatherLocalorDefault from './modules/weather/weather-data';
 const allRestaurants = [
-  { name: 'Myyrmäki', id: 152, type: 'Sodexo' },
-  { name: 'Karamalmi', id: 3208, type: 'Food & Co' },
-  { name: 'Myllypuro', id: 158, type: 'Sodexo' },
-  { name: 'Arabia', id: 1251, type: 'Food & Co' },
+  { name: 'Myyrmäki', id: 152, type: 'Sodexo', stops: [4150269, 4150268, 4150228, 4150296, 4150201] },
+  { name: 'Karamalmi', id: 3208, type: 'Food & Co', stops: [2132207, 2132208, 2132225, 2132226, 2133224, 2133225] },
+  { name: 'Myllypuro', id: 158, type: 'Sodexo', stops: [1454601, 1454602, 1454140, 1454141] },
+  { name: 'Arabia', id: 1251, type: 'Food & Co', stops: [1230201, 1230101] },
 ];
 
 // DOM Elements
@@ -32,8 +32,6 @@ campusSelector.addEventListener('change', () => {
   selectedCampus = document.querySelector('#domain-select').value;
   renderMenu();
   renderEnv();
-
-  //renderAll
 });
 
 
@@ -258,43 +256,22 @@ const changeRestaurantLogo = (restaurantType) => {
   }
 };
 
-const renderEnv = async () => {
+const getStopsNearbyHsl = async () => {
   const hsl = document.querySelector('.hsl-list');
   hsl.innerHTML = '';
-  if (selectedCampus === 'Karamalmi') {
-    // pysäkki lähellä 2132207,2132208 , 2132225, 2132226, 2133224,2133225
+  const selectedRestaurant = allRestaurants.find((restaurant) => restaurant.name === selectedCampus);
 
-    hslRender.renderHSLData(hsl, 2132208);
-    hslRender.renderHSLData(hsl, 2132207);
-    hslRender.renderHSLData(hsl, 2132225);
-    hslRender.renderHSLData(hsl, 2132226);
-    hslRender.renderHSLData(hsl, 2133224);
-    hslRender.renderHSLData(hsl, 2133225);
-  } else if (selectedCampus === 'Myyrmaki') {
-    // pysäkki lähellä 4150269,4150268 , 4150228, 4150296, 4150201
-
-    hslRender.renderHSLData(hsl, 4150269);
-    hslRender.renderHSLData(hsl, 4150268);
-    hslRender.renderHSLData(hsl, 4150228);
-    hslRender.renderHSLData(hsl, 4150296);
-    hslRender.renderHSLData(hsl, 4150201);
-  } else if (selectedCampus === 'Myllypuro') {
-    // pysäkki lähellä 1454601,1454602 , 1454140, 1454141
-    hslRender.renderHSLData(hsl, 1454601);
-    hslRender.renderHSLData(hsl, 1454602);
-    hslRender.renderHSLData(hsl, 1454140);
-    hslRender.renderHSLData(hsl, 1454141);
-  } else if (selectedCampus === 'Arabia') {
-    // pysäkki lähellä 1230201,1230101
-    hslRender.renderHSLData(hsl, 1230201);
-    hslRender.renderHSLData(hsl, 1230101);
+  if (selectedRestaurant) {
+    selectedRestaurant.stops.forEach((stop) => {
+      hslRender.HSLContainerRender(hsl, stop);
+    });
   }
 
 
 };
 const initiate = async () => {
   fetchWeatherLocalorDefault(1);
-  renderEnv();
+  getStopsNearbyHsl();
   renderMenu();
 
 
