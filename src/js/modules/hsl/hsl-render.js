@@ -1,7 +1,7 @@
 import HSL from './hsl-data';
 
 
-const renderHSLData = async (target, stop) => {
+const HSLContainerRender = async (target, stop) => {
   try {
     // Get the routes for the stop
     const routes = await HSL.getRoutesByStopId(stop);
@@ -76,6 +76,6 @@ const renderHSLData = async (target, stop) => {
     console.error(error);
   }
 };
-const hslRender = { renderHSLData };
+const hslRender = { HSLContainerRender };
 
 export default hslRender;
