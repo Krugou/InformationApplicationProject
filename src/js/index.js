@@ -1,5 +1,6 @@
 import '../styles/main.scss';
 import hslRender from './modules/hsl/hsl-render';
+import paSystem from './modules/pa/Announcements';
 import foodcoData from './modules/restaurant/foodcoMenu';
 import sodexoMenu from './modules/restaurant/sodexomenu';
 import dietPreferences from './modules/utils/diet-choices';
@@ -268,9 +269,11 @@ const getStopsNearbyHsl = async () => {
     hsl.innerHTML = 'No restaurant found';
   }
 };
+const body = document.querySelector('body');
 const initiate = async () => {
   fetchWeatherLocalorDefault(1);
   getStopsNearbyHsl();
   renderMenu();
+  paSystem.getAnnouncements(body);
 };
 initiate();
