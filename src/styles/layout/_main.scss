@@ -129,6 +129,7 @@
 
         @media screen and (max-width: 950px) {
           main {
+            column-gap: 3em;
 
             h2 {
               font-size: 1.5rem;
@@ -141,19 +142,18 @@
                 li {
                   font-size: 1rem;
                 }
-
               }
             }
 
           .hsl-container {
-            padding: 1em;
+            padding: 2em;
 
           .hsl-container-list {
-            align-items: unset;
-            flex-direction: column;
             flex-wrap:wrap;
             padding: 15px;
             gap: 20px;
+            flex-direction: column;
+            align-items: unset;
 
             .hsl-container-list-head-right {
               margin: 0;
@@ -161,8 +161,9 @@
 
             .hsl-container-list-head, .transit-address, .arrival-time {
               flex:unset;
-              display:unset;
-
+            }
+            .hsl-container-list-head {
+              display: unset;
             }
           }
           }
