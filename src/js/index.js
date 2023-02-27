@@ -16,7 +16,36 @@ const allCampuses = [
 // DOM Elements
 const campusSelector = document.querySelector('#domain-select');
 const languageButton = document.querySelector('#language-button');
-let selectedCampus = document.querySelector('#domain-select').value;
+const saveButton = document.querySelector('#save-button');
+let selectedCampus;
+
+
+/**
+ * Saves settings to localstorage
+*/
+const saveSettings = () => {
+  const settings = {};
+  settings.campus = selectedCampus;
+  localStorage.setItem('campus', JSON.stringify(settings.campus));
+};
+
+saveButton.addEventListener('click', () => {
+  console.log(selectedCampus);
+  saveSettings();
+});
+
+/**
+ * Loads settings from localstorage
+ */
+const loadSettings = () => {
+  try {
+    selectedCampus = (JSON.parse(localStorage.campus));
+    document.querySelector('#domain-select').value = selectedCampus;
+  } catch (error) {
+    selectedCampus = document.querySelector('#domain-select').value;
+  }
+
+};
 
 //default language
 let lang = 'fi';
@@ -315,6 +344,7 @@ const hslContainer = (target) => {
 const leftside = document.querySelector('.leftside');
 const initiate = async () => {
   // serviceWorkerFunction();
+  loadSettings();
   fetchWeatherLocalorDefault(1);
   paSystem.getAnnouncements(leftside);
   renderVideo(leftside);
@@ -324,3 +354,4 @@ const initiate = async () => {
 
 };
 initiate();
+
