@@ -42,19 +42,24 @@ campusSelector.addEventListener('change', () => {
  * @returns array containing meal menu
  */
 const getCurrentMenu = async () => {
-  let currentMenu = [];
-  // Find the selectedmenus info from the allrestaurants array
-  const currentMenuInfo = allRestaurants.filter((restaurant) => {
-    return restaurant.name === selectedCampus;
-  })[0];
-  // Get the correct menu and save it menu array
-  if (currentMenuInfo.type === 'Food & Co') {
-    currentMenu = foodcoData.parseMenu(await foodcoData.getDailyMenu(currentMenuInfo.id, lang));
+  try {
+    let currentMenu = [];
+    // Find the selectedmenus info from the allrestaurants array
+    const currentMenuInfo = allRestaurants.filter((restaurant) => {
+      return restaurant.name === selectedCampus;
+    })[0];
+    // Get the correct menu and save it menu array
+    if (currentMenuInfo.type === 'Food & Co') {
+      currentMenu = foodcoData.parseMenu(await foodcoData.getDailyMenu(currentMenuInfo.id, lang));
+    }
+    if (currentMenuInfo.type === 'Sodexo') {
+      currentMenu = sodexoMenu.parseMenu(await sodexoMenu.getDailyMenu(currentMenuInfo.id), lang);
+    }
+    return { currentMenu, currentMenuInfo };
+  } catch (err) {
+    console.error(err);
+    return { currentMenu: [], currentMenuInfo: [] };
   }
-  if (currentMenuInfo.type === 'Sodexo') {
-    currentMenu = sodexoMenu.parseMenu(await sodexoMenu.getDailyMenu(currentMenuInfo.id), lang);
-  }
-  return { currentMenu, currentMenuInfo };
 };
 
 /** Function for rendering a menu
@@ -66,9 +71,6 @@ const renderMenu = async () => {
 
   // Create the menu list element
   const menuListElement = document.querySelector('#menu');
-
-  // Create the restaurant image element
-  const restaurantImgElement = document.querySelector('.restaurant-logo');
 
   // Get the current menu from the server
   const menuInfo = await getCurrentMenu();
@@ -92,10 +94,8 @@ const renderMenu = async () => {
     const menuItems = menuItem.split('|');
     // Iterate through the array
     menuItems.forEach((item) => {
-
       if (item.match(/([a-zA-ZäöåÄÖÅ]+(?:-[a-zA-ZäöåÄÖÅ]+)?)(?:,|$)/g)) {
         if (item.match(/[,]/)) {
-
           const nameItems = item.split('(');
           const dietContainer = document.createElement('div');
           dietContainer.classList.add('diet-container');
@@ -104,17 +104,14 @@ const renderMenu = async () => {
               const dietItems = item.split(',');
               if (restaurantType === 'Food & Co') {
                 dietItems.forEach((dietItem) => {
-
                   const p = document.createElement('p');
                   p.classList.add('menu-item-diet');
                   const results = dietPreferences(dietItem);
-
                   p.textContent = results;
                   dietContainer.append(p);
                   li.append(dietContainer);
                 }
                 );
-
               }
             } else {
               const p = document.createElement('p');
@@ -122,9 +119,7 @@ const renderMenu = async () => {
               p.textContent = item;
               li.append(p);
             }
-
           });
-
         } else {
           const p = document.createElement('p');
           p.classList.add('menu-item-title');
@@ -226,8 +221,6 @@ const renderMenu = async () => {
       }
     });
     if (restaurantType === 'Sodexo') {
-
-
       // get all li elements
       const liElements = document.querySelectorAll('li');
       // loop through each li element
@@ -240,29 +233,30 @@ const renderMenu = async () => {
         }
       }
       );
-
-
     }
     restaurantNameElement.textContent = restaurantName;
-
-    // check which restaurant type is selected
-    if (restaurantType === 'Sodexo') {
-      // if the restaurant type is Sodexo, then set the image source to the
-      // Sodexo logo
-      restaurantImgElement.src = '../assets/logos/sodexo.png';
-      // set the alternate text to be the name of the restaurant
-      restaurantImgElement.alt = 'Sodexo logo';
-    }
-    // Check if the restaurantType variable is equal to 'Food & Co'
-    if (restaurantType === 'Food & Co') {
-      // If it is, change the src attribute of the restaurantImgElement to the foodco.png image
-      restaurantImgElement.src = '../assets/logos/foodco.png';
-      // Change the alt attribute of the restaurantImgElement to 'Food & Co logo'
-      restaurantImgElement.alt = 'Food & Co logo';
-    }
+    changeRestaurantLogo(restaurantType);
   });
 };
+const changeRestaurantLogo = (restaurantType) => {
+  // Get the restaurant logo element
+  const restaurantImgElement = document.querySelector('.restaurant-logo');
 
+  // Set the restaurant logo based on the type of restaurant
+  switch (restaurantType) {
+    case 'Sodexo':
+      restaurantImgElement.src = '../assets/logos/sodexo.png';
+      restaurantImgElement.alt = 'Sodexo logo';
+      break;
+    case 'Food & Co':
+      restaurantImgElement.src = '../assets/logos/foodco.png';
+      restaurantImgElement.alt = 'Food & Co logo';
+      break;
+    default:
+      restaurantImgElement.src = '../assets/logos/restaurant.png';
+      restaurantImgElement.alt = 'Restaurant logo';
+  }
+};
 
 const renderEnv = async () => {
   const hsl = document.querySelector('.hsl-list');
