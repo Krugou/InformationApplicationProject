@@ -312,10 +312,10 @@ const hslContainer = (target) => {
 };
 const leftside = document.querySelector('.leftside');
 const initiate = async () => {
+  fetchWeatherLocalorDefault(1);
   paSystem.getAnnouncements(leftside);
   renderVideo(leftside);
   hslContainer(leftside);
-  fetchWeatherLocalorDefault(1);
   getStopsNearbyHsl();
   renderMenu();
 
