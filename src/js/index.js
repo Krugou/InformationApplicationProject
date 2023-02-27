@@ -258,10 +258,11 @@ const priceContainerRender = (item, li, restaurantType) => {
     // split the string into an array at the '/' character
     const priceItems = item.split('/');
     priceItems.forEach((priceItem) => {
-      // if the restaurant is Food & Co, add euro sign to each priceItem
-      if (restaurantType === 'Food & Co') {
-        priceItem = priceItem + ' €';
+     // if euro sign is missing from priceItem add it
+      if (!priceItem.includes('€')) {
+        priceItem = priceItem + '€';
       }
+      
       // create a p element and add the priceItem to it
       const p = document.createElement('p');
       p.classList.add('menu-item-price');
