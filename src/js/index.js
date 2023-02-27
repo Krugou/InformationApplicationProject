@@ -14,7 +14,6 @@ const allRestaurants = [
 // DOM Elements
 const campusSelector = document.querySelector('#domain-select');
 const languageButton = document.querySelector('#language-button');
-
 let selectedCampus = document.querySelector('#domain-select').value;
 
 //default language
@@ -31,7 +30,7 @@ languageButton.addEventListener('click', () => {
 campusSelector.addEventListener('change', () => {
   selectedCampus = document.querySelector('#domain-select').value;
   renderMenu();
-  renderEnv();
+  getStopsNearbyHsl();
 });
 
 
@@ -265,15 +264,13 @@ const getStopsNearbyHsl = async () => {
     selectedRestaurant.stops.forEach((stop) => {
       hslRender.HSLContainerRender(hsl, stop);
     });
+  } else {
+    hsl.innerHTML = 'No restaurant found';
   }
-
-
 };
 const initiate = async () => {
   fetchWeatherLocalorDefault(1);
   getStopsNearbyHsl();
   renderMenu();
-
-
 };
 initiate();
