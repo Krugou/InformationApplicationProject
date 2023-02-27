@@ -68,6 +68,10 @@ campusSelector.addEventListener('change', () => {
   getStopsNearbyHsl();
 });
 
+/** Function for getting info of the selected campus
+ *
+ * @returns object with campus info
+ */
 const getCampusInfo = () => {
   const currentCampusInfo = allCampuses.filter((restaurant) => {
     return restaurant.name === selectedCampus;
