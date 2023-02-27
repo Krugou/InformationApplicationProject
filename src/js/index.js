@@ -63,9 +63,9 @@ languageButton.addEventListener('click', () => {
 // Event listener for changing the selected campus
 campusSelector.addEventListener('change', () => {
   selectedCampus = document.querySelector('#domain-select').value;
-  renderMenu();
   fetchWeatherLocalorDefault(1, getCampusInfo());
   getStopsNearbyHsl();
+  renderMenu();
 });
 
 /** Function for getting info of the selected campus
