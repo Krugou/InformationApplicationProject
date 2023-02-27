@@ -2,6 +2,7 @@
 
 
 const dietPreferences = (dietInfo) => {
+
   let diet = '';
 
   if (dietInfo.includes('G')) {
@@ -35,9 +36,7 @@ const dietPreferences = (dietInfo) => {
   if (dietInfo.includes('A')) {
     diet += ' Sis. Allergeeneja';
   }
-  if (dietInfo === undefined || dietInfo === null || dietInfo === '' || dietInfo === ' ' || dietInfo === '  ') {
-    diet += 'Ei tietoa';
-  }
+
 
   return diet;
 };
