@@ -153,7 +153,7 @@ const renderMenu = async () => {
           });
         }
       }
-      priceContainerRender(item, li, restaurantType);
+      priceContainerRender(item, li );
 
       // if (restaurantType === 'Sodexo') {
 
@@ -250,7 +250,7 @@ const changeRestaurantLogo = (restaurantType) => {
       restaurantImgElement.alt = 'Restaurant logo';
   }
 };
-const priceContainerRender = (item, li, restaurantType) => {
+const priceContainerRender = (item, li ) => {
   if (item.match(/\d,\d\d/)) {
     const priceContainer = document.createElement('div');
     priceContainer.classList.add('price-container');
@@ -262,7 +262,7 @@ const priceContainerRender = (item, li, restaurantType) => {
       if (!priceItem.includes('€')) {
         priceItem = priceItem + '€';
       }
-      
+
       // create a p element and add the priceItem to it
       const p = document.createElement('p');
       p.classList.add('menu-item-price');
