@@ -1,11 +1,21 @@
 'use strict';
 import weatherSymbol from './weather-symbol';
-const fetchWeatherLocalorDefault = async (hoursfromnow) => {
+const fetchWeatherLocalorDefault = async (hoursfromnow, campus) => {
   // if lat and lon are not defined, use default values
+  let lat = campus.lat;
+  let lon = campus.lon;
+
+  /*
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (position) {
-      let lat = position.coords.latitude;
-      let lon = position.coords.longitude;
+
+    }
+    else {
+
+      console.log('Geolocation is not supported by this browser.');
+    }
+  });
+    */
       // if latitude and longitude are not inside finland use default values
       if (lat < 59.5 || lat > 70.5 || lon < 19.5 || lon > 31.5) {
         lat = 60.1699;
@@ -16,12 +26,6 @@ const fetchWeatherLocalorDefault = async (hoursfromnow) => {
       else if (lat > 59.5 && lat < 70.5 && lon > 19.5 && lon < 31.5) {
         fetchWeather(lat, lon, hoursfromnow);
       }
-      else {
-
-        console.log('Geolocation is not supported by this browser.');
-      }
-    });
-  }
 };
 
 
@@ -61,6 +65,7 @@ const fetchWeather = async (lat, lon, hoursfromnow) => {
         tomorrowContainerParagraphs.appendChild(tomorrowWeatherSymbolInfo);
         tomorrowWeatherInfo.appendChild(tomorrowContainerParagraphs);
 
+        saaTiedot.innerHTML = '';
         saaTiedot.appendChild(tomorrowWeatherInfo);
 
       } catch (error) {

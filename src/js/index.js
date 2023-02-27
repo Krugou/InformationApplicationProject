@@ -64,9 +64,16 @@ languageButton.addEventListener('click', () => {
 campusSelector.addEventListener('change', () => {
   selectedCampus = document.querySelector('#domain-select').value;
   renderMenu();
+  fetchWeatherLocalorDefault(1, getCampusInfo());
   getStopsNearbyHsl();
 });
 
+const getCampusInfo = () => {
+  const currentCampusInfo = allCampuses.filter((restaurant) => {
+    return restaurant.name === selectedCampus;
+  })[0];
+  return currentCampusInfo;
+};
 
 /** Function for getting the selected menu
  *
@@ -76,9 +83,8 @@ const getCurrentMenu = async () => {
   try {
     let currentMenu = [];
     // Find the selectedmenus info from the allCampuses array
-    const currentMenuInfo = allCampuses.filter((restaurant) => {
-      return restaurant.name === selectedCampus;
-    })[0];
+    const currentMenuInfo = getCampusInfo();
+    console.log('currentMenuInfo', currentMenuInfo);
     // Get the correct menu and save it menu array
     if (currentMenuInfo.type === 'Food & Co') {
       currentMenu = foodcoData.parseMenu(await foodcoData.getDailyMenu(currentMenuInfo.id, lang));
@@ -348,7 +354,7 @@ const leftside = document.querySelector('.leftside');
 const initiate = async () => {
   // serviceWorkerFunction();
   loadSettings();
-  fetchWeatherLocalorDefault(1);
+  fetchWeatherLocalorDefault(1, getCampusInfo());
   paSystem.getAnnouncements(leftside);
   renderVideo(leftside);
   hslContainer(leftside);
