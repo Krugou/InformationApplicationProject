@@ -269,11 +269,12 @@ const getStopsNearbyHsl = async () => {
     hsl.innerHTML = 'No restaurant found';
   }
 };
-const body = document.querySelector('body');
+
+const leftside = document.querySelector('.leftside');
 const initiate = async () => {
   fetchWeatherLocalorDefault(1);
   getStopsNearbyHsl();
   renderMenu();
-  paSystem.getAnnouncements(body);
+  paSystem.getAnnouncements(leftside);
 };
 initiate();
