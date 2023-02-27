@@ -4,6 +4,7 @@ import paSystem from './modules/pa/Announcements';
 import foodcoData from './modules/restaurant/foodcoMenu';
 import sodexoMenu from './modules/restaurant/sodexomenu';
 import dietPreferences from './modules/utils/diet-choices';
+import serviceWorkerFunction from './modules/utils/sw';
 import fetchWeatherLocalorDefault from './modules/weather/weather-data';
 const allRestaurants = [
   { name: 'Myyrmäki', id: 152, type: 'Sodexo', stops: [4150269, 4150268, 4150228, 4150296, 4150201] },
@@ -153,7 +154,7 @@ const renderMenu = async () => {
           });
         }
       }
-      priceContainerRender(item, li );
+      priceContainerRender(item, li);
 
       // if (restaurantType === 'Sodexo') {
 
@@ -250,7 +251,7 @@ const changeRestaurantLogo = (restaurantType) => {
       restaurantImgElement.alt = 'Restaurant logo';
   }
 };
-const priceContainerRender = (item, li ) => {
+const priceContainerRender = (item, li) => {
   if (item.match(/\d,\d\d/)) {
     const priceContainer = document.createElement('div');
     priceContainer.classList.add('price-container');
@@ -258,7 +259,7 @@ const priceContainerRender = (item, li ) => {
     // split the string into an array at the '/' character
     const priceItems = item.split('/');
     priceItems.forEach((priceItem) => {
-     // if euro sign is missing from priceItem add it
+      // if euro sign is missing from priceItem add it
       if (!priceItem.includes('€')) {
         priceItem = priceItem + '€';
       }
@@ -313,6 +314,7 @@ const hslContainer = (target) => {
 };
 const leftside = document.querySelector('.leftside');
 const initiate = async () => {
+  serviceWorkerFunction();
   fetchWeatherLocalorDefault(1);
   paSystem.getAnnouncements(leftside);
   renderVideo(leftside);
