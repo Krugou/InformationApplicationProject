@@ -30,7 +30,6 @@ const saveSettings = () => {
 };
 
 saveButton.addEventListener('click', () => {
-  console.log(selectedCampus);
   saveSettings();
 });
 
