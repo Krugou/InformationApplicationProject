@@ -43,7 +43,7 @@ const getWeekdayIndex = () => {
   return index === -1 ? 6 : index;
 };
 
-/** Function for getting a date eg. (2010-01-01) from the next monday
+/** Function for getting a date e.g (2010-01-01) from the next monday
  *
  * @param {*} date date
  * @returns date in api compatible format
