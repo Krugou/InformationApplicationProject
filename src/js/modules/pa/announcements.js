@@ -1,0 +1,52 @@
+// import { doFetch } from '../network-proxy';
+// mockdata for announcements
+const announcements = [{ title: 'moi tällee voidaan tehdä', date: '99.88.7777', content: 'ilmoituksia ja tulostaa niitä jsonin kautta' }, { title: 'Announcements', date: '28.02.2023', content: 'No announcements today' }];
+
+// // get announcements from API
+const getAnnouncements = async (target) => {
+  try {
+    // const announcementsUrl = 'https://www.compass-group.fi/menuapi/announcements?language=fi';
+    // const announcements = await doFetch(announcementsUrl, true);
+
+    renderAnnouncements(target, announcements);
+  } catch (error) {
+    console.error('getAnnouncements', error);
+  }
+};
+
+const renderAnnouncements = (target, announcements) => {
+  // loop through announcements and render them
+  for (let i = 0; i < announcements.length; i++) {
+    // create container element for all announcements
+    const announcementsContainer = document.createElement('div');
+    announcementsContainer.classList.add('announcements-container');
+    target.append(announcementsContainer);
+    // create container element for header
+    const announcementsContainerHeader = document.createElement('div');
+    announcementsContainerHeader.classList.add('announcements-container-header');
+    announcementsContainer.append(announcementsContainerHeader);
+    // create title element for header
+    const announcementsContainerHeaderTitle = document.createElement('h2');
+    announcementsContainerHeaderTitle.classList.add('announcements-container-header-title');
+    announcementsContainerHeaderTitle.textContent = announcements[i].title;
+    announcementsContainerHeader.append(announcementsContainerHeaderTitle);
+    // create date element for header
+    const announcementsContainerHeaderDate = document.createElement('p');
+    announcementsContainerHeaderDate.classList.add('announcements-container-header-date');
+    announcementsContainerHeaderDate.textContent = announcements[i].date;
+    announcementsContainerHeader.append(announcementsContainerHeaderDate);
+    // create container element for content
+    const announcementsContainerContent = document.createElement('div');
+    announcementsContainerContent.classList.add('announcements-container-content');
+    announcementsContainer.append(announcementsContainerContent);
+    // create paragraph element for content
+    const announcementsContainerContentText = document.createElement('p');
+    announcementsContainerContentText.classList.add('announcements-container-content-text');
+    announcementsContainerContentText.textContent = announcements[i].content;
+    announcementsContainerContent.append(announcementsContainerContentText);
+  }
+};
+
+const paSystem = { getAnnouncements };
+
+export default paSystem;
