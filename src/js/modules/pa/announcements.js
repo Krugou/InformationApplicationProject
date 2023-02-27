@@ -1,6 +1,6 @@
 // import { doFetch } from '../network-proxy';
 // mockdata for announcements
-const announcements = [{ title: 'moi tällee voidaan tehdä', date: '99.88.7777', content: 'ilmoituksia ja tulostaa niitä jsonin kautta' }, { title: 'Announcements', date: '28.02.2023', content: 'No announcements today' }];
+const announcements = [{ title: 'Mr. Anderson', date: 'future', content: 'Welcome to the real world' }];
 
 // // get announcements from API
 const getAnnouncements = async (target) => {
@@ -33,7 +33,7 @@ const renderAnnouncements = (target, announcements) => {
     // create date element for header
     const announcementsContainerHeaderDate = document.createElement('p');
     announcementsContainerHeaderDate.classList.add('announcements-container-header-date');
-    announcementsContainerHeaderDate.textContent = announcements[i].date;
+    announcementsContainerHeaderDate.textContent = 'Date: ' + announcements[i].date;
     announcementsContainerHeader.append(announcementsContainerHeaderDate);
     // create container element for content
     const announcementsContainerContent = document.createElement('div');
