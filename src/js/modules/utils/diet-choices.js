@@ -1,13 +1,14 @@
 // (G) Gluteeniton, (L) Laktoositon, (VL) Vähälaktoosinen, (M) Maidoton, (*) Suomalaisten ravitsemussuositusten mukainen, (Veg) Soveltuu vegaaniruokavalioon, (ILM) Ilmastoystävällinen, (VS) Sis. tuoretta valkosipulia, (A) Sis. Allergeeneja
 
+
 const dietPreferences = (dietInfo) => {
   let diet = '';
 
   if (dietInfo.includes('G')) {
     diet += 'Gluteeniton';
-  } if (dietInfo.includes('M') && dietInfo.includes('L')) { // if both M and L are included
+  } if (dietInfo.includes('M') && dietInfo.includes('L')) { // if  M and L and VL are included
     // do nothing }
-  } else if (dietInfo.includes('L')) {
+  } else if (dietInfo.match(/\bL\b/)) {
     diet += ' Laktoositon';
   }
 
@@ -33,6 +34,9 @@ const dietPreferences = (dietInfo) => {
   }
   if (dietInfo.includes('A')) {
     diet += ' Sis. Allergeeneja';
+  }
+  if (dietInfo === undefined || dietInfo === null || dietInfo === '' || dietInfo === ' ' || dietInfo === '  ') {
+    diet += 'Ei tietoa';
   }
 
   return diet;
