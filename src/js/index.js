@@ -149,30 +149,9 @@ const renderMenu = async () => {
             li.append(dietContainer);
           });
         }
-
       }
+      priceContainerRender(item, li, restaurantType);
 
-      if (item.match(/\d,\d\d/)) {
-        const priceContainer = document.createElement('div');
-        priceContainer.classList.add('price-container');
-
-        // split the string into an array at the '/' character
-        const priceItems = item.split('/');
-        priceItems.forEach((priceItem) => {
-          // if the restaurant is Food & Co, add euro sign to each priceItem
-          if (restaurantType === 'Food & Co') {
-            priceItem = priceItem + ' €';
-          }
-          // create a p element and add the priceItem to it
-          const p = document.createElement('p');
-          p.classList.add('menu-item-price');
-          p.textContent = priceItem;
-          // append the p element to the li element
-          priceContainer.append(p);
-        });
-        // append the priceContainer to the li element
-        li.append(priceContainer);
-      }
       if (restaurantType === 'Sodexo') {
 
         //create an array from the list of li  children
@@ -255,7 +234,29 @@ const changeRestaurantLogo = (restaurantType) => {
       restaurantImgElement.alt = 'Restaurant logo';
   }
 };
+const priceContainerRender = (item, li, restaurantType) => {
+  if (item.match(/\d,\d\d/)) {
+    const priceContainer = document.createElement('div');
+    priceContainer.classList.add('price-container');
 
+    // split the string into an array at the '/' character
+    const priceItems = item.split('/');
+    priceItems.forEach((priceItem) => {
+      // if the restaurant is Food & Co, add euro sign to each priceItem
+      if (restaurantType === 'Food & Co') {
+        priceItem = priceItem + ' €';
+      }
+      // create a p element and add the priceItem to it
+      const p = document.createElement('p');
+      p.classList.add('menu-item-price');
+      p.textContent = priceItem;
+      // append the p element to the li element
+      priceContainer.append(p);
+    });
+    // append the priceContainer to the li element
+    li.append(priceContainer);
+  }
+};
 const getStopsNearbyHsl = async () => {
   const hsl = document.querySelector('.hsl-list');
   hsl.innerHTML = '';
