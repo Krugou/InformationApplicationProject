@@ -4,7 +4,7 @@ import paSystem from './modules/pa/Announcements';
 import foodcoData from './modules/restaurant/foodcoMenu';
 import sodexoMenu from './modules/restaurant/sodexomenu';
 import dietPreferences from './modules/utils/diet-choices';
-import Campusinfo from '../../json/campuses.json';
+import campusInfo from '../../json/campuses.json';
 // import serviceWorkerFunction from './modules/utils/sw';
 import fetchWeatherLocalorDefault from './modules/weather/weather-data';
 /*
@@ -15,7 +15,7 @@ const allCampuses = [
   { name: 'Arabia', id: 1251, type: 'Food & Co', stops: [1230102, 1230101] },
 ];
 */
-const allCampuses = Campusinfo.campuses;
+const allCampuses = campusInfo.campuses;
 console.log(allCampuses);
 // DOM Elements
 const campusSelector = document.querySelector('#domain-select');
