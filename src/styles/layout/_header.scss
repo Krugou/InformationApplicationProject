@@ -6,8 +6,7 @@ header {
   color: black;
   display: flex;
   align-items: center;
-  gap: 5em;
-  margin-top: 2em;
+  gap: 4em;
 
   #domain-select {
     width: 6em;
@@ -27,9 +26,13 @@ header {
     align-items: flex-start;
     justify-content: center;
     object-fit: contain;
-
+    width: 15em;
     height: 100%;
     margin: 1rem;
+  }
+
+  .weather-report {
+    margin: 0;
   }
 
   .weather-report,
@@ -44,6 +47,10 @@ header {
     font-size:1rem;
   }
 
-  height: 10vh;
+}
 
+@media screen and (max-width: 950px) {
+  header {
+    flex-wrap: wrap;
+  }
 }

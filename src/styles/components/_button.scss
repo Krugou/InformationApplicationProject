@@ -14,3 +14,8 @@
    background-color: $metropoliaorange-light;
    border-color: $metropoliaorange-light;
 }
+
+#save-button {
+  @extend #language-button;
+  width: 6em;
+}

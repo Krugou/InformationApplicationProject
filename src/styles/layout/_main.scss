@@ -4,7 +4,6 @@
           background-color: $background-color;
           color: $metropoliagray;
           column-gap: 5em;
-          margin-top: 2em;
           padding: 2em;
 
           h2 {
@@ -126,4 +125,46 @@
           .hsl-container-list-head-right{
            margin-left: 0.3em;
           }
+        }
+
+        @media screen and (max-width: 950px) {
+          main {
+
+            h2 {
+              font-size: 1.5rem;
+            }
+
+            .rightside {
+
+              #menu {
+
+                li {
+                  font-size: 1rem;
+                }
+
+              }
+            }
+
+          .hsl-container {
+            padding: 1em;
+
+          .hsl-container-list {
+            align-items: unset;
+            flex-direction: column;
+            flex-wrap:wrap;
+            padding: 15px;
+            gap: 20px;
+
+            .hsl-container-list-head-right {
+              margin: 0;
+            }
+
+            .hsl-container-list-head, .transit-address, .arrival-time {
+              flex:unset;
+              display:unset;
+
+            }
+          }
+          }
+        }
         }
