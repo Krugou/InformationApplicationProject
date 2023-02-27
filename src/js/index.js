@@ -4,15 +4,19 @@ import paSystem from './modules/pa/Announcements';
 import foodcoData from './modules/restaurant/foodcoMenu';
 import sodexoMenu from './modules/restaurant/sodexomenu';
 import dietPreferences from './modules/utils/diet-choices';
+import Campuses from '../../json/campuses.json';
 // import serviceWorkerFunction from './modules/utils/sw';
 import fetchWeatherLocalorDefault from './modules/weather/weather-data';
+/*
 const allCampuses = [
   { name: 'Myyrmäki', id: 152, type: 'Sodexo', stops: [4150296, 4150201] },
   { name: 'Karamalmi', id: 3208, type: 'Food & Co', stops: [ 2132225, 2132226] },
   { name: 'Myllypuro', id: 158, type: 'Sodexo', stops: [1454140, 1454141] },
   { name: 'Arabia', id: 1251, type: 'Food & Co', stops: [1230102, 1230101] },
 ];
-
+*/
+const allCampuses = Campuses.campuses;
+console.log(allCampuses);
 // DOM Elements
 const campusSelector = document.querySelector('#domain-select');
 const languageButton = document.querySelector('#language-button');

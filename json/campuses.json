@@ -1,0 +1,41 @@
+{
+  "campuses": [
+    {
+      "name":"Karamalmi",
+      "lat": "asd",
+      "lon": "asd",
+      "id":"3208",
+      "type":"Food & Co",
+      "stops":[2132225, 2132226]
+
+    },
+    {
+      "name":"Myyrmäki",
+      "lat": "asd",
+      "lon": "asd",
+      "id":"152",
+      "type":"Sodexo",
+      "stops":[4150296, 4150201]
+    },
+    {
+      "name":"Myllypuro",
+      "lat": "asd",
+      "lon": "asd",
+      "id":"158",
+      "type":"Sodexo",
+      "stops":[1454140, 1454141]
+
+    },
+    {
+      "name":"Arabia",
+      "lat": "asd",
+      "lon": "asd",
+      "id":"1251",
+      "type":"Food & Co",
+      "stops":[1230102, 1230101]
+
+    }
+  ]
+
+
+}
