@@ -1,6 +1,6 @@
 const geoLocationDistanceBirdsEye = (lat1, lon1, lat2, lon2) => {
   // If the coordinates are identical, the distance is zero
-  if (lat1 == lat2 && lon1 == lon2) {
+  if (lat1 === lat2 && lon1 === lon2) {
     return 0;
   }
   // Radius of the earth in meters
