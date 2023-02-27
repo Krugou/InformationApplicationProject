@@ -93,15 +93,18 @@ const renderMenu = async () => {
     // Iterate through the array
     menuItems.forEach((item) => {
       if (item.match(/([a-zA-ZäöåÄÖÅ]+(?:-[a-zA-ZäöåÄÖÅ]+)?)(?:,|$)/g)) {
-        if (item.match(/[,]/)) {
+        if (item.match(/[GMLAV]([,)])|(Veg|ILM|VS|VL|\*)([,)])/)) {
+
           const nameItems = item.split('(');
           const dietContainer = document.createElement('div');
           dietContainer.classList.add('diet-container');
           nameItems.forEach((item) => {
             if (item.match(/[,]/)) {
-              const dietItems = item.split(',');
               if (restaurantType === 'Food & Co') {
+
+                const dietItems = item.split(',');
                 dietItems.forEach((dietItem) => {
+
                   const p = document.createElement('p');
                   p.classList.add('menu-item-diet');
                   const results = dietPreferences(dietItem);
@@ -129,7 +132,7 @@ const renderMenu = async () => {
       if (restaurantType === 'Sodexo') {
 
         // 2. If the restaurant type is Sodexo, check if the menu item matches the regex
-        if (item.match(/G|L|VL|M|\*|Veg|ILM|VS/)) {
+        if (item.match(/[GMLAV]([,)])|(Veg|ILM|VS|VL|\*)([,)])/)) {
           const dietContainer = document.createElement('div');
           dietContainer.classList.add('diet-container');
           // 3. Split the item into an array of diet items
@@ -152,51 +155,39 @@ const renderMenu = async () => {
       }
       priceContainerRender(item, li, restaurantType);
 
-      if (restaurantType === 'Sodexo') {
+      // if (restaurantType === 'Sodexo') {
 
-        //create an array from the list of li  children
-        const liArray = Array.from(li.children);
-        // if liArray contains to div.diet-containers remove second;
-        if (liArray.length > 1) {
-          liArray.forEach((item) => {
-            if (item.classList.contains('diet-container')) {
+      //   //create an array from the list of li  children
+      //   const liArray = Array.from(li.children);
+      //   // if liArray contains to div.diet-containers remove second;
+      //   if (liArray.length > 1) {
+      //     liArray.forEach((item) => {
+      //       if (item.classList.contains('diet-container')) {
 
-              item.remove();
-            }
-          });
-        }
+      //         item.remove();
+      //       }
+      //     });
+      //   }
 
-        //create a new array with only unique items
-        const uniqueLiArray = [...new Set(liArray.map((item) => item.textContent))].map((item) => {
-          //return the first instance of the unique item
-          return liArray.find((element) => element.textContent === item);
-        });
-        //remove all li items from the list
-        li.innerHTML = '';
+      //   //create a new array with only unique items
+      //   const uniqueLiArray = [...new Set(liArray.map((item) => item.textContent))].map((item) => {
+      //     //return the first instance of the unique item
+      //     return liArray.find((element) => element.textContent === item);
+      //   });
+      //   //remove all li items from the list
+      //   li.innerHTML = '';
 
-        //add the unique li items to the list
-        uniqueLiArray.forEach((item) => {
-          li.append(item);
-        });
-      }
+      //   //add the unique li items to the list
+      //   uniqueLiArray.forEach((item) => {
+      //     li.append(item);
+      //   });
+      // }
       // li.append(underline);
       menuListElement.append(li);
 
     });
-    const menuItemDiet = document.querySelectorAll('.menu-item-diet');
-    menuItemDiet.forEach((item) => {
-      if (item.textContent === '') {
-        item.remove();
-      }
-    });
-    // get all p elements with the class menu-item-title
-    const menuTitleElements = document.querySelectorAll('.menu-item-title');
-    // if menuTitleElements items are empty, remove it
-    menuTitleElements.forEach((item) => {
-      if (item.textContent === '') {
-        item.remove();
-      }
-    });
+    regexErrorCleaner();
+
     if (restaurantType === 'Sodexo') {
       // get all li elements
       const liElements = document.querySelectorAll('li');
@@ -215,6 +206,31 @@ const renderMenu = async () => {
     changeRestaurantLogo(restaurantType);
   });
 };
+const regexErrorCleaner = () => {
+  // Select all menu items that have the class of 'menu-item-diet'
+  const menuItemDiet = document.querySelectorAll('.menu-item-diet');
+
+  // Loop over each of the menu items
+  menuItemDiet.forEach((item) => {
+    // If the text content of the menu item is blank
+    if (item.textContent === '') {
+      // Remove the menu item from the DOM
+      item.remove();
+    }
+  });
+  // Get all the menu item titles
+  const menuTitleElements = document.querySelectorAll('.menu-item-title');
+
+  // Loop through all the menu item titles
+  menuTitleElements.forEach((item) => {
+    // If the text content of the menu item title is an empty string
+    if (item.textContent === '') {
+      // Remove the menu item title
+      item.remove();
+    }
+  });
+};
+
 const changeRestaurantLogo = (restaurantType) => {
   // Get the restaurant logo element
   const restaurantImgElement = document.querySelector('.restaurant-logo');
