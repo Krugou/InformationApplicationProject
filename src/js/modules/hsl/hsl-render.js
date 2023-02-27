@@ -5,6 +5,12 @@ const HSLContainerRender = async (target, stop) => {
   try {
     // Get the routes for the stop
     const routes = await HSL.getRoutesByStopId(stop);
+
+    // Limit the number of routes in the array to 3
+    while (routes.length > 3) {
+      routes.pop();
+    }
+
     // console.table('🚀 ~ file: hsl-render.js:5 ~ renderHSLData ~ routes:', routes);
 
     // Create the container and append it to the target
