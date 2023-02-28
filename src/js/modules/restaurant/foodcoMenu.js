@@ -39,51 +39,107 @@ const getDailyMenu = async (restaurantId, lang) => {
     if (menu === undefined) {
       alert('no Fazer data for today, trying to show past fridays data');
       return weeklyMenu.menus[4];
-        // Haetaan seuraava maanantai (kesken ei nää hintit salee anna dataa ees siihe)
-     // return await getMenuFromNextMonday(restaurantId, lang);
+      // Haetaan seuraava maanantai (kesken ei nää hintit salee anna dataa ees siihe)
+      // return await getMenuFromNextMonday(restaurantId, lang);
     }
     return weeklyMenu.menus[getWeekdayIndex()];
   } catch (error) {
     console.error('getDailyMenu', error);
   }
 };
-/** Function for parsing fazer menu
- * @param {*} weeklyMenu Array containing daily Fazer menu
- * @returns meal names from array or a 'nodata' menu if data is undefined (this means API fetch failed)
+
+
+/**
+ *
+ * @param {*} dailyMenu Array containing daily Fazer menu
+ * @returns diets by meal from menu
  */
-const parseMenu = (dailyMenu) => {
-  //const diets = [];
-  //const diets2 = [];
-  if (dailyMenu === undefined) {
-    const failedFetch = [];
-    return failedFetch[0] = ['no data'];
-  }
-  const mealNames = dailyMenu.menuPackages.map((menuPackage) => {
-    return menuPackage.meals.map((mealItem) => {
-      return mealItem.name + '|('+ mealItem.diets.join(', ') + ')|';
-    }).join('');
-  });
-  const mealPrices = dailyMenu.menuPackages.map((menuPackage) => {
-    return menuPackage.price;
-  });
-  /*
-  const mealDiets = dailyMenu.menuPackages.map((menuPackage) => {
-    return menuPackage.meals.map((mealItem) => {
+const getDietsFromMenu = (dailyMenu) => {
+  let mealDiets = [];
+  try {
+    const mealComponentDiets = dailyMenu.menuPackages.map((menuPackage) => {
+      return menuPackage.meals.map((mealItem) => {
+        return mealItem.diets;
+      }).join();
+    });
+
+    const mealComponentCount = dailyMenu.menuPackages.map((menuPackage) => {
+      return menuPackage.meals.map((mealItem) => {
       return mealItem.diets;
     });
   });
-*/
-  for (let i = 0; i < mealNames.length; i++) {
-    if (mealPrices[i]!==''){
-      mealNames[i]+=mealPrices[i];
-    } else {
-      mealNames[i]+='Price not found';
-    }
+
+  for (let i = 0; i < mealComponentDiets.length; i++) {
+    let thisMealsDiets = [];
+
+    mealComponentDiets[i].split(',').forEach(element => {
+    //  console.log(element);
+     // console.log(mealComponentDiets);
+     // console.log((mealComponentDiets[i].split(',').filter(x => x===element).length));
+
+     // if the diet is present in all the elements of the mealarray, push it to an array
+      if (mealComponentDiets[i].split(',').filter(x => x===element).length === mealComponentCount[i].length && thisMealsDiets.includes(element) === false) {
+      //  console.log(mealComponentCount[i].length);
+        thisMealsDiets.push(element);
+        mealDiets[i] = [...thisMealsDiets];
+       // console.log([...thisMealsDiets]);
+      }
+
+      // if(mealComponentDiets[i].includes(element)) console.log('joo');
+      //console.log(mealComponentDiets[i].count(element));
+    });
+
   }
- // console.log(mealDiets);
-  console.log(mealPrices);
-  console.log(mealNames);
-  return mealNames;
+  console.log(mealDiets);
+  console.log(mealComponentCount);
+  console.log(mealComponentDiets);
+  return mealDiets;
+} catch (error) {
+   console.error(error, 'getDietsFromComponents error');
+}
+};
+
+/** Function for parsing fazer menu
+ * @param {*} dailyMenu Array containing daily Fazer menu
+ * @returns meal names from array or a 'nodata' menu if data is undefined (this means API fetch failed)
+ */
+const parseMenu = (dailyMenu) => {
+  try {
+    //const diets = [];
+    //const diets2 = [];
+    if (dailyMenu === undefined) {
+      const failedFetch = [];
+      return failedFetch[0] = ['no data'];
+    }
+    const mealNames = dailyMenu.menuPackages.map((menuPackage) => {
+      return menuPackage.meals.map((mealItem) => {
+        return mealItem.name;
+      }).join(', ');
+    });
+    const mealPrices = dailyMenu.menuPackages.map((menuPackage) => {
+      return menuPackage.price;
+    });
+
+    const mealDiets = getDietsFromMenu(dailyMenu);
+
+    for (let i = 0; i < mealNames.length; i++) {
+      mealNames[i] += '|(' + mealDiets[i] + ')|';
+
+      if (mealPrices[i] !== '') {
+        mealNames[i] += mealPrices[i];
+      } else {
+        mealNames[i] += 'Ei hintaa';
+      }
+    }
+
+    console.log(mealDiets);
+    console.log(mealPrices);
+    console.log(mealNames);
+    return mealNames;
+  }
+  catch (error) {
+   console.error(error, 'parseMenu Error food co');
+  }
 };
 
 
