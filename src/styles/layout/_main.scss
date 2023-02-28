@@ -119,11 +119,16 @@
           }
           .hsl-container-list-head{
             display: flex;
-            flex:3;
+            flex:2;
             gap:10px;
           }
           .hsl-container-list-head-right{
            margin-left: 0.3em;
+          }
+          .hsl-container-list-time {
+            display: flex;
+            flex: 3;
+            gap: 15em
           }
         }
 
@@ -159,11 +164,12 @@
               margin: 0;
             }
 
-            .hsl-container-list-head, .transit-address, .arrival-time {
+            .hsl-container-list-head {
               flex:unset;
             }
-            .hsl-container-list-head {
-              display: unset;
+            .hsl-container-list-time {
+              gap: 2em;
+              align-items: center;
             }
           }
           }

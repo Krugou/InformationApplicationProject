@@ -33,6 +33,9 @@ const HSLContainerRender = async (target, stop) => {
       const hslcontainerListHeaderRight = document.createElement('div');
       hslcontainerListHeaderRight.classList.add('hsl-container-list-head-right');
 
+      const hslcontainerListTime = document.createElement('div');
+      hslcontainerListTime.classList.add('hsl-container-list-time');
+
       // Create the image element for the bus icon
       const transitImage = document.createElement('img');
       transitImage.src = '../../assets/images/Bussi.svg';
@@ -62,16 +65,18 @@ const HSLContainerRender = async (target, stop) => {
       hslcontainerListHeader.append(transitImage);
       hslcontainerListHeaderRight.append(transitLine);
       hslcontainerListHeaderRight.append(transitLineDirection);
+      hslcontainerListTime.append(transitAddress);
+
 
       hslcontainerListHeader.append(hslcontainerListHeaderRight);
 
       hslContainerList.append(hslcontainerListHeader);
-      hslContainerList.append(transitAddress);
       // Create the arrival time element and append it to the list
       const arrivalTime = document.createElement('p');
       arrivalTime.textContent = `${route.realtimeArrival}`;
       arrivalTime.classList.add('arrival-time');
-      hslContainerList.append(arrivalTime);
+      hslcontainerListTime.append(arrivalTime);
+      hslContainerList.append(hslcontainerListTime);
 
       // Append the list to the container
       hslContainer.append(hslContainerList);
