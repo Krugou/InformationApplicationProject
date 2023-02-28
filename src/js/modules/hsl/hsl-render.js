@@ -38,9 +38,15 @@ const HSLContainerRender = async (target, stop) => {
 
       // Create the image element for the bus icon
       const transitImage = document.createElement('img');
+
+      // Choose icon based on the type of transport
+      if (route.name.split('')[0] === 'M') { // Check if transport is a subway
+      transitImage.src = '../../assets/images/Metro.svg';
+      } else {
       transitImage.src = '../../assets/images/Bussi.svg';
+      }
       transitImage.alt = '';
-      transitImage.classList.add('bus-svg');
+      transitImage.classList.add('transit-svg');
 
       // Create an element for the address of the line
       const transitAddress = document.createElement('p');
