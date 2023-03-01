@@ -5,7 +5,7 @@
 //const weeklyurlFoodco = 'https://www.compass-group.fi/menuapi/feed/json?costNumber=';
 
 
-import { doFetch, getNextMonday, getWeekdayIndex } from '../network-proxy';
+import { doFetch, getNextMonday, getWeekdayIndex } from '../../network-proxy';
 /*
 const getMenuFromNextMonday = async (restaurantId, lang) => {
   try {

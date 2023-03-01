@@ -4,7 +4,7 @@
  * @module sodexoMenu
  */
 
-import { doFetch, getWeekdayIndex } from '../network-proxy';
+import { doFetch, getWeekdayIndex } from '../../network-proxy';
 
 const weeklyUrl = 'https://www.sodexo.fi/ruokalistat/output/weekly_json/';
 
