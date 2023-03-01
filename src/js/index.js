@@ -66,6 +66,7 @@ campusSelector.addEventListener('change', () => {
 /**
  * Loads settings from localstorage
  */
+
 const loadSettings = () => {
   try {
     selectedCampus = (JSON.parse(localStorage.campus));
@@ -82,7 +83,7 @@ const initiate = async () => {
   // serviceWorkerFunction();
   loadSettings();
   fetchWeatherLocalorDefault(1, getCampusInfo(selectedCampus));
-  paSystem.getAnnouncements(leftside, 5);
+  paSystem.getAnnouncements(leftside, 1);
   renderElements.renderVideo(leftside);
   renderElements.hslContainer(leftside);
   hslInit.getStopsNearbyHsl(allCampuses, selectedCampus);
