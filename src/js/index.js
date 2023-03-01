@@ -318,7 +318,7 @@ const priceContainerRender = (item, li) => {
         priceItem = priceItem + '€';
       }
 
-      console.log('🚀 ~ file: index.js:322 ~ priceItems.forEach ~ priceItem:', priceItem);
+      // console.log('🚀 ~ file: index.js:322 ~ priceItems.forEach ~ priceItem:', priceItem);
 
 
       // create a p element and add the priceItem to it
@@ -357,14 +357,14 @@ const priceContainerRender = (item, li) => {
     li.append(priceContainer);
   }
 };
-const getStopsNearbyHsl = async (lengthofdata) => {
+const getStopsNearbyHsl = async () => {
   const hsl = document.querySelector('.hsl-list');
   hsl.innerHTML = '';
   const selectedRestaurant = allCampuses.find((restaurant) => restaurant.name === selectedCampus);
 
   if (selectedRestaurant) {
     selectedRestaurant.stops.forEach((stop) => {
-      hslRender.HSLContainerRender(hsl, stop, lengthofdata);
+      hslRender.HSLContainerRender(hsl, stop, 3);
     });
   } else {
     hsl.innerHTML = 'No restaurant found';
@@ -402,7 +402,7 @@ const initiate = async () => {
   paSystem.getAnnouncements(leftside);
   renderVideo(leftside);
   hslContainer(leftside);
-  getStopsNearbyHsl(3);
+  getStopsNearbyHsl();
   renderMenu();
 
 };
