@@ -4,6 +4,8 @@ import hslRender from './modules/hsl/hsl-render';
 import paSystem from './modules/pa/Announcements';
 import renderMenu from './modules/restaurant/menu-render';
 import getCampusInfo from './modules/utils/campusinfo';
+//default language
+let lang = 'fi';
 
 // import serviceWorkerFunction from './modules/utils/sw';
 import fetchWeatherLocalorDefault from './modules/weather/weather-data';
@@ -24,20 +26,42 @@ const languageButton = document.querySelector('#language-button');
 const saveButton = document.querySelector('#save-button');
 let selectedCampus;
 
+// get title of the html
+const title = document.querySelector('title');
+if (title.innerHTML === 'PWA') {
+  selectedCampus = document.querySelector('#domain-select').value;
 
-/**
- * Saves settings to localstorage
-*/
-const saveSettings = () => {
-  const settings = {};
-  settings.campus = selectedCampus;
-  localStorage.setItem('campus', JSON.stringify(settings.campus));
-};
+  /**
+   * Saves settings to localstorage
+  */
+  const saveSettings = () => {
+    const settings = {};
+    settings.campus = selectedCampus;
+    localStorage.setItem('campus', JSON.stringify(settings.campus));
+  };
 
-saveButton.addEventListener('click', () => {
-  saveSettings();
-});
+  saveButton.addEventListener('click', () => {
+    saveSettings();
+  });
 
+
+  // Event listener for changing the selected language
+  languageButton.addEventListener('click', () => {
+    selectedCampus = document.querySelector('#domain-select').value;
+    if (lang === 'fi') lang = 'en';
+    else if (lang === 'en') lang = 'fi';
+    renderMenu(lang, selectedCampus);
+  });
+
+  // Event listener for changing the selected campus
+  campusSelector.addEventListener('change', () => {
+    selectedCampus = document.querySelector('#domain-select').value;
+    fetchWeatherLocalorDefault(1, getCampusInfo(selectedCampus));
+    getStopsNearbyHsl();
+    renderMenu(lang, selectedCampus);
+  });
+
+}
 /**
  * Loads settings from localstorage
  */
@@ -50,26 +74,6 @@ const loadSettings = () => {
   }
 
 };
-
-//default language
-let lang = 'fi';
-
-// Event listener for changing the selected language
-languageButton.addEventListener('click', () => {
-  if (lang === 'fi') lang = 'en';
-  else if (lang === 'en') lang = 'fi';
-  renderMenu(lang);
-});
-
-// Event listener for changing the selected campus
-campusSelector.addEventListener('change', () => {
-  selectedCampus = document.querySelector('#domain-select').value;
-  fetchWeatherLocalorDefault(1, getCampusInfo(selectedCampus));
-  getStopsNearbyHsl();
-  renderMenu();
-});
-
-
 const getStopsNearbyHsl = async () => {
   const hsl = document.querySelector('.hsl-list');
   hsl.innerHTML = '';
@@ -119,7 +123,7 @@ const initiate = async () => {
   renderVideo(leftside);
   hslContainer(leftside);
   getStopsNearbyHsl();
-  renderMenu(lang,selectedCampus);
+  renderMenu(lang, selectedCampus);
 
 };
 initiate();
