@@ -1,6 +1,8 @@
 // import { doFetch } from '../network-proxy';
 // mockdata for announcements
-const announcements = [{ title: 'Mr. Anderson', date: 'future', content: 'Welcome to the real world' }];
+// const announcements = [{ title: 'Mr. Anderson', date: 'future', content: 'Welcome to the real world' }];
+import announcements from '../../../../json/announcements.json';
+
 
 // // get announcements from API
 const getAnnouncements = async (target) => {
