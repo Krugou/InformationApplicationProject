@@ -357,14 +357,14 @@ const priceContainerRender = (item, li) => {
     li.append(priceContainer);
   }
 };
-const getStopsNearbyHsl = async () => {
+const getStopsNearbyHsl = async (lengthofdata) => {
   const hsl = document.querySelector('.hsl-list');
   hsl.innerHTML = '';
   const selectedRestaurant = allCampuses.find((restaurant) => restaurant.name === selectedCampus);
 
   if (selectedRestaurant) {
     selectedRestaurant.stops.forEach((stop) => {
-      hslRender.HSLContainerRender(hsl, stop);
+      hslRender.HSLContainerRender(hsl, stop, lengthofdata);
     });
   } else {
     hsl.innerHTML = 'No restaurant found';
@@ -402,7 +402,7 @@ const initiate = async () => {
   paSystem.getAnnouncements(leftside);
   renderVideo(leftside);
   hslContainer(leftside);
-  getStopsNearbyHsl();
+  getStopsNearbyHsl(3);
   renderMenu();
 
 };
