@@ -16,16 +16,16 @@ const fetchWeatherLocalorDefault = async (hoursfromnow, campus) => {
     }
   });
     */
-      // if latitude and longitude are not inside finland use default values
-      if (lat < 59.5 || lat > 70.5 || lon < 19.5 || lon > 31.5) {
-        lat = 60.1699;
-        lon = 24.9384;
-        fetchWeather(lat, lon, hoursfromnow);
-      }
-      // if latitude and longitude are inside finland use them
-      else if (lat > 59.5 && lat < 70.5 && lon > 19.5 && lon < 31.5) {
-        fetchWeather(lat, lon, hoursfromnow);
-      }
+  // if latitude and longitude are not inside finland use default values
+  if (lat < 59.5 || lat > 70.5 || lon < 19.5 || lon > 31.5) {
+    lat = 60.1699;
+    lon = 24.9384;
+    fetchWeather(lat, lon, hoursfromnow);
+  }
+  // if latitude and longitude are inside finland use them
+  else if (lat > 59.5 && lat < 70.5 && lon > 19.5 && lon < 31.5) {
+    fetchWeather(lat, lon, hoursfromnow);
+  }
 };
 
 
@@ -46,27 +46,35 @@ const fetchWeather = async (lat, lon, hoursfromnow) => {
 
       try {
         const tomorrowWeatherInfo = document.createElement('div');
-        tomorrowWeatherInfo.id = 'weather-info';
-        const welcomeWeather = document.createElement('h3');
+        tomorrowWeatherInfo.id = 'weather-info-div';
+        // const welcomeWeather = document.createElement('h3');
         const tomorrowContainerParagraphs = document.createElement('div');
-        const tomorrowTempInfo = document.createElement('p');
-        const tomorrowWindInfo = document.createElement('p');
-        const tomorrowWeatherSymbolInfo = document.createElement('p');
-        tomorrowWeatherSymbolInfo.innerText = weatherSymbol(tomorrowWeatherSymbol);
-        tomorrowWindInfo.innerText = windDescription(tomorrowWind) + ' ' + tomorrowWind + ' m/s';
-        if (tomorrowWindInfo.innerText === 'Tyyntä NaN m/s') {
-          tomorrowWindInfo.innerText = 'Tyyntä';
+        const tomorrowTempWindInfo = document.createElement('p');
+        // const tomorrowWindInfo = document.createElement('p');
+        const tomorrowWeatherSymbolInfo = document.createElement('img');
+        tomorrowWeatherSymbolInfo.id = 'weather-info-img';
+
+        // tomorrowWeatherSymbolInfo.innerText = weatherSymbol(tomorrowWeatherSymbol);
+        // tomorrowWindInfo.innerText = windDescription(tomorrowWind) + ' ' + tomorrowWind + ' m/s';
+        // if (tomorrowWindInfo.innerText === 'Tyyntä NaN m/s') {
+        //   tomorrowWindInfo.innerText = 'Tyyntä';
+        // }
+        // tomorrowTempWindInfo.innerText = `Lämmintä ${tomorrowTemp} °C`;
+        // welcomeWeather.innerText = `Sää ${hoursfromnow}h päästä: `;
+        if (tomorrowWind === 'NaN') {
+          tomorrowTempWindInfo.innerText = `${tomorrowTemp}°C`;
+        } else {
+          tomorrowTempWindInfo.innerText = `${tomorrowTemp}°C ${tomorrowWind} m/s`;
         }
-        tomorrowTempInfo.innerText = `Lämmintä ${tomorrowTemp} °C`;
-        welcomeWeather.innerText = `Sää ${hoursfromnow}h päästä: `;
-        tomorrowWeatherInfo.appendChild(welcomeWeather);
-        tomorrowContainerParagraphs.appendChild(tomorrowTempInfo);
-        tomorrowContainerParagraphs.appendChild(tomorrowWindInfo);
+        // tomorrowWeatherInfo.appendChild(welcomeWeather);
+        tomorrowContainerParagraphs.appendChild(tomorrowTempWindInfo);
+        // tomorrowContainerParagraphs.appendChild(tomorrowWindInfo);
         tomorrowContainerParagraphs.appendChild(tomorrowWeatherSymbolInfo);
         tomorrowWeatherInfo.appendChild(tomorrowContainerParagraphs);
 
         saaTiedot.innerHTML = '';
         saaTiedot.appendChild(tomorrowWeatherInfo);
+        weatherSymbol(tomorrowWeatherSymbol);
 
       } catch (error) {
         console.log(error);
@@ -79,23 +87,23 @@ const fetchWeather = async (lat, lon, hoursfromnow) => {
   }
 };
 
-const windDescription = windSpeed => {
-  if (windSpeed >= 1 && windSpeed <= 3) {
-    return 'Tyyntä';
-  } else if (windSpeed >= 4 && windSpeed <= 7) {
-    return 'Heikkoa tuulta';
-  } else if (windSpeed >= 8 && windSpeed <= 13) {
-    return 'Kohtalaista tuulta';
-  } else if (windSpeed >= 14 && windSpeed <= 20) {
-    return 'Navakkaa tuulta';
-  } else if (windSpeed >= 21 && windSpeed <= 32) {
-    return 'Myrskyä';
-  } else if (windSpeed >= 33) {
-    return 'Hirmumyrskyä';
-  } else {
-    return 'Tyyntä';
-  }
-};
+// const windDescription = windSpeed => {
+//   if (windSpeed >= 1 && windSpeed <= 3) {
+//     return 'Tyyntä';
+//   } else if (windSpeed >= 4 && windSpeed <= 7) {
+//     return 'Heikkoa tuulta';
+//   } else if (windSpeed >= 8 && windSpeed <= 13) {
+//     return 'Kohtalaista tuulta';
+//   } else if (windSpeed >= 14 && windSpeed <= 20) {
+//     return 'Navakkaa tuulta';
+//   } else if (windSpeed >= 21 && windSpeed <= 32) {
+//     return 'Myrskyä';
+//   } else if (windSpeed >= 33) {
+//     return 'Hirmumyrskyä';
+//   } else {
+//     return 'Tyyntä';
+//   }
+// };
 
 
 export default fetchWeatherLocalorDefault;

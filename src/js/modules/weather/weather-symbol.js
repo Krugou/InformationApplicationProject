@@ -2,7 +2,7 @@
 
 const weatherSymbol = weatherSymbol => {
 
-  let weathericon =  document.querySelector('#weather-icon');
+  let weathericon = document.querySelector('#weather-info-img');
 
   if (weatherSymbol === 1) {
     weathericon.setAttribute('src', './assets/logos/cloud.png');
