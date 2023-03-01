@@ -1,27 +1,52 @@
 [
   {
-    "title": "Mr. Anderson",
-    "date": "future",
-    "content": "Welcome to the real world"
+    "title": "Metropolia Ammattikorkeakoulu",
+    "date": "2023-03-01",
+    "content": "Metropolia Ammattikorkeakoulu järjestää 14.3.2023 klo 10-14 avoimet ovet kampuksillaan. Tule tutustumaan koulutusvaihtoehtoihimme ja tapaamaan opiskelijoitamme ja henkilökuntaamme!"
   },
   {
-    "title": "Rorschach",
-    "date": "future",
-    "content": "I'm not locked up in here with you, you're locked up in here with me!"
+    "title": "New Movie Release",
+    "date": "2023-04-15",
+    "content": "Don't miss the new action-packed movie release at your nearest cinema. Buy your tickets now!"
   },
   {
-    "title": "Trinity",
-    "date": "future",
-    "content": "I know kung fu."
+    "title": "Charity Run",
+    "date": "2023-05-01",
+    "content": "Join us for our annual charity run in support of cancer research. Sign up now and help make a difference in someone's life!"
   },
   {
-    "title": "Morpheus",
-    "date": "future",
-    "content": "I'm going to show you how deep the rabbit hole goes."
+    "title": "Tech Conference",
+    "date": "2023-06-10",
+    "content": "Attend the largest tech conference of the year and learn about the latest innovations in the industry. Register now!"
   },
   {
-    "title": "Agent Smith",
-    "date": "future",
-    "content": "MIB, you're a dead man."
+    "title": "Summer Sale",
+    "date": "2023-07-01",
+    "content": "Get ready for our biggest summer sale yet! Don't miss out on huge discounts on all of our products."
+  },
+  {
+    "title": "Online Workshop",
+    "date": "2023-08-15",
+    "content": "Join our online workshop and learn how to improve your photography skills from the comfort of your own home. Limited spots available!"
+  },
+  {
+    "title": "Tervetuloa Helsinkiin",
+    "date": "2023-05-01",
+    "content": "Tervetuloa tutustumaan Helsingin kaupunkiin 10.5.2023 klo 12-18. Tarjoamme kaupunkikierroksia, tapahtumia ja mahdollisuuden maistaa paikallisia herkkuja. Tule kokemaan ainutlaatuinen pääkaupunkimme!"
+  },
+  {
+    "title": "Urheilugaala",
+    "date": "2023-06-10",
+    "content": "Tervetuloa juhlistamaan urheiluvuotta kanssamme Urheilugaalassa 10.6.2023 klo 18-23. Illan aikana palkitaan vuoden parhaat urheilijat ja nautitaan hyvästä seurasta ja musiikista. Liput myynnissä nyt!"
+  },
+  {
+    "title": "Kesäinen puistokonsertti",
+    "date": "2023-07-20",
+    "content": "Tervetuloa nauttimaan kesäisestä puistokonsertista 20.7.2023 klo 19 alkaen. Ohjelmassa on monipuolinen kattaus musiikkia eri aikakausilta ja genreistä. Ota piknikviltti mukaan ja tule viettämään iltaa hyvässä seurassa!"
+  },
+  {
+    "title": "Kansainvälinen ruokafestivaali",
+    "date": "2023-08-15",
+    "content": "Tervetuloa maistamaan maailman makuja kansainvälisessä ruokafestivaalissa 15.8.2023 klo 12-20. Tarjolla on herkkuja eri puolilta maailmaa sekä viihdettä ja aktiviteetteja koko perheelle. Tule ja löydä uusia suosikkiruokiasi!"
   }
 ]
