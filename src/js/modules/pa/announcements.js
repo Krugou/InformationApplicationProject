@@ -32,21 +32,21 @@ const renderAnnouncements = (target, announcements, timeout) => {
     // console.log('🚀 ~ file: Announcements.js:32 ~ randomAnnouncements ~ i:', i);
     renderAnnouncementsContainer(target, announcements, i);
     setTimeout(() => {
+      clearAnnouncements();
       randomAnnouncements();
     }, timeout * 60000);
   };
   randomAnnouncements();
 
 };
+const clearAnnouncements = () => {
+  const announcementsContainer = document.querySelector('.announcements-container');
+  announcementsContainer.innerHTML = '';
+};
 const renderAnnouncementsContainer = (target, announcements, i) => {
 
   const announcementsContainer = document.createElement('div');
   announcementsContainer.classList.add('announcements-container');
-  // remove class fade-in from all elements
-  const fadeIns = document.querySelectorAll('.fade-in');
-  fadeIns.forEach((fadeIn) => {
-    fadeIn.classList.remove('fade-in');
-  });
 
   // create container element for header
   const announcementsContainerHeader = document.createElement('div');
@@ -71,7 +71,7 @@ const renderAnnouncementsContainer = (target, announcements, i) => {
   announcementsContainerContentText.classList.add('announcements-container-content-text');
   announcementsContainerContentText.textContent = announcements[i].content;
   announcementsContainerContent.append(announcementsContainerContentText);
-  target.append(announcementsContainer);
+  target.prepend(announcementsContainer);
 
 
 };
