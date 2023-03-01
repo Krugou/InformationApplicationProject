@@ -5,7 +5,7 @@
 //const weeklyurlFoodco = 'https://www.compass-group.fi/menuapi/feed/json?costNumber=';
 
 
-import { doFetch, getWeekdayIndex, getNextMonday } from '../network-proxy';
+import { doFetch, getNextMonday, getWeekdayIndex } from '../network-proxy';
 /*
 const getMenuFromNextMonday = async (restaurantId, lang) => {
   try {
@@ -27,13 +27,13 @@ const getDailyMenu = async (restaurantId, lang) => {
 
   try {
     const today = new Date().toISOString().split('T').shift();
-    console.log(getNextMonday(new Date('2023-05-01')));
+    console.log('🚀 ~ file: foodcoMenu.js:31 ~ getDailyMenu ~ getNextMonday(new Date(\'2023-05-01\')):', getNextMonday(new Date('2023-05-01')));
     //const today = '2023-03-05'; //Kovakoodattuna testaamiseen
     const menuUrl = 'https://www.compass-group.fi/menuapi/week-menus?costCenter=' + restaurantId + '&language=' + lang + '&date=' + today;
     console.log(menuUrl);
     const weeklyMenu = await doFetch(menuUrl, true);
-    console.log(weeklyMenu);
-    console.log('weekdayindex', getWeekdayIndex());
+    console.log('🚀 ~ file: foodcoMenu.js:35 ~ getDailyMenu ~ weeklyMenu:', weeklyMenu);
+    console.log('🚀 ~ file: foodcoMenu.js:37 ~ getDailyMenu ~ getWeekdayIndex:', getWeekdayIndex());
     const menu = weeklyMenu.menus[getWeekdayIndex()];
 
     if (menu === undefined) {
@@ -65,38 +65,38 @@ const getDietsFromMenu = (dailyMenu) => {
 
     const mealComponentCount = dailyMenu.menuPackages.map((menuPackage) => {
       return menuPackage.meals.map((mealItem) => {
-      return mealItem.diets;
-    });
-  });
-
-  for (let i = 0; i < mealComponentDiets.length; i++) {
-    let thisMealsDiets = [];
-
-    mealComponentDiets[i].split(',').forEach(element => {
-    //  console.log(element);
-     // console.log(mealComponentDiets);
-     // console.log((mealComponentDiets[i].split(',').filter(x => x===element).length));
-
-     // if the diet is present in all the elements of the mealarray, push it to an array
-      if (mealComponentDiets[i].split(',').filter(x => x===element).length === mealComponentCount[i].length && thisMealsDiets.includes(element) === false) {
-      //  console.log(mealComponentCount[i].length);
-        thisMealsDiets.push(element);
-        mealDiets[i] = [...thisMealsDiets];
-       // console.log([...thisMealsDiets]);
-      }
-
-      // if(mealComponentDiets[i].includes(element)) console.log('joo');
-      //console.log(mealComponentDiets[i].count(element));
+        return mealItem.diets;
+      });
     });
 
+    for (let i = 0; i < mealComponentDiets.length; i++) {
+      let thisMealsDiets = [];
+
+      mealComponentDiets[i].split(',').forEach(element => {
+        //  console.log(element);
+        // console.log(mealComponentDiets);
+        // console.log((mealComponentDiets[i].split(',').filter(x => x===element).length));
+
+        // if the diet is present in all the elements of the mealarray, push it to an array
+        if (mealComponentDiets[i].split(',').filter(x => x === element).length === mealComponentCount[i].length && thisMealsDiets.includes(element) === false) {
+          //  console.log(mealComponentCount[i].length);
+          thisMealsDiets.push(element);
+          mealDiets[i] = [...thisMealsDiets];
+          // console.log([...thisMealsDiets]);
+        }
+
+        // if(mealComponentDiets[i].includes(element)) console.log('joo');
+        //console.log(mealComponentDiets[i].count(element));
+      });
+
+    }
+    console.log('🚀 ~ file: foodcoMenu.js:94 ~ getDietsFromMenu ~ mealDiets:', mealDiets);
+    console.log('🚀 ~ file: foodcoMenu.js:96 ~ getDietsFromMenu ~ mealComponentCount:', mealComponentCount);
+    console.log('🚀 ~ file: foodcoMenu.js:98 ~ getDietsFromMenu ~ mealComponentDiets:', mealComponentDiets);
+    return mealDiets;
+  } catch (error) {
+    console.error(error, 'getDietsFromComponents error');
   }
-  console.log(mealDiets);
-  console.log(mealComponentCount);
-  console.log(mealComponentDiets);
-  return mealDiets;
-} catch (error) {
-   console.error(error, 'getDietsFromComponents error');
-}
 };
 
 /** Function for parsing fazer menu
@@ -132,13 +132,13 @@ const parseMenu = (dailyMenu) => {
       }
     }
 
-    console.log(mealDiets);
-    console.log(mealPrices);
-    console.log(mealNames);
+    console.log('🚀 ~ file: foodcoMenu.js:136 ~ parseMenu ~ mealDiets:', mealDiets);
+    console.log('🚀 ~ file: foodcoMenu.js:138 ~ parseMenu ~ mealPrices:', mealPrices);
+    console.log('🚀 ~ file: foodcoMenu.js:140 ~ parseMenu ~ mealNames:', mealNames);
     return mealNames;
   }
   catch (error) {
-   console.error(error, 'parseMenu Error food co');
+    console.error(error, 'parseMenu Error food co');
   }
 };
 
