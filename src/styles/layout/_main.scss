@@ -13,7 +13,7 @@
           .leftside {
             font-family: "HCo Gotham Rounded";
             flex: 2;
-            height:fit-content;
+            height: fit-content;
 
 
             .video {
@@ -30,7 +30,7 @@
           .rightside {
             border: 1px solid black;
             flex: 1;
-            height:fit-content;
+            height: fit-content;
 
             figure {
               text-align: center;
@@ -87,44 +87,51 @@
             font-weight: bold;
           }
 
-          .transit-svg{
-            fill:beige;
+          .transit-svg {
+            fill: beige;
             width: 3em;
           }
+
           .hsl-container {
             display: flex;
             flex-direction: column;
             margin: 0px 0px 32px 0px;
             padding-right: 2em;
             font-size: 1rem;
+
             p {
-              margin:0;
+              margin: 0;
             }
+
             .hsl-container-list {
               border: 0.5px dashed black;
               padding: 8px 8px 8px 40px;
               display: flex;
               align-items: center;
-              background-color:$hsl-white;
-              color:$hsl-sininen;
+              background-color: $hsl-white;
+              color: $hsl-sininen;
 
               .transit-address {
-                flex:3;
+                flex: 3;
               }
+
               .arrival-time {
-                flex:1;
+                flex: 1;
               }
 
             }
           }
-          .hsl-container-list-head{
+
+          .hsl-container-list-head {
             display: flex;
-            flex:2;
-            gap:10px;
+            flex: 2;
+            gap: 10px;
           }
-          .hsl-container-list-head-right{
-           margin-left: 0.3em;
+
+          .hsl-container-list-head-right {
+            margin-left: 0.3em;
           }
+
           .hsl-container-list-time {
             display: flex;
             flex: 3;
@@ -150,28 +157,34 @@
               }
             }
 
-          .hsl-container {
-            padding: 2em;
+            .hsl-container {
+              padding: 2em;
 
-          .hsl-container-list {
-            flex-wrap:wrap;
-            padding: 15px;
-            gap: 20px;
-            flex-direction: column;
-            align-items: unset;
+              .hsl-container-list {
+                flex-wrap: wrap;
+                padding: 15px;
+                gap: 20px;
+                flex-direction: column;
+                align-items: unset;
 
-            .hsl-container-list-head-right {
-              margin: 0;
-            }
+                .hsl-container-list-head-right {
+                  margin: 0;
+                }
 
-            .hsl-container-list-head {
-              flex:unset;
+                .hsl-container-list-head {
+                  flex: unset;
+                }
+
+                .hsl-container-list-time {
+                  gap: 2em;
+                  align-items: center;
+                }
+              }
             }
-            .hsl-container-list-time {
-              gap: 2em;
-              align-items: center;
-            }
-          }
           }
         }
+
+        .diet-logo {
+          width: 2em;
+          margin: 0 auto;
         }

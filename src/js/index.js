@@ -1,10 +1,10 @@
+import campusInfo from '../../json/campuses.json';
 import '../styles/main.scss';
 import hslRender from './modules/hsl/hsl-render';
 import paSystem from './modules/pa/Announcements';
 import foodcoData from './modules/restaurant/foodcoMenu';
 import sodexoMenu from './modules/restaurant/sodexomenu';
 import dietPreferences from './modules/utils/diet-choices';
-import campusInfo from '../../json/campuses.json';
 // import serviceWorkerFunction from './modules/utils/sw';
 import fetchWeatherLocalorDefault from './modules/weather/weather-data';
 /*
@@ -135,27 +135,27 @@ const renderMenu = async () => {
     const menuItems = menuItem.split('|');
     // Iterate through the array
     menuItems.forEach((item) => {
-      if (item.match(/([a-zA-ZäöåÄÖÅ]+(?:-[a-zA-ZäöåÄÖÅ]+)?)(?:,|$)/g)) {
-        if (item.match(/[GMLAV]([,)])|(Veg|ILM|VS|VL|\*)([,)])/)) {
+      if (item.match(/[a-zA-ZäöåÄÖÅ]/)) {
 
-          const nameItems = item.split('(');
+        if (item.match(/(\([A-Z]\))|([GMLAV][,)])|(Veg|ILM|VS|VL|\*)([,)])/gu)) {
+
+          const nameItems = item.split();
           const dietContainer = document.createElement('div');
           dietContainer.classList.add('diet-container');
           nameItems.forEach((item) => {
-            if (item.match(/[,]/)) {
+            if (item.match(/[,]/) || item.match(/\((G|L|VL|M|\*|Veg|ILM|VS|A)\)/g)) {
               if (restaurantType === 'Food & Co') {
 
                 const dietItems = item.split(',');
                 dietItems.forEach((dietItem) => {
-
                   const p = document.createElement('p');
-                  p.classList.add('menu-item-diet');
+                  p.classList.add('diet-item');
                   const results = dietPreferences(dietItem);
-                  p.textContent = results;
-                  dietContainer.append(p);
+                  dietContainer.append(results);
                   li.append(dietContainer);
-                }
-                );
+                });
+
+
               }
             } else {
               const p = document.createElement('p');
@@ -175,7 +175,7 @@ const renderMenu = async () => {
       if (restaurantType === 'Sodexo') {
 
         // 2. If the restaurant type is Sodexo, check if the menu item matches the regex
-        if (item.match(/[GMLAV]([,)])|(Veg|ILM|VS|VL|\*)([,)])/)) {
+        if (item.match(/(\([A-Z]\))|([GMLAV][,)])|(Veg|ILM|VS|VL|\*)([,)])/gu)) {
           const dietContainer = document.createElement('div');
           dietContainer.classList.add('diet-container');
           // 3. Split the item into an array of diet items
@@ -190,8 +190,7 @@ const renderMenu = async () => {
             const results = dietPreferences(dietItem);
 
             // 7. Add the diet information to the paragraph element
-            p.textContent = results;
-            dietContainer.append(p);
+            dietContainer.append(results);
             li.append(dietContainer);
           });
         }
@@ -261,6 +260,14 @@ const regexErrorCleaner = () => {
       item.remove();
     }
   });
+  const container = document.querySelector('.diet-container');
+  const images = container.querySelectorAll('img');
+
+  for (let i = 0; i < images.length; i++) {
+    if (!images[i].hasAttribute('src')) {
+      images[i].remove();
+    }
+  }
   // Get all the menu item titles
   const menuTitleElements = document.querySelectorAll('.menu-item-title');
 
@@ -268,6 +275,10 @@ const regexErrorCleaner = () => {
   menuTitleElements.forEach((item) => {
     // If the text content of the menu item title is an empty string
     if (item.textContent === '') {
+      // Remove the menu item title
+      item.remove();
+    }
+    if (item.textContent === '(VL)' || item.textContent === '(VS)' || item.textContent === '(ILM)' || item.textContent === '(Veg)' || item.textContent === '(*)' || item.textContent === '(G)' || item.textContent === '(M)' || item.textContent === '(L)' || item.textContent === '(A)' || item.textContent === '(V)' || item.textContent === '(undefined)') {
       // Remove the menu item title
       item.remove();
     }
