@@ -50,7 +50,7 @@
                 font-size: 1.25rem;
 
                 .price-type {
-                  display:flex;
+                  display: flex;
                   flex-direction: column;
                 }
 
@@ -62,7 +62,7 @@
 
                   p {
                     padding: 6px;
-                    margin:0;
+                    margin: 0;
                   }
 
                 }
@@ -173,8 +173,9 @@
                   font-size: 1rem;
                 }
               }
-              .restaurant-logo{
-                width:6em;
+
+              .restaurant-logo {
+                width: 6em;
               }
             }
 
@@ -210,6 +211,23 @@
           width: 2em;
           margin: 0 auto;
         }
+
+        .announcements-container {
+          opacity: 0;
+          transition: opacity 1s ease-in-out;
+
+          .fade-in {
+            // fade in
+            opacity: 1;
+          }
+
+
+        }
+
+
+
+
+
         @media screen and (max-width: 650px) {
           main {
             flex-direction: column-reverse;
@@ -219,16 +237,18 @@
               padding: 2em;
             }
 
-          .hsl-container {
-            padding: 0;
+            .hsl-container {
+              padding: 0;
+            }
           }
         }
-        }
+
         @media screen and (max-width: 520px) {
           main {
             padding: 2em;
           }
         }
+
         @media screen and (max-width: 440px) {
           main {
             .hsl-list {
@@ -236,17 +256,19 @@
             }
           }
         }
+
         @media screen and (max-width: 395px) {
           main {
             padding: 15px;
+
             .hsl-container {
               .hsl-container-list {
                 padding: 8px;
               }
             }
+
             .hsl-list {
               padding: 10px;
             }
           }
         }
-

@@ -1,6 +1,6 @@
 import campusInfo from '../../json/campuses.json';
 import '../styles/main.scss';
-import hslRender from './modules/hsl/hsl-render';
+import hslInit from './modules/hsl/hsl-init';
 import paSystem from './modules/pa/Announcements';
 import renderMenu from './modules/restaurant/menu-render';
 import getCampusInfo from './modules/utils/campusinfo';
@@ -58,7 +58,7 @@ languageButton.addEventListener('click', () => {
 campusSelector.addEventListener('change', () => {
   selectedCampus = document.querySelector('#domain-select').value;
   fetchWeatherLocalorDefault(1, getCampusInfo(selectedCampus));
-  getStopsNearbyHsl();
+  hslInit.getStopsNearbyHsl(allCampuses, selectedCampus);
   renderMenu(lang, selectedCampus);
 });
 
@@ -75,34 +75,18 @@ const loadSettings = () => {
   }
 
 };
-const getStopsNearbyHsl = async () => {
-  const hsl = document.querySelector('.hsl-list');
-  hsl.innerHTML = '';
-  const selectedRestaurant = allCampuses.find((restaurant) => restaurant.name === selectedCampus);
 
-  if (selectedRestaurant) {
-    selectedRestaurant.stops.forEach((stop) => {
-      hslRender.HSLContainerRender(hsl, stop, 3);
-    });
-  } else {
-    hsl.innerHTML = 'No restaurant found';
-  }
-  setTimeout(() => {
-    getStopsNearbyHsl();
-  }, 60000);
-};
 
 const leftside = document.querySelector('.leftside');
 const initiate = async () => {
   // serviceWorkerFunction();
   loadSettings();
   fetchWeatherLocalorDefault(1, getCampusInfo(selectedCampus));
-  paSystem.getAnnouncements(leftside,5);
+  paSystem.getAnnouncements(leftside, 5);
   renderElements.renderVideo(leftside);
   renderElements.hslContainer(leftside);
-  getStopsNearbyHsl();
+  hslInit.getStopsNearbyHsl(allCampuses, selectedCampus);
   renderMenu(lang, selectedCampus);
-
 };
 initiate();
 

@@ -18,7 +18,7 @@ const getDailyMenu = async (restaurantId) => {
 
     const weeklyMenu = await doFetch(weeklyUrl + restaurantId);
     const menu = weeklyMenu.mealdates[getWeekdayIndex()];
-    console.log('🚀 ~ file: sodexoMenu.js:21 ~ getDailyMenu ~ menu:', menu);
+    // console.log('🚀 ~ file: sodexoMenu.js:21 ~ getDailyMenu ~ menu:', menu);
     if (menu === undefined) {
       alert('no Sodexo data for today, showing past fridays data');
       return weeklyMenu.mealdates[4];
@@ -43,13 +43,13 @@ const parseMenu = (menu, lang) => {
   }
 
   const coursesEn = Object.values(menu.courses).map((course) => {
-    console.log('🚀 ~ file: sodexoMenu.js:48 ~ coursesEn ~ course:', course);
+    // console.log('🚀 ~ file: sodexoMenu.js:48 ~ coursesEn ~ course:', course);
 
     return course.title_en + '|(' + course.dietcodes + ')|' + course.price;
   }
   );
   const coursesFi = Object.values(menu.courses).map((course) => {
-    console.log('🚀 ~ file: sodexoMenu.js:49 ~ coursesFi ~ course:', course);
+    // console.log('🚀 ~ file: sodexoMenu.js:49 ~ coursesFi ~ course:', course);
     return course.title_fi + '|(' + course.dietcodes + ')|' + course.price;
   });
   return lang === 'en' ? coursesEn : coursesFi;

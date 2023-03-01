@@ -38,9 +38,15 @@ const renderAnnouncements = (target, announcements, timeout) => {
 
 };
 const renderAnnouncementsContainer = (target, announcements, i) => {
+
   const announcementsContainer = document.createElement('div');
   announcementsContainer.classList.add('announcements-container');
-  target.append(announcementsContainer);
+  // remove class fade-in from all elements
+  const fadeIns = document.querySelectorAll('.fade-in');
+  fadeIns.forEach((fadeIn) => {
+    fadeIn.classList.remove('fade-in');
+  });
+
   // create container element for header
   const announcementsContainerHeader = document.createElement('div');
   announcementsContainerHeader.classList.add('announcements-container-header');
@@ -64,6 +70,10 @@ const renderAnnouncementsContainer = (target, announcements, i) => {
   announcementsContainerContentText.classList.add('announcements-container-content-text');
   announcementsContainerContentText.textContent = announcements[i].content;
   announcementsContainerContent.append(announcementsContainerContentText);
+  target.append(announcementsContainer);
+  announcementsContainer.classList.add('fade-in');
+
+
 };
 const paSystem = { getAnnouncements };
 export default paSystem;

@@ -5,7 +5,9 @@
 //const weeklyurlFoodco = 'https://www.compass-group.fi/menuapi/feed/json?costNumber=';
 
 
-import { doFetch, getNextMonday, getWeekdayIndex } from '../../network-proxy';
+import {
+  doFetch, getWeekdayIndex
+} from '../../network-proxy';
 /*
 const getMenuFromNextMonday = async (restaurantId, lang) => {
   try {
@@ -27,13 +29,13 @@ const getDailyMenu = async (restaurantId, lang) => {
 
   try {
     const today = new Date().toISOString().split('T').shift();
-    console.log('🚀 ~ file: foodcoMenu.js:31 ~ getDailyMenu ~ getNextMonday(new Date(\'2023-05-01\')):', getNextMonday(new Date('2023-05-01')));
+    // console.log('🚀 ~ file: foodcoMenu.js:31 ~ getDailyMenu ~ getNextMonday(new Date(\'2023-05-01\')):', getNextMonday(new Date('2023-05-01')));
     //const today = '2023-03-05'; //Kovakoodattuna testaamiseen
     const menuUrl = 'https://www.compass-group.fi/menuapi/week-menus?costCenter=' + restaurantId + '&language=' + lang + '&date=' + today;
     console.log(menuUrl);
     const weeklyMenu = await doFetch(menuUrl, true);
-    console.log('🚀 ~ file: foodcoMenu.js:35 ~ getDailyMenu ~ weeklyMenu:', weeklyMenu);
-    console.log('🚀 ~ file: foodcoMenu.js:37 ~ getDailyMenu ~ getWeekdayIndex:', getWeekdayIndex());
+    // console.log('🚀 ~ file: foodcoMenu.js:35 ~ getDailyMenu ~ weeklyMenu:', weeklyMenu);
+    // console.log('🚀 ~ file: foodcoMenu.js:37 ~ getDailyMenu ~ getWeekdayIndex:', getWeekdayIndex());
     const menu = weeklyMenu.menus[getWeekdayIndex()];
 
     if (menu === undefined) {
@@ -90,9 +92,9 @@ const getDietsFromMenu = (dailyMenu) => {
       });
 
     }
-    console.log('🚀 ~ file: foodcoMenu.js:94 ~ getDietsFromMenu ~ mealDiets:', mealDiets);
-    console.log('🚀 ~ file: foodcoMenu.js:96 ~ getDietsFromMenu ~ mealComponentCount:', mealComponentCount);
-    console.log('🚀 ~ file: foodcoMenu.js:98 ~ getDietsFromMenu ~ mealComponentDiets:', mealComponentDiets);
+    // console.log('🚀 ~ file: foodcoMenu.js:94 ~ getDietsFromMenu ~ mealDiets:', mealDiets);
+    // console.log('🚀 ~ file: foodcoMenu.js:96 ~ getDietsFromMenu ~ mealComponentCount:', mealComponentCount);
+    // console.log('🚀 ~ file: foodcoMenu.js:98 ~ getDietsFromMenu ~ mealComponentDiets:', mealComponentDiets);
     return mealDiets;
   } catch (error) {
     console.error(error, 'getDietsFromComponents error');
@@ -132,9 +134,9 @@ const parseMenu = (dailyMenu) => {
       }
     }
 
-    console.log('🚀 ~ file: foodcoMenu.js:136 ~ parseMenu ~ mealDiets:', mealDiets);
-    console.log('🚀 ~ file: foodcoMenu.js:138 ~ parseMenu ~ mealPrices:', mealPrices);
-    console.log('🚀 ~ file: foodcoMenu.js:140 ~ parseMenu ~ mealNames:', mealNames);
+    // console.log('🚀 ~ file: foodcoMenu.js:136 ~ parseMenu ~ mealDiets:', mealDiets);
+    // console.log('🚀 ~ file: foodcoMenu.js:138 ~ parseMenu ~ mealPrices:', mealPrices);
+    // console.log('🚀 ~ file: foodcoMenu.js:140 ~ parseMenu ~ mealNames:', mealNames);
     return mealNames;
   }
   catch (error) {
