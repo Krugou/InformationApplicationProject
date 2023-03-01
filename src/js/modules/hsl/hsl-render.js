@@ -1,13 +1,16 @@
 import HSL from './hsl-data';
 
 
-const HSLContainerRender = async (target, stop) => {
+const HSLContainerRender = async (target, stop, lengthofdata) => {
   try {
+    // remove target children
+    while (target.firstChild) {
+      target.removeChild(target.firstChild);
+    }
     // Get the routes for the stop
     const routes = await HSL.getRoutesByStopId(stop);
 
-    // Limit the number of routes in the array to 3
-    while (routes.length > 3) {
+    while (routes.length > lengthofdata) {
       routes.pop();
     }
 
@@ -41,9 +44,9 @@ const HSLContainerRender = async (target, stop) => {
 
       // Choose icon based on the type of transport
       if (route.name.split('')[0] === 'M') { // Check if transport is a subway
-      transitImage.src = '../../assets/images/Metro.svg';
+        transitImage.src = '../../assets/images/Metro.svg';
       } else {
-      transitImage.src = '../../assets/images/Bussi.svg';
+        transitImage.src = '../../assets/images/Bussi.svg';
       }
       transitImage.alt = '';
       transitImage.classList.add('transit-svg');
@@ -51,7 +54,7 @@ const HSLContainerRender = async (target, stop) => {
       // Create an element for the address of the line
       const transitAddress = document.createElement('p');
       transitAddress.classList.add('transit-address');
-      transitAddress.textContent =  `Pysäkki:${route.stopname}`;
+      transitAddress.textContent = `Pysäkki:${route.stopname}`;
 
       // Create the transit line element and append it to the list
       const transitLine = document.createElement('p');
@@ -81,17 +84,66 @@ const HSLContainerRender = async (target, stop) => {
       const arrivalTime = document.createElement('p');
       arrivalTime.textContent = `${route.realtimeArrival}`;
       arrivalTime.classList.add('arrival-time');
+      console.log('🚀 ~ file: hsl-render.js:84 ~ HSLContainerRender ~ `${route.realtimeArrival}`:', `${route.realtimeArrival}`);
       hslcontainerListTime.append(arrivalTime);
       hslContainerList.append(hslcontainerListTime);
 
       // Append the list to the container
       hslContainer.append(hslContainerList);
 
-
     }
   } catch (error) {
     console.error(error);
   }
+  // get all arrival times
+  const arrivalTimes = document.querySelectorAll('.arrival-time');
+  // get the current time
+  const currentTime = new Date();
+  // get the current hour
+  const currentHour = currentTime.getHours();
+  // get the current minutes
+  const currentMinutes = currentTime.getMinutes();
+  // check which arrival time is latest and get the first one
+  let latestArrivalTime = null;
+  let firstArrivalTime = null;
+
+  for (let i = 0; i < arrivalTimes.length; i++) {
+    const arrivalTime = arrivalTimes[i].textContent.split(':');
+    const arrivalHour = parseInt(arrivalTime[0]);
+    const arrivalMinutes = parseInt(arrivalTime[1]);
+
+    // Compare the arrival time with the current time
+    if (arrivalHour > currentHour || (arrivalHour === currentHour && arrivalMinutes >= currentMinutes)) {
+      if (!latestArrivalTime || (arrivalHour < latestArrivalTime.hour || (arrivalHour === latestArrivalTime.hour && arrivalMinutes < latestArrivalTime.minutes))) {
+        latestArrivalTime = { hour: arrivalHour, minutes: arrivalMinutes };
+        if (!firstArrivalTime) {
+          firstArrivalTime = arrivalTimes[i];
+        }
+      }
+    }
+  }
+
+  if (firstArrivalTime) {
+    // Do something with the first arrival time
+    const timeDifference = latestArrivalTime.minutes - currentMinutes;
+
+    // convert the difference to milliseconds
+    const timeDifferenceInMilliseconds = timeDifference * 60000;
+    console.log('🚀 ~ file: hsl-render.js:113 ~ HSLContainerRender ~ timeDifferenceInMilliseconds:', timeDifferenceInMilliseconds);
+    // set the timeout for the next update
+    setTimeout(() => {
+      HSLContainerRender(target, stop, lengthofdata);
+    }
+      , timeDifferenceInMilliseconds);
+  } else {
+    // Handle the case where there are no upcoming arrivals
+    setTimeout(() => {
+      HSLContainerRender(target, stop, lengthofdata);
+    }
+      , 60000);
+  }
+
+
 };
 const hslRender = { HSLContainerRender };
 
