@@ -71,7 +71,6 @@ const renderAnnouncementsContainer = (target, announcements, i) => {
   announcementsContainerContentText.textContent = announcements[i].content;
   announcementsContainerContent.append(announcementsContainerContentText);
   target.append(announcementsContainer);
-  announcementsContainer.classList.add('fade-in');
 
 
 };
