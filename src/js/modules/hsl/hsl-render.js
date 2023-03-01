@@ -133,6 +133,8 @@ const HSLContainerRender = async (target, stop, lengthofdata) => {
   }
 
   if (firstArrivalTime) {
+    console.log('🚀 ~ file: hsl-render.js:135 ~ HSLContainerRender ~ if:');
+
     // get the time difference between the current time and the first arrival time
     const timeDifference = (latestArrivalTime.hour - currentHour) * 60 + (latestArrivalTime.minutes - currentMinutes);
 
@@ -141,11 +143,12 @@ const HSLContainerRender = async (target, stop, lengthofdata) => {
     console.log('🚀 ~ file: hsl-render.js:113 ~ HSLContainerRender ~ timeDifferenceInMilliseconds:', timeDifferenceInMilliseconds);
     // set the timeout for the next update
     setTimeout(() => {
-      target.innerHTML = '';
+      timeoutTarget.innerHTML = '';
       HSLContainerRender(timeoutTarget, timeoutStop, timeoutLengthofdata);
     }
       , timeDifferenceInMilliseconds);
   } else {
+    console.log('🚀 ~ file: hsl-render.js:149 ~ HSLContainerRender ~ else:');
     // Handle the case where there are no upcoming arrivals
     setTimeout(() => {
       HSLContainerRender(timeoutTarget, timeoutStop, timeoutLengthofdata);
