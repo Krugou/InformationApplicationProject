@@ -136,8 +136,12 @@ const HSLContainerRender = async (target, stop, lengthofdata) => {
     console.log('🚀 ~ file: hsl-render.js:135 ~ HSLContainerRender ~ if:');
 
     // get the time difference between the current time and the first arrival time
-    const timeDifference = (latestArrivalTime.hour - currentHour) * 60 + (latestArrivalTime.minutes - currentMinutes);
-
+    let timeDifference = (latestArrivalTime.hour - currentHour) * 60 + (latestArrivalTime.minutes - currentMinutes);
+    console.log('🚀 ~ file: hsl-render.js:140 ~ HSLContainerRender ~ timeDifference:', timeDifference);
+    // if the time difference is less than 0 then set it to 60000
+    if (timeDifference < 0) {
+      timeDifference = 1;
+    }
     // convert the difference to milliseconds
     const timeDifferenceInMilliseconds = timeDifference * 60000;
     console.log('🚀 ~ file: hsl-render.js:113 ~ HSLContainerRender ~ timeDifferenceInMilliseconds:', timeDifferenceInMilliseconds);
