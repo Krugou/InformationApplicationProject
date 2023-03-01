@@ -329,12 +329,13 @@ const priceContainerRender = (item, li) => {
       priceNumbers.append(p);
 
     });
-    // append the priceContainer to the li element
-
+    // create a container for priceNumbers and priceTypes
     const priceContainer = document.createElement('div');
     const priceType = document.createElement('div');
     priceType.classList.add('price-type');
     priceContainer.classList.add('price-container');
+
+    // create a p element and add the priceType to it
     const student = document.createElement('p');
     const normal = document.createElement('p');
     const big = document.createElement('p');
@@ -343,12 +344,16 @@ const priceContainerRender = (item, li) => {
     normal.textContent = 'Normaali';
     big.textContent = 'Iso';
 
+    // append priceNumbers and priceTypes to a container
+
     priceType.append(student);
     priceType.append(normal);
     priceType.append(big);
 
     priceContainer.append(priceNumbers);
     priceContainer.append(priceType);
+
+    // append the priceContainer to the li element
     li.append(priceContainer);
   }
 };
