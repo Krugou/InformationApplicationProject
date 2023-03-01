@@ -306,25 +306,49 @@ const changeRestaurantLogo = (restaurantType) => {
 };
 const priceContainerRender = (item, li) => {
   if (item.match(/\d,\d\d/)) {
-    const priceContainer = document.createElement('div');
-    priceContainer.classList.add('price-container');
+    const priceNumbers = document.createElement('div');
+    priceNumbers.classList.add('price-numbers');
 
     // split the string into an array at the '/' character
     const priceItems = item.split('/');
     priceItems.forEach((priceItem) => {
+
       // if euro sign is missing from priceItem add it
       if (!priceItem.includes('€')) {
         priceItem = priceItem + '€';
       }
+
+      console.log(priceItem);
+
 
       // create a p element and add the priceItem to it
       const p = document.createElement('p');
       p.classList.add('menu-item-price');
       p.textContent = priceItem;
       // append the p element to the li element
-      priceContainer.append(p);
+      priceNumbers.append(p);
+
     });
     // append the priceContainer to the li element
+
+    const priceContainer = document.createElement('div');
+    const priceType = document.createElement('div');
+    priceType.classList.add('price-type');
+    priceContainer.classList.add('price-container');
+    const student = document.createElement('p');
+    const normal = document.createElement('p');
+    const big = document.createElement('p');
+
+    student.textContent = 'Opiskelija';
+    normal.textContent = 'Normaali';
+    big.textContent = 'Iso';
+
+    priceType.append(student);
+    priceType.append(normal);
+    priceType.append(big);
+
+    priceContainer.append(priceNumbers);
+    priceContainer.append(priceType);
     li.append(priceContainer);
   }
 };

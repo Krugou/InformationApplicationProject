@@ -42,18 +42,27 @@
 
             #menu {
 
+
               padding: 1em;
 
               li {
                 margin-bottom: 1.5em;
                 font-size: 1.25rem;
 
+                .price-type {
+                  display:flex;
+                  flex-direction: column;
+                }
+
                 .price-container {
                   display: flex;
-                  flex-direction: row;
+                  align-items: center;
+                  margin: 20px 0px 20px 0px;
+                  gap: 1em;
 
                   p {
-                    padding: 8px;
+                    padding: 6px;
+                    margin:0;
                   }
 
                 }
