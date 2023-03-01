@@ -150,7 +150,8 @@
 
         @media screen and (max-width: 950px) {
           main {
-            column-gap: 3em;
+            column-gap: 2em;
+            padding: 1em;
 
             h2 {
               font-size: 1.5rem;
@@ -158,6 +159,10 @@
 
             .leftside {
               flex: 1;
+
+              .video {
+                width: 100%;
+              }
             }
 
             .rightside {
@@ -168,7 +173,11 @@
                   font-size: 1rem;
                 }
               }
+              .restaurant-logo{
+                width:6em;
+              }
             }
+
 
             .hsl-container {
               padding: 2em;
@@ -190,7 +199,7 @@
 
                 .hsl-container-list-time {
                   gap: 2em;
-                  align-items: center;
+
                 }
               }
             }
@@ -201,3 +210,43 @@
           width: 2em;
           margin: 0 auto;
         }
+        @media screen and (max-width: 650px) {
+          main {
+            flex-direction: column-reverse;
+            padding: 4em;
+
+            .hsl-list {
+              padding: 2em;
+            }
+
+          .hsl-container {
+            padding: 0;
+          }
+        }
+        }
+        @media screen and (max-width: 520px) {
+          main {
+            padding: 2em;
+          }
+        }
+        @media screen and (max-width: 440px) {
+          main {
+            .hsl-list {
+              padding: 1em;
+            }
+          }
+        }
+        @media screen and (max-width: 395px) {
+          main {
+            padding: 15px;
+            .hsl-container {
+              .hsl-container-list {
+                padding: 8px;
+              }
+            }
+            .hsl-list {
+              padding: 10px;
+            }
+          }
+        }
+

@@ -378,7 +378,7 @@ const renderVideo = (target) => {
   video.controls = true;
   video.loop = true;
   video.classList.add('video');
-  video.src = './assets/videos/infodisplay10sec.mp4';
+  video.src = './assets/videos/mediavideota.mp4';
   target.append(video);
 };
 const hslContainer = (target) => {
