@@ -6,29 +6,33 @@ console.log('🚀 ~ file: Announcements.js:5 ~ announcements:', announcements);
 
 
 // // get announcements from API
-const getAnnouncements = async (target) => {
+const getAnnouncements = async (target, timeout) => {
   try {
     // const announcementsUrl = 'https://www.compass-group.fi/menuapi/announcements?language=fi';
     // const announcements = await doFetch(announcementsUrl, true);
 
-    renderAnnouncements(target, announcements);
+    renderAnnouncements(target, announcements, timeout);
   } catch (error) {
     console.error('getAnnouncements', error);
   }
 };
 
-const renderAnnouncements = (target, announcements) => {
+const renderAnnouncements = (target, announcements, timeout) => {
   // loop through announcements and render them
+  // slideshow for all announcements
 
-  const allAnnouncements = () => {
-    for (let i = 0; i < announcements.length; i++) {
-      renderAnnouncementsContainer(target, announcements, i);
-    }
-  };
+
+  // const allAnnouncements = () => {
+  //   for (let i = 0; i < announcements.length; i++) {
+  //     renderAnnouncementsContainer(target, announcements, i);
+  //   }
+  // };
   const randomAnnouncements = () => {
     const i = Math.floor(Math.random() * announcements.length);
     renderAnnouncementsContainer(target, announcements, i);
-
+    setTimeout(() => {
+      randomAnnouncements();
+    }, timeout * 60000);
   };
   randomAnnouncements();
 

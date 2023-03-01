@@ -97,7 +97,7 @@ const initiate = async () => {
   // serviceWorkerFunction();
   loadSettings();
   fetchWeatherLocalorDefault(1, getCampusInfo(selectedCampus));
-  paSystem.getAnnouncements(leftside);
+  paSystem.getAnnouncements(leftside,5);
   renderElements.renderVideo(leftside);
   renderElements.hslContainer(leftside);
   getStopsNearbyHsl();
