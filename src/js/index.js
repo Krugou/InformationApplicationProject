@@ -369,6 +369,9 @@ const getStopsNearbyHsl = async () => {
   } else {
     hsl.innerHTML = 'No restaurant found';
   }
+  setTimeout(() => {
+    getStopsNearbyHsl();
+  }, 60000);
 };
 const renderVideo = (target) => {
   //  <video autoplay muted controls loop class="video" src='./assets/videos/infodisplay10sec.mp4'></video>
