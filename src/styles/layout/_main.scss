@@ -212,17 +212,7 @@
           margin: 0 auto;
         }
 
-        .announcements-container {
-          opacity: 0;
-          transition: opacity 1s ease-in-out;
-
-          .fade-in {
-            // fade in
-            opacity: 1;
-          }
-
-
-        }
+        .announcements-container {}
 
 
 
