@@ -16,7 +16,7 @@ const allCampuses = [
 ];
 */
 const allCampuses = campusInfo.campuses;
-console.log(allCampuses);
+console.log('🚀 ~ file: index.js:20 ~ allCampuses:', allCampuses);
 // DOM Elements
 const campusSelector = document.querySelector('#domain-select');
 const languageButton = document.querySelector('#language-button');
@@ -88,7 +88,7 @@ const getCurrentMenu = async () => {
     let currentMenu = [];
     // Find the selectedmenus info from the allCampuses array
     const currentMenuInfo = getCampusInfo();
-    console.log('currentMenuInfo', currentMenuInfo);
+    console.log('🚀 ~ file: index.js:91 ~ getCurrentMenu ~ currentMenuInfo:', currentMenuInfo);
     // Get the correct menu and save it menu array
     if (currentMenuInfo.type === 'Food & Co') {
       currentMenu = foodcoData.parseMenu(await foodcoData.getDailyMenu(currentMenuInfo.id, lang));
@@ -318,7 +318,7 @@ const priceContainerRender = (item, li) => {
         priceItem = priceItem + '€';
       }
 
-      console.log(priceItem);
+      console.log('🚀 ~ file: index.js:322 ~ priceItems.forEach ~ priceItem:', priceItem);
 
 
       // create a p element and add the priceItem to it
