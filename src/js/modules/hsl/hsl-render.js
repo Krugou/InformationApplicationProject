@@ -2,11 +2,18 @@ import HSL from './hsl-data';
 
 
 const HSLContainerRender = async (target, stop, lengthofdata) => {
+  const timeoutTarget = target;
+  const timeoutStop = stop;
+  const timeoutLengthofdata = lengthofdata;
+  // Remove the old container
+  const oldContainer = document.querySelector('.hsl-container');
+  if (oldContainer) {
+    oldContainer.remove();
+  }
+
+  console.log('🚀 ~ file: hsl-render.js:5 ~ HSLContainerRender ~ lengthofdata:', lengthofdata);
   try {
-    // remove target children
-    while (target.firstChild) {
-      target.removeChild(target.firstChild);
-    }
+
     // Get the routes for the stop
     const routes = await HSL.getRoutesByStopId(stop);
 
@@ -14,7 +21,6 @@ const HSLContainerRender = async (target, stop, lengthofdata) => {
       routes.pop();
     }
 
-    // console.table('🚀 ~ file: hsl-render.js:5 ~ renderHSLData ~ routes:', routes);
 
     // Create the container and append it to the target
     const hslContainer = document.createElement('ul');
@@ -107,15 +113,18 @@ const HSLContainerRender = async (target, stop, lengthofdata) => {
   let latestArrivalTime = null;
   let firstArrivalTime = null;
 
+
   for (let i = 0; i < arrivalTimes.length; i++) {
+
     const arrivalTime = arrivalTimes[i].textContent.split(':');
     const arrivalHour = parseInt(arrivalTime[0]);
     const arrivalMinutes = parseInt(arrivalTime[1]);
 
     // Compare the arrival time with the current time
-    if (arrivalHour > currentHour || (arrivalHour === currentHour && arrivalMinutes >= currentMinutes)) {
+    if (arrivalHour > currentHour || (arrivalHour === currentHour && arrivalMinutes >= currentMinutes) || arrivalHour >= currentHour && arrivalHour <= currentHour + 2) {
       if (!latestArrivalTime || (arrivalHour < latestArrivalTime.hour || (arrivalHour === latestArrivalTime.hour && arrivalMinutes < latestArrivalTime.minutes))) {
         latestArrivalTime = { hour: arrivalHour, minutes: arrivalMinutes };
+        console.log('🚀 ~ file: hsl-render.js:127 ~ HSLContainerRender ~ latestArrivalTime:', latestArrivalTime);
         if (!firstArrivalTime) {
           firstArrivalTime = arrivalTimes[i];
         }
@@ -124,21 +133,22 @@ const HSLContainerRender = async (target, stop, lengthofdata) => {
   }
 
   if (firstArrivalTime) {
-    // Do something with the first arrival time
-    const timeDifference = latestArrivalTime.minutes - currentMinutes;
+    // get the time difference between the current time and the first arrival time
+    const timeDifference = (latestArrivalTime.hour - currentHour) * 60 + (latestArrivalTime.minutes - currentMinutes);
 
     // convert the difference to milliseconds
     const timeDifferenceInMilliseconds = timeDifference * 60000;
     console.log('🚀 ~ file: hsl-render.js:113 ~ HSLContainerRender ~ timeDifferenceInMilliseconds:', timeDifferenceInMilliseconds);
     // set the timeout for the next update
     setTimeout(() => {
-      HSLContainerRender(target, stop, lengthofdata);
+      target.innerHTML = '';
+      HSLContainerRender(timeoutTarget, timeoutStop, timeoutLengthofdata);
     }
       , timeDifferenceInMilliseconds);
   } else {
     // Handle the case where there are no upcoming arrivals
     setTimeout(() => {
-      HSLContainerRender(target, stop, lengthofdata);
+      HSLContainerRender(timeoutTarget, timeoutStop, timeoutLengthofdata);
     }
       , 60000);
   }
