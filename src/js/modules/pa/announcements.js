@@ -29,6 +29,7 @@ const renderAnnouncements = (target, announcements, timeout) => {
   // };
   const randomAnnouncements = () => {
     const i = Math.floor(Math.random() * announcements.length);
+    // console.log('🚀 ~ file: Announcements.js:32 ~ randomAnnouncements ~ i:', i);
     renderAnnouncementsContainer(target, announcements, i);
     setTimeout(() => {
       randomAnnouncements();
