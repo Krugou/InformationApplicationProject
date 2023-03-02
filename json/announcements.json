@@ -1,52 +1,56 @@
 [
   {
-    "title": "Metropolia Ammattikorkeakoulu",
+    "title_fi": "Metropolia Ammattikorkeakoulu",
+    "title_en": "Metropolia University Of Applied Sciences",
     "date": "2023-03-01",
-    "content": "Metropolia Ammattikorkeakoulu järjestää 14.3.2023 klo 10-14 avoimet ovet kampuksillaan. Tule tutustumaan koulutusvaihtoehtoihimme ja tapaamaan opiskelijoitamme ja henkilökuntaamme!"
+    "content_fi": "Metropolia Ammattikorkeakoulu järjestää 14.3.2023 klo 10-14 avoimet ovet kampuksillaan. Tule tutustumaan koulutusvaihtoehtoihimme ja tapaamaan opiskelijoitamme ja henkilökuntaamme!",
+    "content_en": "On March 14, 2023, Metropolia University of Applied Sciences will organize open doors on its campuses from 10 a.m. to 2 p.m. Come learn about our education options and meet our students and staff!"
   },
   {
-    "title": "New Movie Release",
+    "title_en": "New Movie Release",
+    "title_fi": "Uusi Elokuva Julkaisu",
     "date": "2023-04-15",
-    "content": "Don't miss the new action-packed movie release at your nearest cinema. Buy your tickets now!"
+    "content_en": "Don't miss the new action-packed movie release at your nearest cinema. Buy your tickets now!",
+    "content_fi": "Älä missaa uuden toiminnantäyteisen elokuvan julkaisua lähimmässä elokuvateatterissasi. Osta lippusi nyt!"
   },
   {
-    "title": "Charity Run",
+    "title_en": "Charity Run",
     "date": "2023-05-01",
-    "content": "Join us for our annual charity run in support of cancer research. Sign up now and help make a difference in someone's life!"
+    "content_en": "Join us for our annual charity run in support of cancer research. Sign up now and help make a difference in someone's life!"
   },
   {
-    "title": "Tech Conference",
+    "title_en": "Tech Conference",
     "date": "2023-06-10",
-    "content": "Attend the largest tech conference of the year and learn about the latest innovations in the industry. Register now!"
+    "content_en": "Attend the largest tech conference of the year and learn about the latest innovations in the industry. Register now!"
   },
   {
-    "title": "Summer Sale",
+    "title_en": "Summer Sale",
     "date": "2023-07-01",
-    "content": "Get ready for our biggest summer sale yet! Don't miss out on huge discounts on all of our products."
+    "content_en": "Get ready for our biggest summer sale yet! Don't miss out on huge discounts on all of our products."
   },
   {
-    "title": "Online Workshop",
+    "title_en": "Online Workshop",
     "date": "2023-08-15",
-    "content": "Join our online workshop and learn how to improve your photography skills from the comfort of your own home. Limited spots available!"
+    "content_en": "Join our online workshop and learn how to improve your photography skills from the comfort of your own home. Limited spots available!"
   },
   {
-    "title": "Tervetuloa Helsinkiin",
+    "title_fi": "Tervetuloa Helsinkiin",
     "date": "2023-05-01",
-    "content": "Tervetuloa tutustumaan Helsingin kaupunkiin 10.5.2023 klo 12-18. Tarjoamme kaupunkikierroksia, tapahtumia ja mahdollisuuden maistaa paikallisia herkkuja. Tule kokemaan ainutlaatuinen pääkaupunkimme!"
+    "content_fi": "Tervetuloa tutustumaan Helsingin kaupunkiin 10.5.2023 klo 12-18. Tarjoamme kaupunkikierroksia, tapahtumia ja mahdollisuuden maistaa paikallisia herkkuja. Tule kokemaan ainutlaatuinen pääkaupunkimme!"
   },
   {
-    "title": "Urheilugaala",
+    "title_fi": "Urheilugaala",
     "date": "2023-06-10",
-    "content": "Tervetuloa juhlistamaan urheiluvuotta kanssamme Urheilugaalassa 10.6.2023 klo 18-23. Illan aikana palkitaan vuoden parhaat urheilijat ja nautitaan hyvästä seurasta ja musiikista. Liput myynnissä nyt!"
+    "content_fi": "Tervetuloa juhlistamaan urheiluvuotta kanssamme Urheilugaalassa 10.6.2023 klo 18-23. Illan aikana palkitaan vuoden parhaat urheilijat ja nautitaan hyvästä seurasta ja musiikista. Liput myynnissä nyt!"
   },
   {
-    "title": "Kesäinen puistokonsertti",
+    "title_fi": "Kesäinen puistokonsertti",
     "date": "2023-07-20",
-    "content": "Tervetuloa nauttimaan kesäisestä puistokonsertista 20.7.2023 klo 19 alkaen. Ohjelmassa on monipuolinen kattaus musiikkia eri aikakausilta ja genreistä. Ota piknikviltti mukaan ja tule viettämään iltaa hyvässä seurassa!"
+    "content_fi": "Tervetuloa nauttimaan kesäisestä puistokonsertista 20.7.2023 klo 19 alkaen. Ohjelmassa on monipuolinen kattaus musiikkia eri aikakausilta ja genreistä. Ota piknikviltti mukaan ja tule viettämään iltaa hyvässä seurassa!"
   },
   {
-    "title": "Kansainvälinen ruokafestivaali",
+    "title_fi": "Kansainvälinen ruokafestivaali",
     "date": "2023-08-15",
-    "content": "Tervetuloa maistamaan maailman makuja kansainvälisessä ruokafestivaalissa 15.8.2023 klo 12-20. Tarjolla on herkkuja eri puolilta maailmaa sekä viihdettä ja aktiviteetteja koko perheelle. Tule ja löydä uusia suosikkiruokiasi!"
+    "content_fi": "Tervetuloa maistamaan maailman makuja kansainvälisessä ruokafestivaalissa 15.8.2023 klo 12-20. Tarjolla on herkkuja eri puolilta maailmaa sekä viihdettä ja aktiviteetteja koko perheelle. Tule ja löydä uusia suosikkiruokiasi!"
   }
 ]
