@@ -44,7 +44,6 @@ const clearAnnouncements = () => {
   announcementsContainer.innerHTML = '';
 };
 const renderAnnouncementsContainer = (target, announcements, i) => {
-
   const announcementsContainer = document.createElement('div');
   announcementsContainer.classList.add('announcements-container');
 
@@ -55,7 +54,7 @@ const renderAnnouncementsContainer = (target, announcements, i) => {
   // create title element for header
   const announcementsContainerHeaderTitle = document.createElement('h2');
   announcementsContainerHeaderTitle.classList.add('announcements-container-header-title');
-  announcementsContainerHeaderTitle.textContent = announcements[i].title;
+  announcementsContainerHeaderTitle.textContent = announcements[i].title_fi;
   announcementsContainerHeader.append(announcementsContainerHeaderTitle);
   // create date element for header
   const announcementsContainerHeaderDate = document.createElement('p');
@@ -69,7 +68,7 @@ const renderAnnouncementsContainer = (target, announcements, i) => {
   // create paragraph element for content
   const announcementsContainerContentText = document.createElement('p');
   announcementsContainerContentText.classList.add('announcements-container-content-text');
-  announcementsContainerContentText.textContent = announcements[i].content;
+  announcementsContainerContentText.textContent = announcements[i].content_fi;
   announcementsContainerContent.append(announcementsContainerContentText);
   target.prepend(announcementsContainer);
 
