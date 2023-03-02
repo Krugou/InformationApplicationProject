@@ -12,9 +12,10 @@ header {
     width: 6em;
     height: 2em;
     background-color: $metropoliaorange-button;
-    cursor:pointer;
+    cursor: pointer;
   }
-  #domain-select:hover  {
+
+  #domain-select:hover {
     background-color: $metropoliaorange-light;
     border-color: $metropoliaorange-light;
   }
@@ -31,9 +32,7 @@ header {
     margin: 1rem;
   }
 
-  .weather-report {
-    margin: 0;
-  }
+  .weather-report {}
 
   .weather-report,
   .domain {
@@ -44,9 +43,13 @@ header {
     height: 100%;
     margin: 0.5rem;
     padding: 0.5rem;
-    font-size:1rem;
+    font-size: 1rem;
   }
 
+  .weather-report>* {
+    margin: 0;
+    padding: 0.1rem;
+  }
 }
 
 @media screen and (max-width: 950px) {

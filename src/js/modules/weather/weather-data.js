@@ -30,51 +30,53 @@ const fetchWeatherLocalorDefault = async (hoursfromnow, campus) => {
 
 
 const fetchWeather = async (lat, lon, hoursfromnow) => {
-  let weatherData = 'https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::forecast::harmonie::surface::point::simple&latlon=' + lat + ',' + lon + '&parameters=temperature,WindSpeedMS,WeatherSymbol3';
+  let weatherData = 'https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::forecast::harmonie::surface::point::simple&latlon=' + lat + ',' + lon + '&parameters=temperature,windSpeedMS,WeatherSymbol3';
   console.log('🚀 ~ file: weather-data.js:34 ~ fetchWeather ~ weatherData', weatherData);
   try {
     await fetch(weatherData).then(response => response.text()).then((xml) => {
       const parser = new DOMParser();
       const xmlDOM = parser.parseFromString(xml, 'application/xml');
-      const tomorrowTempTarget = '[*|id="BsWfsElement.1.' + hoursfromnow + '.1"]';
-      const tomorrowWindTarget = '[*|id="BsWfsElement.1.' + hoursfromnow + '.2"]';
-      const tomorrowWeatherSymbolTarget = '[*|id="BsWfsElement.1.' + hoursfromnow + '.3"]';
-      let tomorrowTemp = parseFloat(xmlDOM.querySelector(tomorrowTempTarget).querySelector('ParameterValue').textContent);
-      let tomorrowWind = parseFloat(xmlDOM.querySelector(tomorrowWindTarget).querySelector('ParameterValue').textContent);
-      let tomorrowWeatherSymbol = parseFloat(xmlDOM.querySelector(tomorrowWeatherSymbolTarget).querySelector('ParameterValue').textContent);
-      let saaTiedot = document.querySelector('.weather-report');
+      const tempTarget = '[*|id="BsWfsElement.1.' + hoursfromnow + '.1"]';
+      const windTarget = '[*|id="BsWfsElement.1.' + hoursfromnow + '.2"]';
+      const WeatherSymbolTarget = '[*|id="BsWfsElement.1.' + hoursfromnow + '.3"]';
+      let temp = parseFloat(xmlDOM.querySelector(tempTarget).querySelector('ParameterValue').textContent);
+      let wind = parseFloat(xmlDOM.querySelector(windTarget).querySelector('ParameterValue').textContent);
+      let WeatherSymbol = parseFloat(xmlDOM.querySelector(WeatherSymbolTarget).querySelector('ParameterValue').textContent);
+      let weatherInfo = document.querySelector('.weather-report');
 
       try {
-        const tomorrowWeatherInfo = document.createElement('div');
-        tomorrowWeatherInfo.id = 'weather-info-div';
+        weatherInfo.id = 'weather-info-div';
         // const welcomeWeather = document.createElement('h3');
-        const tomorrowContainerParagraphs = document.createElement('div');
-        const tomorrowTempWindInfo = document.createElement('p');
-        // const tomorrowWindInfo = document.createElement('p');
-        const tomorrowWeatherSymbolInfo = document.createElement('img');
-        tomorrowWeatherSymbolInfo.id = 'weather-info-img';
+        const tempInfo = document.createElement('p');
+        tempInfo.classList = 'temp-info';
+        const windInfo = document.createElement('p');
+        windInfo.classList = 'wind-info';
+        // const windInfo = document.createElement('p');
+        const weatherSymbolInfo = document.createElement('img');
+        weatherSymbolInfo.id = 'weather-info-img';
 
-        // tomorrowWeatherSymbolInfo.innerText = weatherSymbol(tomorrowWeatherSymbol);
-        // tomorrowWindInfo.innerText = windDescription(tomorrowWind) + ' ' + tomorrowWind + ' m/s';
-        // if (tomorrowWindInfo.innerText === 'Tyyntä NaN m/s') {
-        //   tomorrowWindInfo.innerText = 'Tyyntä';
+        // weatherSymbolInfo.innerText = weatherSymbol(WeatherSymbol);
+        // windInfo.innerText = windDescription(wind) + ' ' + wind + ' m/s';
+        // if (windInfo.innerText === 'Tyyntä NaN m/s') {
+        //   windInfo.innerText = 'Tyyntä';
         // }
-        // tomorrowTempWindInfo.innerText = `Lämmintä ${tomorrowTemp} °C`;
+        // tempwindInfo.innerText = `Lämmintä ${temp} °C`;
         // welcomeWeather.innerText = `Sää ${hoursfromnow}h päästä: `;
-        if (tomorrowWind === 'NaN') {
-          tomorrowTempWindInfo.innerText = `${tomorrowTemp}°C`;
-        } else {
-          tomorrowTempWindInfo.innerText = `${tomorrowTemp}°C ${tomorrowWind} m/s`;
-        }
-        // tomorrowWeatherInfo.appendChild(welcomeWeather);
-        tomorrowContainerParagraphs.appendChild(tomorrowTempWindInfo);
-        // tomorrowContainerParagraphs.appendChild(tomorrowWindInfo);
-        tomorrowContainerParagraphs.appendChild(tomorrowWeatherSymbolInfo);
-        tomorrowWeatherInfo.appendChild(tomorrowContainerParagraphs);
+        if (wind === 'NaN') {
+          tempInfo.innerText = `${temp}°C`;
+          weatherInfo.appendChild(tempInfo);
 
-        saaTiedot.innerHTML = '';
-        saaTiedot.appendChild(tomorrowWeatherInfo);
-        weatherSymbol(tomorrowWeatherSymbol);
+        } else {
+          tempInfo.innerText = `${temp}°C `;
+          windInfo.innerText = ` ${wind} m/s`;
+          weatherInfo.appendChild(tempInfo);
+          weatherInfo.appendChild(windInfo);
+
+        }
+        weatherInfo.appendChild(weatherSymbolInfo);
+
+
+        weatherSymbol(WeatherSymbol);
 
       } catch (error) {
         console.log(error);
