@@ -77,7 +77,6 @@ const loadSettings = () => {
 
 };
 
-
 const leftside = document.querySelector('.leftside');
 const initiate = async () => {
   // serviceWorkerFunction();
@@ -86,7 +85,7 @@ const initiate = async () => {
   paSystem.getAnnouncements(leftside, 1);
   renderElements.renderVideo(leftside);
   renderElements.hslContainer(leftside);
-  hslInit.getStopsNearbyHsl(allCampuses, selectedCampus);
+  hslInit.getStopsNearbyHsl();
   renderMenu(lang, selectedCampus);
 };
 initiate();

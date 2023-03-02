@@ -2,20 +2,36 @@ import campusInfo from '../../../../json/campuses.json';
 import hslRender from './hsl-render';
 
 
-const getStopsNearbyHsl = async () => {
+const getStopsNearbyHsl = async (ds) => {
   const allCampuses = campusInfo.campuses;
   let selectedCampus;
-  selectedCampus = document.querySelector('#domain-select').value;
+  if (ds) {
+    selectedCampus = ds;
+  } else {
+    const dsElem = document.querySelector('#domain-select');
+    if (dsElem) {
+      selectedCampus = dsElem.value;
+    } else {
+      selectedCampus = '';
+    }
+  }
   const hsl = document.querySelector('.hsl-list');
-  hsl.innerHTML = '';
-  const selectedRestaurant = allCampuses.find((restaurant) => restaurant.name === selectedCampus);
+  if (hsl) {
+    hsl.innerHTML = '';
+  }
+  const selectedRestaurant = allCampuses.find((restaurant) => restaurant.name === selectedCampus)
+|| { name: 'Unknown campus' };
 
   if (selectedRestaurant) {
-    selectedRestaurant.stops.forEach((stop) => {
-      hslRender.HSLContainerRender(hsl, stop, 3);
-    });
+    if (selectedRestaurant.stops.length > 0) {
+      selectedRestaurant.stops.forEach((stop) => {
+        hslRender.HSLContainerRender(hsl, stop, 3);
+      });
+    } else {
+      hsl.innerHTML = 'No public transport available';
+    }
   } else {
-    hsl.innerHTML = 'No restaurant found';
+    hsl.innerHTML = 'No target found';
   }
   getLatestArrivalTime();
 };
@@ -52,15 +68,15 @@ const getLatestArrivalTime = async () => {
       const arrivalMinutes = parseInt(arrivalTime[1]);
 
       // Compare the arrival time with the current time
-      if (arrivalHour > currentHour || (arrivalHour === currentHour && arrivalMinutes >= currentMinutes) || arrivalHour >= currentHour && arrivalHour <= currentHour + 2) {
-        if (!latestArrivalTime || (arrivalHour < latestArrivalTime.hour || (arrivalHour === latestArrivalTime.hour && arrivalMinutes < latestArrivalTime.minutes))) {
-          latestArrivalTime = { hour: arrivalHour, minutes: arrivalMinutes };
-          console.log('🚀 ~ file: hsl-render.js:127 ~ HSLContainerRender ~ latestArrivalTime:', latestArrivalTime);
-          if (!firstArrivalTime) {
-            firstArrivalTime = arrivalTimes[i];
-          }
-        }
+    if (arrivalHour > currentHour || (arrivalHour === currentHour && arrivalMinutes >= currentMinutes) || arrivalHour >= currentHour && arrivalHour <= currentHour + 2) {
+    if (!latestArrivalTime || (arrivalHour < latestArrivalTime.hour || (arrivalHour === latestArrivalTime.hour && arrivalMinutes < latestArrivalTime.minutes))) {
+      latestArrivalTime = { hour: arrivalHour, minutes: arrivalMinutes };
+      console.log('🚀 ~ file: hsl-render.js:127 ~ HSLContainerRender ~ latestArrivalTime:', latestArrivalTime);
+      if (!firstArrivalTime) {
+        firstArrivalTime = arrivalTimes[i];
       }
+    }
+  }
     }
 
     if (firstArrivalTime) {
