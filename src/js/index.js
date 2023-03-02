@@ -58,7 +58,7 @@ languageButton.addEventListener('click', () => {
 campusSelector.addEventListener('change', () => {
   selectedCampus = document.querySelector('#domain-select').value;
   fetchWeatherLocalorDefault(1, getCampusInfo(selectedCampus));
-  hslInit.getStopsNearbyHsl(allCampuses, selectedCampus);
+  hslInit.getStopsNearbyHsl();
   renderMenu(lang, selectedCampus);
 });
 
@@ -85,8 +85,9 @@ const initiate = async () => {
   paSystem.getAnnouncements(leftside, 1);
   renderElements.renderVideo(leftside);
   renderElements.hslContainer(leftside);
-  hslInit.getStopsNearbyHsl();
   renderMenu(lang, selectedCampus);
+
+  hslInit.getStopsNearbyHsl();
 };
 initiate();
 

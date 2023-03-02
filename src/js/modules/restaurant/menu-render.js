@@ -19,7 +19,6 @@ const getCurrentMenu = async (lang, selectedCampus) => {
     if (currentMenuInfo.type === 'Sodexo') {
       currentMenu = sodexoMenu.parseMenu(await sodexoMenu.getDailyMenu(currentMenuInfo.id), lang);
     }
-    console.log('🚀 ~ file: menu-render.js:21 ~ getCurrentMenu ~ currentMenu:', currentMenu);
 
     return { currentMenu, currentMenuInfo };
   } catch (err) {
@@ -39,12 +38,14 @@ const renderMenu = async (lang, selectedCampus) => {
 
   // Get the current menu from the server
   const menuObject = await getCurrentMenu(lang, selectedCampus);
-  console.log('🚀 ~ file: menu-render.js:41 ~ renderMenu ~ menuInfo:', menuObject);
 
   // Get the current menu from the menuInfo object
   const menu = menuObject.currentMenu;
-  console.log('🚀 ~ file: menu-render.js:46 ~ renderMenu ~ menu:', menu);
-
+  if (menu === 'undefined') {
+    setTimeout(() => {
+      renderMenu(lang, selectedCampus);
+    }, 120000);
+  }
   // Get the restaurant name from the menuInfo object
   const restaurantName = menuObject.currentMenuInfo.name;
 
