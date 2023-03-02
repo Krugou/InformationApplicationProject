@@ -206,9 +206,9 @@ const priceContainerRender = (item, li) => {
     const normal = document.createElement('p');
     const big = document.createElement('p');
 
-    student.textContent = 'Opiskelija';
-    normal.textContent = 'Normaali';
-    big.textContent = 'Iso';
+    student.textContent = 'Opiskelijalounas';
+    normal.textContent = 'Avoin AMK opiskelija';
+    big.textContent = 'Henkilökunta/vieraat';
 
     // append priceNumbers and priceTypes to a container
 
