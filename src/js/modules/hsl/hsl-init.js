@@ -11,9 +11,9 @@ const getStopsNearbyHsl = async (allCampuses, selectedCampus) => {
   } else {
     hsl.innerHTML = 'No restaurant found';
   }
-  getLatestArrivalTime();
+  getLatestArrivalTime(allCampuses,selectedCampus);
 };
-const getLatestArrivalTime = async () => {
+const getLatestArrivalTime = async (allCampuses, selectedCampus) => {
   let timeDifferenceInMilliseconds;
   const arrivalTimes = document.querySelectorAll('.arrival-time');
   // console.log('🚀 ~ file: index.js:95 ~ getLatestArrivalTime ~ arrivalTimes:', arrivalTimes);
@@ -68,7 +68,7 @@ const getLatestArrivalTime = async () => {
         timeDifferenceInMilliseconds = 60000;
       }
       setTimeout(() => {
-        getStopsNearbyHsl();
+        getStopsNearbyHsl(allCampuses, selectedCampus);
       }, timeDifferenceInMilliseconds);
 
     }
