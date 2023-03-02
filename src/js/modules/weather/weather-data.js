@@ -43,7 +43,7 @@ const fetchWeather = async (lat, lon, hoursfromnow) => {
       let wind = parseFloat(xmlDOM.querySelector(windTarget).querySelector('ParameterValue').textContent);
       let WeatherSymbol = parseFloat(xmlDOM.querySelector(WeatherSymbolTarget).querySelector('ParameterValue').textContent);
       let weatherInfo = document.querySelector('.weather-report');
-
+      weatherInfo.innerHTML = '';
       try {
         weatherInfo.id = 'weather-info-div';
         // const welcomeWeather = document.createElement('h3');
