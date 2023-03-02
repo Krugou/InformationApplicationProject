@@ -52,7 +52,6 @@ const renderMenu = async (lang, selectedCampus) => {
   const restaurantType = menuObject.currentMenuInfo.type;
 
   menuListElement.innerHTML = '';
-  console.log('🚀 ~ file: menu-render.js:56 ~ renderMenu ~ menu.length:', menu.length);
 
   for (let i = 0; i < menu.mealNames.length; i++) {
     const li = document.createElement('li');
@@ -63,10 +62,10 @@ const renderMenu = async (lang, selectedCampus) => {
     p.classList.add('menu-item-title');
     p.textContent = mealname;
     li.append(p);
-    console.log('🚀 ~ file: menu-render.js:59 ~ renderMenu ~ mealname:', mealname);
     const dietContainer = document.createElement('div');
     dietContainer.classList.add('diet-container');
     const mealDiets = menu.mealDiets[i];
+
     const dietItems = mealDiets.split(',');
     dietItems.forEach((dietItem) => {
       const p = document.createElement('p');
