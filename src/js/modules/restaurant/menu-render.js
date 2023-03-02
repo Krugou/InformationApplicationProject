@@ -19,6 +19,7 @@ const getCurrentMenu = async (lang, selectedCampus) => {
     if (currentMenuInfo.type === 'Sodexo') {
       currentMenu = sodexoMenu.parseMenu(await sodexoMenu.getDailyMenu(currentMenuInfo.id), lang);
     }
+    console.log('currentmenu', currentMenu);
     return { currentMenu, currentMenuInfo };
   } catch (err) {
     console.error(err);
