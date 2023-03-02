@@ -41,18 +41,30 @@ const parseMenu = (menu, lang) => {
     const failedFetch = [];
     return failedFetch[0] = ['no data'];
   }
+  let mealNames = [];
 
-  const coursesEn = Object.values(menu.courses).map((course) => {
-    // console.log('🚀 ~ file: sodexoMenu.js:48 ~ coursesEn ~ course:', course);
-
-    return course.title_en + '|(' + course.dietcodes + ')|' + course.price;
+  if (lang === 'en') {
+    mealNames = Object.values(menu.courses).map((course) => {
+      // console.log('🚀 ~ file: sodexoMenu.js:48 ~ coursesEn ~ course:', course);
+      return course.title_en;
+    });
   }
-  );
-  const coursesFi = Object.values(menu.courses).map((course) => {
+  else if (lang === 'fi') {
+    mealNames = Object.values(menu.courses).map((course) => {
+      // console.log('🚀 ~ file: sodexoMenu.js:49 ~ coursesFi ~ course:', course);
+      return course.title_fi;
+    });
+  }
+  const mealDiets = Object.values(menu.courses).map((course) => {
     // console.log('🚀 ~ file: sodexoMenu.js:49 ~ coursesFi ~ course:', course);
-    return course.title_fi + '|(' + course.dietcodes + ')|' + course.price;
+    return course.dietcodes;
   });
-  return lang === 'en' ? coursesEn : coursesFi;
+  const mealPrices = Object.values(menu.courses).map((course) => {
+    // console.log('🚀 ~ file: sodexoMenu.js:49 ~ coursesFi ~ course:', course);
+    return course.price;
+  });
+
+  return { mealNames, mealDiets, mealPrices };
 };
 
 const sodexoMenu = { getDailyMenu, parseMenu };

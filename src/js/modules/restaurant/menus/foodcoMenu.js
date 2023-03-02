@@ -83,7 +83,7 @@ const getDietsFromMenu = (dailyMenu) => {
         if (mealComponentDiets[i].split(',').filter(x => x === element).length === mealComponentCount[i].length && thisMealsDiets.includes(element) === false) {
           //  console.log(mealComponentCount[i].length);
           thisMealsDiets.push(element);
-          mealDiets[i] = [...thisMealsDiets];
+          mealDiets[i] = [...thisMealsDiets].join();
           // console.log([...thisMealsDiets]);
         }
 
@@ -124,20 +124,16 @@ const parseMenu = (dailyMenu) => {
 
     const mealDiets = getDietsFromMenu(dailyMenu);
 
-    for (let i = 0; i < mealNames.length; i++) {
-      mealNames[i] += '|(' + mealDiets[i] + ')|';
-
-      if (mealPrices[i] !== '') {
-        mealNames[i] += mealPrices[i];
-      } else {
-        mealNames[i] += 'Ei hintaa';
+    for (let i = 0; i < mealPrices.length; i++) {
+      if (mealPrices[i] === '') {
+        mealPrices[i] = 'Ei hintaa';
       }
     }
 
     // console.log('🚀 ~ file: foodcoMenu.js:136 ~ parseMenu ~ mealDiets:', mealDiets);
     // console.log('🚀 ~ file: foodcoMenu.js:138 ~ parseMenu ~ mealPrices:', mealPrices);
     // console.log('🚀 ~ file: foodcoMenu.js:140 ~ parseMenu ~ mealNames:', mealNames);
-    return mealNames;
+    return {mealNames, mealDiets, mealPrices};
   }
   catch (error) {
     console.error(error, 'parseMenu Error food co');
