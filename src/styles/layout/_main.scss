@@ -114,6 +114,8 @@
 
             .hsl-container-list {
               border-bottom: 2px solid $hsl-sininen;
+              border-left: 2px solid $hsl-sininen;
+              border-right: 2px solid $hsl-sininen;
               padding: 16px 16px 16px 40px;
               display: flex;
               align-items: center;
@@ -130,7 +132,9 @@
 
             }
           }
-
+          .hsl-container-list:first-child {
+            border-top: 2px solid $hsl-sininen;
+          }
           .hsl-container-list-head {
             display: flex;
             flex: 2;
