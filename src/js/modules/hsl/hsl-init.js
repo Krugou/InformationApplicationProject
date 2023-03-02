@@ -1,5 +1,11 @@
+import campusInfo from '../../../../json/campuses.json';
 import hslRender from './hsl-render';
-const getStopsNearbyHsl = async (allCampuses, selectedCampus) => {
+
+
+const getStopsNearbyHsl = async () => {
+  const allCampuses = campusInfo.campuses;
+  let selectedCampus;
+  selectedCampus = document.querySelector('#domain-select').value;
   const hsl = document.querySelector('.hsl-list');
   hsl.innerHTML = '';
   const selectedRestaurant = allCampuses.find((restaurant) => restaurant.name === selectedCampus);
@@ -11,9 +17,11 @@ const getStopsNearbyHsl = async (allCampuses, selectedCampus) => {
   } else {
     hsl.innerHTML = 'No restaurant found';
   }
-  getLatestArrivalTime(allCampuses,selectedCampus);
+  getLatestArrivalTime();
 };
-const getLatestArrivalTime = async (allCampuses, selectedCampus) => {
+const getLatestArrivalTime = async () => {
+
+
   let timeDifferenceInMilliseconds;
   const arrivalTimes = document.querySelectorAll('.arrival-time');
   // console.log('🚀 ~ file: index.js:95 ~ getLatestArrivalTime ~ arrivalTimes:', arrivalTimes);
@@ -68,7 +76,7 @@ const getLatestArrivalTime = async (allCampuses, selectedCampus) => {
         timeDifferenceInMilliseconds = 60000;
       }
       setTimeout(() => {
-        getStopsNearbyHsl(allCampuses, selectedCampus);
+        getStopsNearbyHsl();
       }, timeDifferenceInMilliseconds);
 
     }
