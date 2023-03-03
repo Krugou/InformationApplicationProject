@@ -4,7 +4,6 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  watch: true,
   entry: {
     jak: './src/js/index.js',
     jakds: './src/js/indexds.js',
