@@ -61,6 +61,7 @@ header, .header-buttons {
 
     .weather-report {
       margin-bottom: 0;
+      margin-top:1.5em;
     }
 
   .header-buttons {
@@ -77,4 +78,48 @@ header, .header-buttons {
     }
   }
 }
+}
+
+@media screen and (max-width: 680px) {
+
+  header {
+    display: flex;
+    flex-direction: column;
+    gap:2em;
+
+    .header-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 2em;
+
+      .metropolia-logo {
+        margin: 1em 1em 0 0;
+      }
+    }
+
+    .weather-report {
+      justify-content: center;
+      margin-bottom: 0;
+      margin-top: 0px;
+      display: flex;
+      align-items: center;
+      gap: 1em;
+    }
+  }
+}
+
+@media screen and (max-width: 395px) {
+  header {
+
+    .weather-report {
+      font-size: 25px;
+    }
+
+    .header-buttons {
+
+      .metropolia-logo {
+        margin: 1em 0.5em 0 0.5em;
+      }
+    }
+  }
 }
