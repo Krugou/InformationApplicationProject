@@ -2,7 +2,7 @@ import campusInfo from '../../json/campuses.json';
 import '../styles/main.scss';
 import hslInit from './modules/hsl/hsl-init';
 import paSystem from './modules/pa/Announcements';
-import renderMenu from './modules/restaurant/menu-render';
+import renderMenu, { menuTimer } from './modules/restaurant/menu-render';
 import getCampusInfo from './modules/utils/campusinfo';
 import renderElements from './modules/utils/renderElements';
 //default language
@@ -57,6 +57,7 @@ languageButton.addEventListener('click', () => {
 // Event listener for changing the selected campus
 campusSelector.addEventListener('change', () => {
   selectedCampus = document.querySelector('#domain-select').value;
+  clearTimeout(menuTimer);
   fetchWeatherLocalorDefault(1, getCampusInfo(selectedCampus));
   hslInit.getStopsNearbyHsl();
   renderMenu(lang, selectedCampus);

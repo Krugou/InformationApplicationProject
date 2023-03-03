@@ -30,7 +30,7 @@ const getDailyMenu = async (restaurantId, lang) => {
   try {
     const today = new Date().toISOString().split('T').shift();
     // console.log('🚀 ~ file: foodcoMenu.js:31 ~ getDailyMenu ~ getNextMonday(new Date(\'2023-05-01\')):', getNextMonday(new Date('2023-05-01')));
-    //const today = '2023-03-05'; //Kovakoodattuna testaamiseen
+    //const today = '2023-03-08'; //Kovakoodattuna testaamiseen
     const menuUrl = 'https://www.compass-group.fi/menuapi/week-menus?costCenter=' + restaurantId + '&language=' + lang + '&date=' + today;
     console.log(menuUrl);
     const weeklyMenu = await doFetch(menuUrl, true);
@@ -39,7 +39,7 @@ const getDailyMenu = async (restaurantId, lang) => {
     const menu = weeklyMenu.menus[getWeekdayIndex()];
 
     if (menu === undefined) {
-      alert('no Fazer data for today, trying to show past fridays data');
+      //alert('no Fazer data for today, trying to show past fridays data');
       return weeklyMenu.menus[4];
       // Haetaan seuraava maanantai (kesken ei nää hintit salee anna dataa ees siihe)
       // return await getMenuFromNextMonday(restaurantId, lang);
@@ -110,8 +110,7 @@ const parseMenu = (dailyMenu) => {
     //const diets = [];
     //const diets2 = [];
     if (dailyMenu === undefined) {
-      const failedFetch = [];
-      return failedFetch[0] = ['no data'];
+      return;
     }
     const mealNames = dailyMenu.menuPackages.map((menuPackage) => {
       return menuPackage.meals.map((mealItem) => {

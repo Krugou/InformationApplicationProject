@@ -6,6 +6,7 @@ import sodexoMenu from './menus/sodexomenu';
  *
  * @returns array containing meal menu
  */
+let menuTimer;
 const getCurrentMenu = async (lang, selectedCampus) => {
   try {
     let currentMenu = [];
@@ -28,7 +29,7 @@ const getCurrentMenu = async (lang, selectedCampus) => {
 };
 /** Function for rendering a menu
  *
- */
+*/
 const renderMenu = async (lang, selectedCampus) => {
   // Create the restaurant name element
   const restaurantNameElement = document.querySelector('.restaurant-name');
@@ -41,46 +42,57 @@ const renderMenu = async (lang, selectedCampus) => {
 
   // Get the current menu from the menuInfo object
   const menu = menuObject.currentMenu;
-  if (menu === 'undefined') {
-    setTimeout(() => {
-      renderMenu(lang, selectedCampus);
-    }, 120000);
-  }
+
   // Get the restaurant name from the menuInfo object
   const restaurantName = menuObject.currentMenuInfo.name;
 
   // Get the restaurant type from the menuInfo object
   const restaurantType = menuObject.currentMenuInfo.type;
 
+  console.log(menuObject);
   menuListElement.innerHTML = '';
+  try {
+    for (let i = 0; i < menu.mealNames.length; i++) {
+      const li = document.createElement('li');
+      li.classList.add('menu-item');
+      menuListElement.append(li);
+      const mealname = menu.mealNames[i];
+      const p = document.createElement('p');
+      p.classList.add('menu-item-title');
+      p.textContent = mealname;
+      li.append(p);
+      const dietContainer = document.createElement('div');
+      dietContainer.classList.add('diet-container');
+      const mealDiets = menu.mealDiets[i];
 
-  for (let i = 0; i < menu.mealNames.length; i++) {
+      const dietItems = mealDiets.split(',');
+      dietItems.forEach((dietItem) => {
+        const p = document.createElement('p');
+        p.classList.add('diet-item');
+        const results = dietPreferences(dietItem);
+        dietContainer.append(results);
+        li.append(dietContainer);
+      });
+
+      const mealPrices = menu.mealPrices[i];
+      priceContainerRender(mealPrices, li);
+    }
+  } catch (err) {
     const li = document.createElement('li');
     li.classList.add('menu-item');
-    menuListElement.append(li);
-    const mealname = menu.mealNames[i];
     const p = document.createElement('p');
     p.classList.add('menu-item-title');
-    p.textContent = mealname;
+    p.textContent = 'Ei dataa';
     li.append(p);
-    const dietContainer = document.createElement('div');
-    dietContainer.classList.add('diet-container');
-    const mealDiets = menu.mealDiets[i];
-
-    const dietItems = mealDiets.split(',');
-    dietItems.forEach((dietItem) => {
-      const p = document.createElement('p');
-      p.classList.add('diet-item');
-      const results = dietPreferences(dietItem);
-      dietContainer.append(results);
-      li.append(dietContainer);
-    });
-
-    const mealPrices = menu.mealPrices[i];
-    priceContainerRender(mealPrices, li);
+    menuListElement.append(li);
+    menuTimer = setTimeout(() => {
+      renderMenu(lang, selectedCampus);
+    }, 120000);
   }
-  restaurantNameElement.textContent = restaurantName;
-  changeRestaurantLogo(restaurantType);
+  finally {
+    restaurantNameElement.textContent = restaurantName;
+    changeRestaurantLogo(restaurantType);
+  }
 };
 const priceContainerRender = (item, li) => {
   if (item.match(/\d,\d\d/)) {
@@ -156,3 +168,4 @@ const changeRestaurantLogo = (restaurantType) => {
   }
 };
 export default renderMenu;
+export { menuTimer };
