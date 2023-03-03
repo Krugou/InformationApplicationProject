@@ -21,6 +21,7 @@ const geoLocationDistanceBirdsEye = (lat1, lon1, lat2, lon2) => {
   return d;
 };
 
+
 const deg2rad = (deg) => {
   // Check if deg is a number
   if (typeof deg !== 'number') {
@@ -39,3 +40,4 @@ const deg2rad = (deg) => {
 };
 
 export default geoLocationDistanceBirdsEye;
+
