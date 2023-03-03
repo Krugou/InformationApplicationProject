@@ -6,7 +6,7 @@
 
 import { doFetch, getWeekdayIndex } from '../../network-proxy';
 
-const weeklyUrl = 'https://www.sodexo.fi/ruokalistat/outpt/weekly_json/';
+const weeklyUrl = 'https://www.sodexo.fi/ruokalistat/output/weekly_json/';
 
 /** Get daily menu from Sodexo API
  *
