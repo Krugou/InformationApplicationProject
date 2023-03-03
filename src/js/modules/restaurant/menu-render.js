@@ -178,15 +178,15 @@ const changeRestaurantLogo = (restaurantType) => {
   // Set the restaurant logo based on the type of restaurant
   switch (restaurantType) {
     case 'Sodexo':
-      restaurantImgElement.src = '../assets/logos/sodexo.png';
+      restaurantImgElement.src = './assets/logos/sodexo.png';
       restaurantImgElement.alt = 'Sodexo logo';
       break;
     case 'Food & Co':
-      restaurantImgElement.src = '../assets/logos/foodco.png';
+      restaurantImgElement.src = './assets/logos/foodco.png';
       restaurantImgElement.alt = 'Food & Co logo';
       break;
     default:
-      restaurantImgElement.src = '../assets/logos/restaurant.png';
+      restaurantImgElement.src = './assets/logos/restaurant.png';
       restaurantImgElement.alt = 'Restaurant logo';
   }
 };
