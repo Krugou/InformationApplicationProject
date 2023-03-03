@@ -1,7 +1,7 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the header of the site/application.
 // -----------------------------------------------------------------------------
-header {
+header, .header-buttons {
   background-color: white;
   color: black;
   display: flex;
@@ -53,7 +53,28 @@ header {
 }
 
 @media screen and (max-width: 950px) {
+
   header {
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 1em;
+
+    .weather-report {
+      margin-bottom: 0;
+    }
+
+  .header-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:1em;
+
+    .metropolia-logo {
+      margin: 0.5rem 0.5rem 1.5rem 1.5rem
+    }
+
+    #domain-select, .weather-report, #language-button, #save-button {
+      margin:auto;
+    }
   }
+}
 }
