@@ -41,9 +41,14 @@
             }
 
             #menu {
-
-
               padding: 1em;
+
+              .menu-item {
+                .diet-container {
+                  display: flex;
+                  padding: 1rem;
+                }
+              }
 
               li {
                 margin-bottom: 1.5em;
@@ -59,6 +64,8 @@
                   align-items: center;
                   margin: 20px 0px 20px 0px;
                   gap: 1em;
+                  flex-direction: row-reverse;
+                  justify-content: flex-end;
 
                   p {
                     padding: 6px;

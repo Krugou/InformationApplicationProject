@@ -32,7 +32,11 @@ header, .header-buttons {
     margin: 0.5rem;
   }
 
-  .weather-report {}
+  .weather-report {
+    display:flex;
+    gap:1em;
+    align-items: center;
+  }
 
   .weather-report,
   .domain {
@@ -55,9 +59,9 @@ header, .header-buttons {
 @media screen and (max-width: 950px) {
 
   header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    gap:1em;
     margin-bottom: 1em;
+    flex-direction: column;
 
     .weather-report {
       margin-bottom: 0;
@@ -99,8 +103,7 @@ header, .header-buttons {
 
     .weather-report {
       justify-content: center;
-      margin-bottom: 0;
-      margin-top: 0px;
+      margin: 0 0 0 0.5em;
       display: flex;
       align-items: center;
       gap: 1em;
