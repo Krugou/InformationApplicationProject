@@ -3,83 +3,100 @@
 
 const dietPreferences = (dietInfo) => {
 
-  // let diet = '';
+  // Create an <img> element and store it in a variable
   const logo = document.createElement('img');
+  // Add a class of 'diet-logo' to the <img> element
   logo.classList.add('diet-logo');
 
   if (dietInfo.includes('G')) {
-    // diet += 'Gluteeniton';
+    // Set the source and alt attributes of the img element
+
     logo.src = './assets/logos/diets/gluten-free.jpg';
-
     logo.alt = 'Gluteeniton';
-
+    // Return the new img element
     return logo;
 
 
-  } if (dietInfo.includes('M') && dietInfo.includes('L')) { // if  M and L and VL are included
+  }
+  if (dietInfo.includes('M') && dietInfo.includes('L')) { // if  M and L and VL are included
     // do nothing }
   } else if (dietInfo.match(/\bL\b/)) {
+    // Set the source and alt attributes of the img element
+
     logo.src = './assets/logos/diets/lactose-free.png';
     logo.alt = 'Laktoositon';
     return logo;
-
-
-    // diet += ' Laktoositon';
   }
-
   if (dietInfo.includes('VL')) {
+    // Set the source and alt attributes of the img element
+
     logo.src = './assets/logos/diets/lactose-free.png';
     logo.alt = 'Vähälaktoosinen';
+    // Return the new img element
     return logo;
 
-    // diet += ' Vähälaktoosinen';
+
   }
   if (dietInfo.includes('M') && dietInfo.includes('L')) { // if both M and L are included
     // do nothing
   } else if (dietInfo.includes('M')) {
+    // Set the source and alt attributes of the img element
+
     logo.src = './assets/logos/diets/no-milk.png';
     logo.alt = 'Maidoton';
+    // Return the new img element
     return logo;
 
 
-    // diet += ' Maidoton';
   }
   if (dietInfo.includes('*')) {
+    // Set the source and alt attributes of the img element
+
     logo.src = './assets/logos/diets/finland.png';
     logo.alt = 'Suomalaisten ravitsemussuositusten mukainen';
+    // Return the new img element
     return logo;
 
   }
   if (dietInfo.includes('Veg')) {
+    // Set the source and alt attributes of the img element
+
+
     logo.src = './assets/logos/diets/vegan.png';
     logo.alt = 'Soveltuu vegaaniruokavalioon';
+    // Return the new img element
     return logo;
 
 
-    // diet += ' Soveltuu vegaaniruokavalioon';
   }
   if (dietInfo.includes('ILM')) {
+    // Set the source and alt attributes of the img element
     logo.src = './assets/logos/diets/biodegradable.png';
     logo.alt = 'Ilmastoystävällinen';
+    // Return the new img element
     return logo;
 
 
-    // diet += ' Ilmastoystävällinen';
   }
   if (dietInfo.includes('VS')) {
+    // Set the source and alt attributes of the img element
     logo.src = './assets/logos/diets/garlic.png';
     logo.alt = 'Sis. tuoretta valkosipulia';
+    // Return the new img element
+
     return logo;
 
 
-    // diet += ' Sis. tuoretta valkosipulia';
   }
   if (dietInfo.includes('A')) {
+
+    // Set the source and alt attributes of the img element
     logo.src = './assets/logos/diets/allergen.png';
     logo.alt = 'Sis. Allergeeneja';
+
+    // Return the new img element
     return logo;
 
-    // diet += ' Sis. Allergeeneja';
   }
 };
 
