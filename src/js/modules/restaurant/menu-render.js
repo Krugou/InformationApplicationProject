@@ -53,24 +53,35 @@ const renderMenu = async (lang, selectedCampus) => {
   menuListElement.innerHTML = '';
   try {
     for (let i = 0; i < menu.mealNames.length; i++) {
+      // create list item for each meal
       const li = document.createElement('li');
       li.classList.add('menu-item');
       menuListElement.append(li);
+      // get meal name from array
       const mealname = menu.mealNames[i];
+      // create paragraph element for meal name
       const p = document.createElement('p');
       p.classList.add('menu-item-title');
       p.textContent = mealname;
+      // add meal name paragraph to list item
       li.append(p);
+      // create div to hold diet icons
       const dietContainer = document.createElement('div');
       dietContainer.classList.add('diet-container');
+      // get meal diet from array
       const mealDiets = menu.mealDiets[i];
-
+      // split meal diet string into array of diets
       const dietItems = mealDiets.split(',');
       dietItems.forEach((dietItem) => {
+        // Create a new paragraph element.
         const p = document.createElement('p');
+        // Add a class to the new element.
         p.classList.add('diet-item');
+        // Call the dietPreferences function and store the return value.
         const results = dietPreferences(dietItem);
+        // Append the results to the dietContainer.
         dietContainer.append(results);
+        // Append the dietContainer to the li.
         li.append(dietContainer);
       });
 
@@ -78,19 +89,31 @@ const renderMenu = async (lang, selectedCampus) => {
       priceContainerRender(mealPrices, li);
     }
   } catch (err) {
+    // Create a new list item element
     const li = document.createElement('li');
+    // Add a class to the new element
     li.classList.add('menu-item');
+    // Create a new paragraph element
     const p = document.createElement('p');
+    // Add a class to the new element
     p.classList.add('menu-item-title');
+    // Add text to the element
     p.textContent = 'Ei dataa';
+    // Append the paragraph element to the list item element
     li.append(p);
+    // Append the list item element to the menu list element
     menuListElement.append(li);
+    // Start a timer to call the renderMenu function
     menuTimer = setTimeout(() => {
       renderMenu(lang, selectedCampus);
     }, 120000);
   }
   finally {
+
+    // Set the restaurant name text content
     restaurantNameElement.textContent = restaurantName;
+
+    // Change the restaurant logo image source
     changeRestaurantLogo(restaurantType);
   }
 };
