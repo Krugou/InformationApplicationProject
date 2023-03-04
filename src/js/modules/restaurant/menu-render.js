@@ -43,13 +43,13 @@ const renderMenu = async (lang, selectedCampus) => {
   // Get the current menu from the menuInfo object
   const menu = menuObject.currentMenu;
 
-  // Get the restaurant name from the menuInfo object
-  const restaurantName = menuObject.currentMenuInfo.name;
+  // Create variable for the restaurant's name
+
+  let restaurantName;
 
   // Get the restaurant type from the menuInfo object
   const restaurantType = menuObject.currentMenuInfo.type;
 
-  console.log(menuObject);
   menuListElement.innerHTML = '';
   try {
     for (let i = 0; i < menu.mealNames.length; i++) {
@@ -87,8 +87,13 @@ const renderMenu = async (lang, selectedCampus) => {
 
       const mealPrices = menu.mealPrices[i];
       priceContainerRender(mealPrices, li);
+    restaurantName = menuObject.currentMenuInfo.name + ' '+  menuObject.currentMenu.menuDate;
+
     }
   } catch (err) {
+
+    restaurantName = menuObject.currentMenuInfo.name;
+
     // Create a new list item element
     const li = document.createElement('li');
     // Add a class to the new element
