@@ -92,7 +92,7 @@ const renderMenu = async (lang, selectedCampus) => {
     }
   } catch (err) {
 
-    restaurantName = menuObject.currentMenuInfo.name;
+    restaurantName = menuObject.currentMenuInfo.name + ' '+  menuObject.currentMenu.menuDate;
 
     // Create a new list item element
     const li = document.createElement('li');

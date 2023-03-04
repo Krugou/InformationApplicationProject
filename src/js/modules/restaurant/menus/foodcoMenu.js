@@ -11,17 +11,19 @@ import {
 
 const getMenuFromNextMonday = async (restaurantId, lang) => {
   try {
-    const menuUrl = 'https://www.compass-group.fi/menuapi/week-menus?costCenter=' + restaurantId + '&language=' + lang + '&date=' + getNextMonday();
-    console.log(menuUrl);
 
+    const monday = getNextMonday();
+
+    const menuUrl = 'https://www.compass-group.fi/menuapi/week-menus?costCenter=' + restaurantId + '&language=' + lang + '&date=' + monday;
+    console.log(menuUrl);
     const weeklyMenu = await doFetch(menuUrl, true);
-    console.log(weeklyMenu.menus);
-    return weeklyMenu.menus[0]; // Return monday's menu
+    const menu = weeklyMenu.menus[0];
+    const date = new Date(monday);
+    return {menu, date}; // Return monday's menu
   }
   catch (error){
     console.error('getMenuFromNextMonday', error);
   }
-
 };
 
 
@@ -40,11 +42,10 @@ const getDailyMenu = async (restaurantId, lang) => {
     if (menu === undefined) {
       if (getWeekdayIndex() === 1 || getWeekdayIndex() === 5) { // IF it's the weekend, fetch next mondays menu
         return await getMenuFromNextMonday(restaurantId, lang); // NEXT MONDAY
-      } else {
-        return weeklyMenu.menus[4]; // PAST FRIDAY
       }
     }
-    return weeklyMenu.menus[getWeekdayIndex()];
+    const date = new Date(); // return today's date
+    return {menu, date};
   } catch (error) {
     console.error('getDailyMenu', error);
   }
@@ -106,14 +107,15 @@ const getDietsFromMenu = (dailyMenu) => {
  * @param {*} dailyMenu Array containing daily Fazer menu
  * @returns meal names from array or a 'nodata' menu if data is undefined (this means API fetch failed)
  */
-const parseMenu = (dailyMenu) => {
-  console.log(dailyMenu, 'dailymenu');
-
+const parseMenu = (dailyMenuObject) => {
+  const dailyMenu = dailyMenuObject.menu;
+  const date = dailyMenuObject.date;
+  const menuDate = date.getDate() + '.' + (date.getMonth()+1);
   try {
     //const diets = [];
     //const diets2 = [];
     if (dailyMenu === undefined) {
-      return;
+      return {menuDate};
     }
     const mealNames = dailyMenu.menuPackages.map((menuPackage) => {
       return menuPackage.meals.map((mealItem) => {
@@ -131,8 +133,6 @@ const parseMenu = (dailyMenu) => {
         mealPrices[i] = 'Ei hintaa';
       }
     }
-   // const menuDate =  dailyMenu.date.getDate()+'.'+(dailyMenu.date.getMonth() + 1)+'.'+dailyMenu.date.getFullYear();
-    const menuDate = new Date(dailyMenu.date).getDate() + '.' + new Date(dailyMenu.date).getMonth();
     // console.log('🚀 ~ file: foodcoMenu.js:136 ~ parseMenu ~ mealDiets:', mealDiets);
     // console.log('🚀 ~ file: foodcoMenu.js:138 ~ parseMenu ~ mealPrices:', mealPrices);
     // console.log('🚀 ~ file: foodcoMenu.js:140 ~ parseMenu ~ mealNames:', mealNames);
