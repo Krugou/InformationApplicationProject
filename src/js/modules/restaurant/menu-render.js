@@ -2,7 +2,6 @@ import getCampusInfo from '../utils/campusinfo';
 import dietPreferences from '../utils/diet-choices.js';
 import foodcoData from './menus/foodcoMenu';
 import sodexoMenu from './menus/sodexomenu';
-import { selectedCampus } from '../..';
 /** Function for getting the selected menu
  *
  * @returns array containing meal menu
@@ -41,9 +40,14 @@ const renderMenu = async (lang, campus) => {
   // Get the current menu from the server
   const menuObject = await getCurrentMenu(lang, campus);
 
-  // If the selected campus has changed since fetching, don't render the menu
-  if (selectedCampus !== menuObject.currentMenuInfo.name) {
-    return;
+  // if html title is pwa
+  if (document.title === 'PWA') {
+    const selectedCampus = document.querySelector('#domain-select').value;
+
+    // If the selected campus has changed since fetching, don't render the menu
+    if (selectedCampus !== menuObject.currentMenuInfo.name) {
+      return;
+    }
   }
 
   // Get the current menu from the menuInfo object
@@ -93,12 +97,12 @@ const renderMenu = async (lang, campus) => {
 
       const mealPrices = menu.mealPrices[i];
       priceContainerRender(mealPrices, li);
-    restaurantName = menuObject.currentMenuInfo.name + ' '+  menuObject.currentMenu.menuDate;
+      restaurantName = menuObject.currentMenuInfo.name + ' ' + menuObject.currentMenu.menuDate;
 
     }
   } catch (err) {
 
-    restaurantName = menuObject.currentMenuInfo.name + ' '+  menuObject.currentMenu.menuDate;
+    restaurantName = menuObject.currentMenuInfo.name + ' ' + menuObject.currentMenu.menuDate;
 
     // Create a new list item element
     const li = document.createElement('li');

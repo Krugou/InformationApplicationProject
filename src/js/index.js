@@ -92,4 +92,3 @@ const initiate = async () => {
 };
 initiate();
 
-export { selectedCampus };
