@@ -32,12 +32,12 @@ const getMenuFromNextMonday = async (restaurantId) => {
  */
 const getDailyMenu = async (restaurantId) => {
   try {
-
+    const weekday = getWeekdayIndex();
     const weeklyMenu = await doFetch(weeklyUrl + restaurantId);
-    const menu = weeklyMenu.mealdates[getWeekdayIndex()];
+    const menu = weeklyMenu.mealdates[weekday];
     // console.log('🚀 ~ file: sodexoMenu.js:21 ~ getDailyMenu ~ menu:', menu);
     if (menu === undefined) {
-      if (getWeekdayIndex() === 1 || getWeekdayIndex() === 5) { // IF it's the weekend, fetch next mondays menu
+      if (weekday === 6 || weekday === 5) { // IF it's the weekend, fetch next mondays menu
         return await getMenuFromNextMonday(restaurantId); // NEXT MONDAY
       }
     }

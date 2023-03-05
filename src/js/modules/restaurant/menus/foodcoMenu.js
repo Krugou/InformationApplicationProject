@@ -30,6 +30,7 @@ const getMenuFromNextMonday = async (restaurantId, lang) => {
 const getDailyMenu = async (restaurantId, lang) => {
 
   try {
+    const weekday = getWeekdayIndex();
     const today = new Date().toISOString().split('T').shift();
     // console.log('🚀 ~ file: foodcoMenu.js:31 ~ getDailyMenu ~ getNextMonday(new Date(\'2023-05-01\')):', getNextMonday(new Date('2023-05-01')));
     //const today = '2023-03-08'; //Kovakoodattuna testaamiseen
@@ -38,9 +39,9 @@ const getDailyMenu = async (restaurantId, lang) => {
     const weeklyMenu = await doFetch(menuUrl, true);
     // console.log('🚀 ~ file: foodcoMenu.js:35 ~ getDailyMenu ~ weeklyMenu:', weeklyMenu);
     // console.log('🚀 ~ file: foodcoMenu.js:37 ~ getDailyMenu ~ getWeekdayIndex:', getWeekdayIndex());
-    const menu = weeklyMenu.menus[getWeekdayIndex()];
+    const menu = weeklyMenu.menus[weekday];
     if (menu === undefined) {
-      if (getWeekdayIndex() === 1 || getWeekdayIndex() === 5) { // IF it's the weekend, fetch next mondays menu
+      if (weekday === 6 || weekday === 5) { // IF it's the weekend, fetch next mondays menu
         return await getMenuFromNextMonday(restaurantId, lang); // NEXT MONDAY
       }
     }
