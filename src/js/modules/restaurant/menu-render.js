@@ -2,16 +2,17 @@ import getCampusInfo from '../utils/campusinfo';
 import dietPreferences from '../utils/diet-choices.js';
 import foodcoData from './menus/foodcoMenu';
 import sodexoMenu from './menus/sodexomenu';
+import { selectedCampus } from '../..';
 /** Function for getting the selected menu
  *
  * @returns array containing meal menu
  */
 let menuTimer;
-const getCurrentMenu = async (lang, selectedCampus) => {
+const getCurrentMenu = async (lang, campus) => {
   try {
     let currentMenu = [];
     // Find the selectedmenus info from the allCampuses array
-    const currentMenuInfo = getCampusInfo(selectedCampus);
+    const currentMenuInfo = getCampusInfo(campus);
     // console.log('🚀 ~ file: index.js:91 ~ getCurrentMenu ~ currentMenuInfo:', currentMenuInfo);
     // Get the correct menu and save it menu array
     if (currentMenuInfo.type === 'Food & Co') {
@@ -30,7 +31,7 @@ const getCurrentMenu = async (lang, selectedCampus) => {
 /** Function for rendering a menu
  *
 */
-const renderMenu = async (lang, selectedCampus) => {
+const renderMenu = async (lang, campus) => {
   // Create the restaurant name element
   const restaurantNameElement = document.querySelector('.restaurant-name');
 
@@ -38,7 +39,12 @@ const renderMenu = async (lang, selectedCampus) => {
   const menuListElement = document.querySelector('#menu');
 
   // Get the current menu from the server
-  const menuObject = await getCurrentMenu(lang, selectedCampus);
+  const menuObject = await getCurrentMenu(lang, campus);
+
+  // If the selected campus has changed since fetching, don't render the menu
+  if (selectedCampus !== menuObject.currentMenuInfo.name) {
+    return;
+  }
 
   // Get the current menu from the menuInfo object
   const menu = menuObject.currentMenu;
@@ -110,7 +116,7 @@ const renderMenu = async (lang, selectedCampus) => {
     menuListElement.append(li);
     // Start a timer to call the renderMenu function
     menuTimer = setTimeout(() => {
-      renderMenu(lang, selectedCampus);
+      renderMenu(lang, campus);
     }, 120000);
   }
   finally {
