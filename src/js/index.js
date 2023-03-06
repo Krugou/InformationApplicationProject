@@ -13,6 +13,12 @@ let selectedCampus = 'Karamalmi';
 
 //default language
 let lang = 'fi';
+
+const changeLanguage = (selectedCampus) => {
+  if (lang === 'fi') lang = 'en';
+  else if (lang === 'en') lang = 'fi';
+  renderMenu(lang, selectedCampus);
+};
 if (document.title === 'DS') {
   // url params for language
   const urlParams = new URLSearchParams(window.location.search);
@@ -25,6 +31,11 @@ if (document.title === 'DS') {
     selectedCampus = urlParams.get('campus');
     console.log('🚀 ~ file: index.js:26 ~ selectedCampus:', selectedCampus);
   }
+  console.log('dsds');
+ setInterval(() => {
+  changeLanguage(selectedCampus);
+  }, 120000);
+
 }
 /*
 const allCampuses = [
@@ -73,10 +84,7 @@ if (document.title === 'PWA') {
 
   // Event listener for changing the selected language
   languageButton.addEventListener('click', () => {
-    selectedCampus = document.querySelector('#domain-select').value;
-    if (lang === 'fi') lang = 'en';
-    else if (lang === 'en') lang = 'fi';
-    renderMenu(lang, selectedCampus);
+    changeLanguage(selectedCampus);
   });
 
   // Event listener for changing the selected campus
