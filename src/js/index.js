@@ -2,7 +2,7 @@ import campusInfo from '../../json/campuses.json';
 import '../styles/main.scss';
 import hslInit from './modules/hsl/hsl-init';
 import paSystem from './modules/pa/Announcements';
-import renderMenu, { menuTimer } from './modules/restaurant/menu-render';
+import renderMenu from './modules/restaurant/menu-render';
 import getCampusInfo from './modules/utils/campusinfo';
 import renderElements from './modules/utils/renderElements';
 // import serviceWorkerFunction from './modules/utils/sw';
@@ -81,7 +81,6 @@ if (document.title === 'PWA') {
   // Event listener for changing the selected campus
   campusSelector.addEventListener('change', () => {
     selectedCampus = document.querySelector('#domain-select').value;
-    clearTimeout(menuTimer);
     fetchWeatherLocalorDefault(1, getCampusInfo(selectedCampus));
     hslInit.getStopsNearbyHsl();
     renderMenu(lang, selectedCampus);
@@ -98,7 +97,6 @@ const initiate = async () => {
   renderElements.renderVideo();
   renderElements.hslContainer(leftside);
   renderMenu(lang, selectedCampus);
-
   hslInit.getStopsNearbyHsl();
 };
 initiate();

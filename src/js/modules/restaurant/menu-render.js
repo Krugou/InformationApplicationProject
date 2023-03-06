@@ -10,6 +10,10 @@ import sodexoMenu from './menus/sodexomenu';
 let menuTimer;
 const getCurrentMenu = async (lang, campus) => {
   try {
+    if (menuTimer) {
+      clearTimeout(menuTimer);
+    }
+
     let currentMenu = [];
     // Find the selectedmenus info from the allCampuses array
     const currentMenuInfo = getCampusInfo(campus);
@@ -104,7 +108,6 @@ const renderMenu = async (lang, campus) => {
   } catch (err) {
 
     restaurantName = menuObject.currentMenuInfo.name + ' ' + menuObject.currentMenu.menuDate;
-
     // Create a new list item element
     const li = document.createElement('li');
     // Add a class to the new element
@@ -213,4 +216,3 @@ const changeRestaurantLogo = (restaurantType) => {
   }
 };
 export default renderMenu;
-export { menuTimer };
