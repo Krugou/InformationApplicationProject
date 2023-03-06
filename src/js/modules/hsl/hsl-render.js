@@ -1,5 +1,5 @@
 import HSL from './hsl-data';
-
+let hslTimer;
 
 const HSLContainerRender = async (target, stop, lengthofdata) => {
   // const timeoutTarget = target;
@@ -96,7 +96,7 @@ const HSLContainerRender = async (target, stop, lengthofdata) => {
     }
   } catch (error) {
     console.log(error, 'HSLContainerRender' );
-    setTimeout(() => {
+    hslTimer = setTimeout(() => {
       HSLContainerRender(target, stop, lengthofdata);
     }, 60000);
   }
@@ -108,3 +108,4 @@ const HSLContainerRender = async (target, stop, lengthofdata) => {
 const hslRender = { HSLContainerRender };
 
 export default hslRender;
+export {hslTimer};
