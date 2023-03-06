@@ -1,7 +1,7 @@
-import campusInfo from '../../json/campuses.json';
 import '../styles/main.scss';
 import hslInit from './modules/hsl/hsl-init';
 import { hslTimer } from './modules/hsl/hsl-render';
+import { doFetch } from './modules/network-proxy';
 import paSystem from './modules/pa/Announcements';
 import renderMenu, { menuTimer } from './modules/restaurant/menu-render';
 import getCampusInfo from './modules/utils/campusinfo';
@@ -10,7 +10,8 @@ import renderElements from './modules/utils/renderElements';
 import fetchWeatherLocalorDefault from './modules/weather/weather-data';
 // default campus
 let selectedCampus = 'Karamalmi';
-
+const campusInfoUrl = 'https://krugou.github.io/InformationApplicationProject/json/campuses.json';
+const campusInfo = doFetch(campusInfoUrl, true);
 //default language
 let lang = 'fi';
 
@@ -32,8 +33,8 @@ if (document.title === 'DS') {
     console.log('🚀 ~ file: index.js:26 ~ selectedCampus:', selectedCampus);
   }
   console.log('dsds');
- setInterval(() => {
-  changeLanguage(selectedCampus);
+  setInterval(() => {
+    changeLanguage(selectedCampus);
   }, 120000);
 
 }
