@@ -1,5 +1,6 @@
 import getCampusInfo from '../utils/campusinfo';
-import dietPreferences from '../utils/diet-choices.js';
+import dietPreferences from '../utils/diet-choices';
+import getUserlocation from '../utils/distance-data';
 import foodcoData from './menus/foodcoMenu';
 import sodexoMenu from './menus/sodexomenu';
 /** Function for getting the selected menu
@@ -124,7 +125,10 @@ const renderMenu = async (lang, campus) => {
     }, 120000);
   }
   finally {
+    if (document.title === 'PWA') {
 
+      getUserlocation(getCampusInfo(campus));
+    }
     // Set the restaurant name text content
     restaurantNameElement.textContent = restaurantName;
 

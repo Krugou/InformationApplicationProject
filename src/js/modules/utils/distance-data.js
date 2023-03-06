@@ -23,21 +23,37 @@ const geoLocationDistanceBirdsEye = (lat1, lon1, lat2, lon2) => {
 
 
 const deg2rad = (deg) => {
-  // Check if deg is a number
-  if (typeof deg !== 'number') {
-    throw new TypeError('deg must be a number');
-  }
-  // Check if deg is within range
-  if (deg < -360 || deg > 360) {
-    throw new RangeError('deg must be between -360 and 360');
-  }
-  // Check if deg is NaN
-  if (isNaN(deg)) {
-    throw new ReferenceError('deg must not be NaN');
-  }
   // Convert degrees to radians
   return deg * (Math.PI / 180);
 };
+const getUserlocation = (campus) => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const userLat = position.coords.latitude;
+      const userLon = position.coords.longitude;
+      const campusLat = campus.lat;
+      const campusLon = campus.lon;
+      // console.log all
 
-export default geoLocationDistanceBirdsEye;
+      const distance = geoLocationDistanceBirdsEye(userLat, userLon, campusLat, campusLon);
+      // math floor distance to 0 decimals
+      const distanceRounded = Math.floor(distance);
+      // get class rightside
+      const rightSide = document.querySelector('.rightside');
+      // create  h2
+      const h2 = document.createElement('h2');
+      h2.classList.add('distance');
+      // create textnode
+      h2.textContent = ` ${distanceRounded} M`;
+      // append p to rightside
+      rightSide.prepend(h2);
+      console.log('🚀 ~ file: distance-data.js:53 ~ navigator.geolocation.getCurrentPosition ~ distance:', distanceRounded);
+
+
+    }
+    );
+  }
+};
+
+export default getUserlocation;
 
