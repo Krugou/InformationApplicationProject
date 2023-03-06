@@ -83,8 +83,12 @@ const renderMenu = async (lang, campus) => {
       dietContainer.classList.add('diet-container');
       // get meal diet from array
       const mealDiets = menu.mealDiets[i];
+      let dietItems = [];
       // split meal diet string into array of diets
-      const dietItems = mealDiets.split(',');
+      if (mealDiets) {
+       dietItems = mealDiets.split(',');
+      }
+
       dietItems.forEach((dietItem) => {
         // Create a new paragraph element.
         const p = document.createElement('p');
