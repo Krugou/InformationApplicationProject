@@ -98,9 +98,6 @@ const HSLContainerRender = async (target, stop, lengthofdata) => {
     }
   } catch (error) {
     console.log(error, 'HSLContainerRender' );
-    hslTimer = setTimeout(() => {
-      HSLContainerRender(target, stop, lengthofdata);
-    }, 60000);
   }
   // // get all arrival times
 
