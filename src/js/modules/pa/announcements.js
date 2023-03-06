@@ -1,4 +1,5 @@
 import { doFetch } from '../network-proxy';
+import languageSettings from '../utils/language';
 // mockdata for announcements
 // const announcements = [{ title: 'Mr. Anderson', date: 'future', content: 'Welcome to the real world' }];
 // import announcements from '../../../../json/announcements.json';
@@ -14,12 +15,16 @@ import { doFetch } from '../network-proxy';
  */
 const getAnnouncements = async (target, timeout) => {
   try {
+    console.log(target);
     const announcementsUrl = 'https://krugou.github.io/InformationApplicationProject/json/announcements.json';
-    const announcements = await doFetch(announcementsUrl, true);
+    const announcements = await doFetch(announcementsUrl);
 
     renderAnnouncements(target, announcements, timeout);
   } catch (error) {
-    console.error('getAnnouncements', error);
+    console.log('getAnnouncements', error);
+    setTimeout(() => {
+      getAnnouncements(target, timeout);
+    }, 5000);
   }
 };
 
@@ -61,31 +66,46 @@ const clearAnnouncements = () => {
  * @param {*} i - index of announcement
  */
 const renderAnnouncementsContainer = (target, announcements, i) => {
-  const announcementsContainer = document.createElement('div');
-  announcementsContainer.classList.add('announcements-container');
 
-  // create container element for header
+  if (document.querySelector('.announcements-container')){
+    clearAnnouncements();
+  }
+
+  const lang = languageSettings.getCurrentLanguage();
+  console.log(lang);
+  const announcementsContainer = document.createElement('div');
   const announcementsContainerHeader = document.createElement('div');
+  const announcementsContainerHeaderTitle = document.createElement('h2');
+  const announcementsContainerHeaderDate = document.createElement('p');
+  const announcementsContainerContent = document.createElement('div');
+  const announcementsContainerContentText = document.createElement('p');
+  announcementsContainer.classList.add('announcements-container');
   announcementsContainerHeader.classList.add('announcements-container-header');
+  announcementsContainerHeaderTitle.classList.add('announcements-container-header-title');
+  announcementsContainerHeaderDate.classList.add('announcements-container-header-date');
+  announcementsContainerContent.classList.add('announcements-container-content');
+  announcementsContainerContentText.classList.add('announcements-container-content-text');
+
+  if (lang === 'fi'){
+    announcementsContainerHeaderTitle.textContent = announcements[i].title_fi;
+    announcementsContainerContentText.textContent = announcements[i].content_fi;
+    announcementsContainerHeaderDate.textContent = 'Pvm: ' + announcements[i].date;
+
+  } else if (lang === 'en') {
+    announcementsContainerHeaderTitle.textContent = announcements[i].title_en;
+    announcementsContainerContentText.textContent = announcements[i].content_en;
+    announcementsContainerHeaderDate.textContent = 'Date: ' + announcements[i].date;
+
+  }
+  // create container element for header
   announcementsContainer.append(announcementsContainerHeader);
   // create title element for header
-  const announcementsContainerHeaderTitle = document.createElement('h2');
-  announcementsContainerHeaderTitle.classList.add('announcements-container-header-title');
-  announcementsContainerHeaderTitle.textContent = announcements[i].title_fi;
   announcementsContainerHeader.append(announcementsContainerHeaderTitle);
   // create date element for header
-  const announcementsContainerHeaderDate = document.createElement('p');
-  announcementsContainerHeaderDate.classList.add('announcements-container-header-date');
-  announcementsContainerHeaderDate.textContent = 'Date: ' + announcements[i].date;
   announcementsContainerHeader.append(announcementsContainerHeaderDate);
   // create container element for content
-  const announcementsContainerContent = document.createElement('div');
-  announcementsContainerContent.classList.add('announcements-container-content');
   announcementsContainer.append(announcementsContainerContent);
   // create paragraph element for content
-  const announcementsContainerContentText = document.createElement('p');
-  announcementsContainerContentText.classList.add('announcements-container-content-text');
-  announcementsContainerContentText.textContent = announcements[i].content_fi;
   announcementsContainerContent.append(announcementsContainerContentText);
   target.prepend(announcementsContainer);
 

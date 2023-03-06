@@ -14,15 +14,17 @@ let selectedCampus = 'Karamalmi';
 const campusInfoUrl = 'https://krugou.github.io/InformationApplicationProject/json/campuses.json';
 const campusInfo = doFetch(campusInfoUrl, true);
 //default language
-let lang = 'fi';
+let lang = languageSettings.getCurrentLanguage();
 
 const changeLanguage = (selectedCampus) => {
   try {
     if (lang === 'fi') lang = 'en';
     else if (lang === 'en') lang = 'fi';
     languageSettings.changeCurrentLanguage(lang);
-    renderMenu(lang, selectedCampus);
     hslInit.getStopsNearbyHsl();
+    renderMenu(lang, selectedCampus);
+    paSystem.getAnnouncements(leftside, 1);
+
   }
   catch (error) {
     console.log(error);
@@ -33,6 +35,8 @@ if (document.title === 'DS') {
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.has('lang')) {
     lang = urlParams.get('lang');
+    languageSettings.changeCurrentLanguage(lang);
+
   }
 
   if (urlParams.has('campus')) {
@@ -117,8 +121,8 @@ const initiate = async () => {
   renderElements.renderVideo();
   renderElements.hslContainer(leftside);
   renderMenu(lang, selectedCampus);
-
   hslInit.getStopsNearbyHsl(lang);
+
 };
 initiate();
 
