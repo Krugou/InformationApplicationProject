@@ -1,3 +1,12 @@
+/**
+ * Calculate the distance between two points on the earth
+ * @param {number} lat1 - Latitude of the first point
+ * @param {number} lon1 - Longitude of the first point
+ * @param {number} lat2 - Latitude of the second point
+ * @param {number} lon2 - Longitude of the second point
+ * @returns {number} - Distance in meters
+
+ */
 const geoLocationDistanceBirdsEye = (lat1, lon1, lat2, lon2) => {
   // If the coordinates are identical, the distance is zero
   if (lat1 === lat2 && lon1 === lon2) {
@@ -20,12 +29,22 @@ const geoLocationDistanceBirdsEye = (lat1, lon1, lat2, lon2) => {
   let d = R * c;
   return d;
 };
+/**
+ * Convert degrees to radians
+ * @param {number} deg - Degrees
+ * @returns {number} - Radians
+ */
 
 
 const deg2rad = (deg) => {
   // Convert degrees to radians
   return deg * (Math.PI / 180);
 };
+/**
+  * Get user location
+  * @param {object} campus - campus object
+  * @returns {number} - distance in meters
+  */
 const getUserlocation = (campus) => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
