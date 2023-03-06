@@ -1,6 +1,7 @@
 import getCampusInfo from '../utils/campusinfo';
 import dietPreferences from '../utils/diet-choices';
 import getUserlocation from '../utils/distance-data';
+import languageSettings from '../utils/language';
 import foodcoData from './menus/foodcoMenu';
 import sodexoMenu from './menus/sodexomenu';
 /** Function for getting the selected menu
@@ -174,9 +175,17 @@ const priceContainerRender = (item, li) => {
     const normal = document.createElement('p');
     const big = document.createElement('p');
 
-    student.textContent = 'Opiskelijalounas';
-    normal.textContent = 'Avoin AMK opiskelija';
-    big.textContent = 'Henkilökunta/vieraat';
+    const lang = languageSettings.getCurrentLanguage();
+    if (lang === 'fi') {
+      student.textContent = 'Opiskelijalounas';
+      normal.textContent = 'Avoin AMK opiskelija';
+      big.textContent = 'Henkilökunta/vieraat';
+
+    } else if (lang === 'en') {
+      student.textContent = 'Student lunch';
+      normal.textContent = 'Open Uni Student';
+      big.textContent = 'Staff/Guests';
+    }
 
     // append priceNumbers and priceTypes to a container
 
