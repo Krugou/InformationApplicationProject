@@ -47,6 +47,10 @@ const deg2rad = (deg) => {
   */
 const getUserlocation = (campus) => {
   if (navigator.geolocation) {
+    const distanceElement = document.querySelector('.distance');
+    if (distanceElement) {
+      distanceElement.innerHTML = '';
+    }
     navigator.geolocation.getCurrentPosition((position) => {
       const userLat = position.coords.latitude;
       const userLon = position.coords.longitude;
