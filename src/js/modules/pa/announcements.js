@@ -72,7 +72,6 @@ const renderAnnouncementsContainer = (target, announcements, i) => {
   }
 
   const lang = languageSettings.getCurrentLanguage();
-  console.log(lang);
   const announcementsContainer = document.createElement('div');
   const announcementsContainerHeader = document.createElement('div');
   const announcementsContainerHeaderTitle = document.createElement('h2');
