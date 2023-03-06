@@ -95,7 +95,7 @@ if (document.title === 'PWA') {
     clearTimeout(hslTimer);
 
     fetchWeatherLocalorDefault(1, getCampusInfo(selectedCampus));
-    hslInit.getStopsNearbyHsl();
+    hslInit.getStopsNearbyHsl(lang);
     renderMenu(lang, selectedCampus);
   });
 
