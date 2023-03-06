@@ -2,7 +2,7 @@ import campusInfo from '../../../../json/campuses.json';
 import hslRender from './hsl-render';
 
 const urlParams = new URLSearchParams(window.location.search);
-const getStopsNearbyHsl = async (lang) => {
+const getStopsNearbyHsl = async () => {
   const allCampuses = campusInfo.campuses;
   let selectedCampus;
 
@@ -25,7 +25,7 @@ const getStopsNearbyHsl = async (lang) => {
   if (selectedRestaurant) {
     if (selectedRestaurant.stops.length > 0) {
       selectedRestaurant.stops.forEach((stop) => {
-        hslRender.HSLContainerRender(hsl, stop, 3, lang);
+        hslRender.HSLContainerRender(hsl, stop, 3);
       });
     } else {
       hsl.innerHTML = 'No public transport available';

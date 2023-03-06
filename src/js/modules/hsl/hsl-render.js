@@ -1,7 +1,8 @@
+import languageSettings from '../utils/language';
 import HSL from './hsl-data';
 let hslTimer;
 
-const HSLContainerRender = async (target, stop, lengthofdata, lang) => {
+const HSLContainerRender = async (target, stop, lengthofdata) => {
   // const timeoutTarget = target;
   // const timeoutStop = stop;
   // const timeoutLengthofdata = lengthofdata;
@@ -57,6 +58,7 @@ const HSLContainerRender = async (target, stop, lengthofdata, lang) => {
       // Create an element for the address of the line
       const transitAddress = document.createElement('p');
       transitAddress.classList.add('transit-address');
+      const lang = languageSettings.getCurrentLanguage();
       lang === 'fi'? transitAddress.textContent = `Pysäkki:${route.stopname}` : transitAddress.textContent = `Stop:${route.stopname}`;
 
       // Create the transit line element and append it to the list
@@ -97,7 +99,7 @@ const HSLContainerRender = async (target, stop, lengthofdata, lang) => {
   } catch (error) {
     console.log(error, 'HSLContainerRender' );
     hslTimer = setTimeout(() => {
-      HSLContainerRender(target, stop, lengthofdata, lang);
+      HSLContainerRender(target, stop, lengthofdata);
     }, 60000);
   }
   // // get all arrival times

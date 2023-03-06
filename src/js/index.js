@@ -5,6 +5,7 @@ import { doFetch } from './modules/network-proxy';
 import paSystem from './modules/pa/Announcements';
 import renderMenu, { menuTimer } from './modules/restaurant/menu-render';
 import getCampusInfo from './modules/utils/campusinfo';
+import languageSettings from './modules/utils/language';
 import renderElements from './modules/utils/renderElements';
 // import serviceWorkerFunction from './modules/utils/sw';
 import fetchWeatherLocalorDefault from './modules/weather/weather-data';
@@ -16,10 +17,16 @@ const campusInfo = doFetch(campusInfoUrl, true);
 let lang = 'fi';
 
 const changeLanguage = (selectedCampus) => {
-  if (lang === 'fi') lang = 'en';
-  else if (lang === 'en') lang = 'fi';
-  renderMenu(lang, selectedCampus);
-  hslInit.getStopsNearbyHsl(lang);
+  try {
+    if (lang === 'fi') lang = 'en';
+    else if (lang === 'en') lang = 'fi';
+    languageSettings.changeCurrentLanguage(lang);
+    renderMenu(lang, selectedCampus);
+    hslInit.getStopsNearbyHsl();
+  }
+  catch (error) {
+    console.log(error);
+  }
 };
 if (document.title === 'DS') {
   // url params for language
