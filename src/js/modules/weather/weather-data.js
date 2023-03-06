@@ -26,6 +26,7 @@ const fetchWeatherLocalorDefault = async (hoursfromnow, campus) => {
   else if (lat > 59.5 && lat < 70.5 && lon > 19.5 && lon < 31.5) {
     fetchWeather(lat, lon, hoursfromnow);
   }
+  console.log(campus);
 };
 
 
@@ -87,6 +88,7 @@ const fetchWeather = async (lat, lon, hoursfromnow) => {
   } catch (e) {
     console.log(e);
   }
+  console.log('weather added');
 };
 
 // const windDescription = windSpeed => {

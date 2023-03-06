@@ -15,7 +15,7 @@ const campusInfoUrl = 'https://krugou.github.io/InformationApplicationProject/js
 const campusInfo = doFetch(campusInfoUrl, true);
 //default language
 let lang = languageSettings.getCurrentLanguage();
-
+const oneHour = 60 * 60 * 1000;
 const changeLanguage = (selectedCampus) => {
   try {
     if (lang === 'fi') lang = 'en';
@@ -46,8 +46,10 @@ if (document.title === 'DS') {
   }
   setInterval(() => {
     changeLanguage(selectedCampus);
-  }, 120000);
-
+  }, 30000);
+  setInterval(() => {
+    fetchWeatherLocalorDefault(1, getCampusInfo(selectedCampus));
+  }, oneHour);
 }
 /*
 const allCampuses = [
