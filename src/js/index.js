@@ -95,7 +95,7 @@ const initiate = async () => {
   loadSettings();
   fetchWeatherLocalorDefault(1, getCampusInfo(selectedCampus));
   paSystem.getAnnouncements(leftside, 1);
-  renderElements.renderVideo(leftside);
+  renderElements.renderVideo();
   renderElements.hslContainer(leftside);
   renderMenu(lang, selectedCampus);
 

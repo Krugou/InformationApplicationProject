@@ -1,21 +1,22 @@
-const renderVideo = (target) => {
-  //  <video autoplay muted controls loop class="video" src='./assets/videos/infodisplay10sec.mp4'></video>
-  // Create a new video element
- const video = document.createElement('video');
- // Set the autoplay attribute to true
- video.autoplay = true;
- // Set the muted attribute to true
- video.muted = true;
- // Set the controls attribute to true
- video.controls = true;
- // Set the loop attribute to true
- video.loop = true;
- // Add the class 'video' to the video element
- video.classList.add('video');
- // Set the video source
- video.src = './assets/videos/mediavideota.mp4';
- // Append the video element to the target element
- target.append(video);
+
+const renderVideo = () => {
+  const videos = ['video1', 'video2', 'video3'];
+  let currentVideo = 0;
+
+  const playNextVideo = () => {
+    const videoPlayer = document.getElementById(videos[currentVideo]);
+    videoPlayer.style.display = 'block';
+    videoPlayer.play();
+    videoPlayer.addEventListener('ended', () => {
+      // Pause the current video
+      videoPlayer.pause();
+      // Hide the current video and show the next video
+      videoPlayer.style.display = 'none';
+      currentVideo = (currentVideo + 1) % videos.length;
+      playNextVideo();
+    }, {once:true});
+  };
+  playNextVideo();
 };
 const hslContainer = (target) => {
   // <section class="hsl"> <h2>HSL</h2> <div class="hsl-list"></div></section >;
