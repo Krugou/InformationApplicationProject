@@ -218,10 +218,6 @@
                   margin: 0;
                 }
 
-                .hsl-container-list-head {
-                  flex: unset;
-                }
-
                 .hsl-container-list-time {
                   gap: 2em;
 
@@ -231,7 +227,7 @@
           }
         }
 
-        @media screen and (max-width: 985px) {
+        @media screen and (max-width: 1000px) {
           main {
             .hsl-container {
               .hsl-container-list {
