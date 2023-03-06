@@ -124,7 +124,7 @@ const renderMenu = async (lang, campus) => {
     // Start a timer to call the renderMenu function
     menuTimer = setTimeout(() => {
       renderMenu(currentLang, campus);
-    }, 3000);
+    }, 1000);
   }
   finally {
     if (document.title === 'PWA') {
