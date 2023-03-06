@@ -6,7 +6,6 @@ const CopyPlugin = require('copy-webpack-plugin');
 module.exports = {
   entry: {
     jak: './src/js/index.js',
-    jakds: './src/js/indexds.js',
 
   },
   plugins: [
@@ -22,7 +21,7 @@ module.exports = {
 
 
     new HtmlWebpackPlugin({
-      title: 'Digital Signage',
+      title: 'DS',
       meta: {
         viewport: 'width=device-width, initial-scale=1.0'
       },
@@ -32,7 +31,7 @@ module.exports = {
         collapseWhitespace: true
       },
       filename: 'ds.html',
-      chunks: ['jakds']
+      chunks: ['jak']
     }),
     new HtmlWebpackPlugin({
       title: ' PWA',

@@ -5,11 +5,26 @@ import paSystem from './modules/pa/Announcements';
 import renderMenu, { menuTimer } from './modules/restaurant/menu-render';
 import getCampusInfo from './modules/utils/campusinfo';
 import renderElements from './modules/utils/renderElements';
-//default language
-let lang = 'fi';
-
 // import serviceWorkerFunction from './modules/utils/sw';
 import fetchWeatherLocalorDefault from './modules/weather/weather-data';
+// default campus
+let selectedCampus = 'Karamalmi';
+
+//default language
+let lang = 'fi';
+if (document.title === 'DS') {
+  // url params for language
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.has('lang')) {
+    lang = urlParams.get('lang');
+  }
+
+  if (urlParams.has('campus')) {
+
+    selectedCampus = urlParams.get('campus');
+    console.log('🚀 ~ file: index.js:26 ~ selectedCampus:', selectedCampus);
+  }
+}
 /*
 const allCampuses = [
   { name: 'Myyrmäki', id: 152, type: 'Sodexo', stops: [4150296, 4150201] },
@@ -21,62 +36,58 @@ const allCampuses = [
 */
 const allCampuses = campusInfo.campuses;
 console.log('🚀 ~ file: index.js:20 ~ allCampuses:', allCampuses);
-// DOM Elements
-const campusSelector = document.querySelector('#domain-select');
-const languageButton = document.querySelector('#language-button');
-const saveButton = document.querySelector('#save-button');
-let selectedCampus;
-
-// // get title of the html
-// const title = document.querySelector('title');
-// if (title.innerHTML === 'PWA') {
-selectedCampus = document.querySelector('#domain-select').value;
-
-/**
- * Saves settings to localstorage
-*/
-const saveSettings = () => {
-  const settings = {};
-  settings.campus = selectedCampus;
-  localStorage.setItem('campus', JSON.stringify(settings.campus));
-};
-
-saveButton.addEventListener('click', () => {
-  saveSettings();
-});
-
-
-// Event listener for changing the selected language
-languageButton.addEventListener('click', () => {
-  selectedCampus = document.querySelector('#domain-select').value;
-  if (lang === 'fi') lang = 'en';
-  else if (lang === 'en') lang = 'fi';
-  renderMenu(lang, selectedCampus);
-});
-
-// Event listener for changing the selected campus
-campusSelector.addEventListener('change', () => {
-  selectedCampus = document.querySelector('#domain-select').value;
-  clearTimeout(menuTimer);
-  fetchWeatherLocalorDefault(1, getCampusInfo(selectedCampus));
-  hslInit.getStopsNearbyHsl();
-  renderMenu(lang, selectedCampus);
-});
-
-// }
-/**
- * Loads settings from localstorage
- */
-
 const loadSettings = () => {
-  try {
-    selectedCampus = (JSON.parse(localStorage.campus));
-    document.querySelector('#domain-select').value = selectedCampus;
-  } catch (error) {
-    selectedCampus = document.querySelector('#domain-select').value;
+  if (document.title === 'PWA') {
+    try {
+      selectedCampus = (JSON.parse(localStorage.campus));
+      document.querySelector('#domain-select').value = selectedCampus;
+    } catch (error) {
+      selectedCampus = document.querySelector('#domain-select').value;
+    }
   }
-
 };
+const saveSettings = () => {
+  if (document.title === 'PWA') {
+    const settings = {};
+    settings.campus = selectedCampus;
+    localStorage.setItem('campus', JSON.stringify(settings.campus));
+  }
+};
+if (document.title === 'PWA') {
+  // DOM Elements
+  const campusSelector = document.querySelector('#domain-select');
+  const languageButton = document.querySelector('#language-button');
+  const saveButton = document.querySelector('#save-button');
+
+  selectedCampus = document.querySelector('#domain-select').value;
+
+  /**
+   * Saves settings to localstorage
+  */
+
+  saveButton.addEventListener('click', () => {
+    saveSettings();
+  });
+
+
+  // Event listener for changing the selected language
+  languageButton.addEventListener('click', () => {
+    selectedCampus = document.querySelector('#domain-select').value;
+    if (lang === 'fi') lang = 'en';
+    else if (lang === 'en') lang = 'fi';
+    renderMenu(lang, selectedCampus);
+  });
+
+  // Event listener for changing the selected campus
+  campusSelector.addEventListener('change', () => {
+    selectedCampus = document.querySelector('#domain-select').value;
+    clearTimeout(menuTimer);
+    fetchWeatherLocalorDefault(1, getCampusInfo(selectedCampus));
+    hslInit.getStopsNearbyHsl();
+    renderMenu(lang, selectedCampus);
+  });
+
+}
 
 const leftside = document.querySelector('.leftside');
 const initiate = async () => {

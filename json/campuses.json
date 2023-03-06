@@ -1,36 +1,36 @@
 {
   "campuses": [
     {
-      "name":"Karamalmi",
+      "name": "Karamalmi",
       "lat": "60.22411886844879",
       "lon": "24.75871919679778",
-      "id":"3208",
-      "type":"Food & Co",
-      "stops":[2132225, 2132226]
+      "id": "3208",
+      "type": "Food & Co",
+      "stops": [2132225, 2132226]
     },
     {
-      "name":"Myyrmäki",
+      "name": "Myyrmäki",
       "lat": "60.25875247986919",
       "lon": "24.844818841845225",
-      "id":"152",
-      "type":"Sodexo",
-      "stops":[4150296, 4150201]
+      "id": "152",
+      "type": "Sodexo",
+      "stops": [4150296, 4150201]
     },
     {
-      "name":"Myllypuro",
+      "name": "Myllypuro",
       "lat": "60.22352208250741",
       "lon": "25.077921552365282",
-      "id":"158",
-      "type":"Sodexo",
-      "stops":[1454601, 1454602]
+      "id": "158",
+      "type": "Sodexo",
+      "stops": [1454601, 1454602]
     },
     {
-      "name":"Arabia",
+      "name": "Arabia",
       "lat": "60.20951426308305",
       "lon": "24.9777626504968",
-      "id":"1251",
-      "type":"Food & Co",
-      "stops":[1230102, 1230101]
+      "id": "1251",
+      "type": "Food & Co",
+      "stops": [1230102, 1230101]
     }
   ]
 }

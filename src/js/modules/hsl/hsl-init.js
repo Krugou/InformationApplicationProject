@@ -1,7 +1,7 @@
 import campusInfo from '../../../../json/campuses.json';
 import hslRender from './hsl-render';
 
-
+const urlParams = new URLSearchParams(window.location.search);
 const getStopsNearbyHsl = async () => {
   const allCampuses = campusInfo.campuses;
   let selectedCampus;
@@ -9,8 +9,11 @@ const getStopsNearbyHsl = async () => {
   const dsElem = document.querySelector('#domain-select');
   if (dsElem) {
     selectedCampus = dsElem.value;
+  } else if (urlParams.has('campus')) {
+    selectedCampus = urlParams.get('campus');
   } else {
-    selectedCampus = '';
+    // default campus
+    selectedCampus = 'Karamalmi';
   }
   const hsl = document.querySelector('.hsl-list');
   if (hsl) {
