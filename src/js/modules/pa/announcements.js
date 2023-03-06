@@ -1,16 +1,16 @@
-// import { doFetch } from '../network-proxy';
+import { doFetch } from '../network-proxy';
 // mockdata for announcements
 // const announcements = [{ title: 'Mr. Anderson', date: 'future', content: 'Welcome to the real world' }];
-import announcements from '../../../../json/announcements.json';
-console.log('🚀 ~ file: Announcements.js:5 ~ announcements:', announcements);
+// import announcements from '../../../../json/announcements.json';
+// console.log('🚀 ~ file: Announcements.js:5 ~ announcements:', announcements);
 
 
 // // get announcements from API
 const getAnnouncements = async (target, timeout) => {
   try {
-    // const announcementsUrl = 'https://www.compass-group.fi/menuapi/announcements?language=fi';
-    // const announcements = await doFetch(announcementsUrl, true);
-
+    const announcementsUrl = 'https://krugou.github.io/InformationApplicationProject/json/announcements.json';
+    const announcements = await doFetch(announcementsUrl, true);
+    
     renderAnnouncements(target, announcements, timeout);
   } catch (error) {
     console.error('getAnnouncements', error);
