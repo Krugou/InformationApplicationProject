@@ -132,10 +132,12 @@
 
               .transit-address {
                 flex: 3;
+                text-align: center;
               }
 
               .arrival-time {
                 flex: 1;
+                text-align: center;
               }
 
             }
@@ -145,7 +147,7 @@
           }
           .hsl-container-list-head {
             display: flex;
-            flex: 2;
+            flex: 1;
             gap: 10px;
           }
 
@@ -155,12 +157,21 @@
 
           .hsl-container-list-time {
             display: flex;
-            flex: 3;
-            gap: 15em
+            flex: 2;
           }
         }
 
-        @media screen and (max-width: 950px) {
+
+
+        @media screen and (max-width: 1400px) {
+
+          header {
+            gap: 1em;
+          }
+
+        }
+
+        @media screen and (max-width: 1230px) {
           main {
             column-gap: 2em;
             padding: 1em;
@@ -170,7 +181,6 @@
             }
 
             .leftside {
-              flex: 1;
 
               .video {
                 width: 100%;
@@ -199,8 +209,6 @@
                 flex-wrap: wrap;
                 padding: 15px;
                 gap: 20px;
-                flex-direction: column;
-                align-items: unset;
 
                 .arrival-time {
                   text-align: center;
@@ -223,58 +231,77 @@
           }
         }
 
-        .diet-logo {
-          width: 2em;
-          margin: 0 auto;
-        }
-
-        .announcements-container {}
-
-
-
-
-
-        @media screen and (max-width: 680px) {
+        @media screen and (max-width: 985px) {
           main {
-            flex-direction: column-reverse;
-            padding: 4em;
-
-            .hsl-list {
-              padding: 2em;
-            }
-
-            .hsl-container {
-              padding: 0;
-            }
-          }
-        }
-
-        @media screen and (max-width: 520px) {
-          main {
-            padding: 2em;
-          }
-        }
-
-        @media screen and (max-width: 440px) {
-          main {
-            .hsl-list {
-              padding: 1em;
-            }
-          }
-        }
-
-        @media screen and (max-width: 395px) {
-          main {
-            padding: 15px;
-
             .hsl-container {
               .hsl-container-list {
-                padding: 8px;
+                flex-direction: column;
+                align-items: unset;
+                .hsl-container-list-time {
+                  align-items: center;
+                  gap: 2em;
+                  .transit-address {
+                    text-align: unset;
+                  }
+                  .arrival-time {
+                    text-align: right;
+                  }
+                }
               }
-            }
-
-            .hsl-list {
-              padding: 10px;
             }
           }
         }
+
+          .diet-logo {
+            width: 2em;
+            margin: 0 auto;
+          }
+
+          .announcements-container {
+          }
+
+
+          @media screen and (max-width: 700px) {
+            main {
+              flex-direction: column-reverse;
+              padding: 4em;
+
+              .hsl-list {
+                padding: 2em;
+              }
+
+              .hsl-container {
+                padding: 0;
+              }
+            }
+          }
+
+          @media screen and (max-width: 520px) {
+            main {
+              padding: 2em;
+            }
+          }
+
+          @media screen and (max-width: 440px) {
+            main {
+              .hsl-list {
+                padding: 1em;
+              }
+            }
+          }
+
+          @media screen and (max-width: 395px) {
+            main {
+              padding: 15px;
+
+              .hsl-container {
+                .hsl-container-list {
+                  padding: 8px;
+                }
+              }
+
+              .hsl-list {
+                padding: 10px;
+              }
+            }
+          }

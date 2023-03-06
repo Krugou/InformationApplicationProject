@@ -6,7 +6,7 @@ header, .header-buttons {
   color: black;
   display: flex;
   align-items: center;
-  gap: 4em;
+  gap: 2em;
 
   #domain-select {
     width: 6em;
@@ -55,11 +55,21 @@ header, .header-buttons {
     padding: 0.1rem;
   }
 }
+@media screen and (max-width: 1140px) {
+  header {
 
-@media screen and (max-width: 950px) {
+    .weather-report {
+      font-size: 25px;
+    }
+    .header-buttons {
+      gap:2em;
+    }
+  }
+}
+
+@media screen and (max-width: 1070px) {
 
   header {
-    gap:1em;
     margin-bottom: 1em;
     flex-direction: column;
 
