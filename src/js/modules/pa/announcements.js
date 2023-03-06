@@ -5,12 +5,18 @@ import { doFetch } from '../network-proxy';
 // console.log('🚀 ~ file: Announcements.js:5 ~ announcements:', announcements);
 
 
-// // get announcements from API
+/**
+ * Fetches announcements from json file
+ * @param {string} target - target element for announcements
+ * @param {number} timeout - timeout for announcements
+ * @returns {void}
+ *
+ */
 const getAnnouncements = async (target, timeout) => {
   try {
     const announcementsUrl = 'https://krugou.github.io/InformationApplicationProject/json/announcements.json';
     const announcements = await doFetch(announcementsUrl, true);
-    
+
     renderAnnouncements(target, announcements, timeout);
   } catch (error) {
     console.error('getAnnouncements', error);
@@ -39,10 +45,21 @@ const renderAnnouncements = (target, announcements, timeout) => {
   randomAnnouncements();
 
 };
+/**
+ * Clears announcements from DOM
+ * @returns {void}
+ *
+ */
 const clearAnnouncements = () => {
   const announcementsContainer = document.querySelector('.announcements-container');
   announcementsContainer.innerHTML = '';
 };
+/**
+ *
+ * @param {*} target - target element for announcements
+ * @param {*} announcements - announcements array
+ * @param {*} i - index of announcement
+ */
 const renderAnnouncementsContainer = (target, announcements, i) => {
   const announcementsContainer = document.createElement('div');
   announcementsContainer.classList.add('announcements-container');
