@@ -122,7 +122,7 @@ const renderMenu = async (lang, campus) => {
     // Start a timer to call the renderMenu function
     menuTimer = setTimeout(() => {
       renderMenu(lang, campus);
-    }, 120000);
+    }, 60000);
   }
   finally {
     if (document.title === 'PWA') {
@@ -136,7 +136,9 @@ const renderMenu = async (lang, campus) => {
     changeRestaurantLogo(restaurantType);
   }
 };
+
 const priceContainerRender = (item, li) => {
+
   if (item.match(/\d,\d\d/)) {
     const priceNumbers = document.createElement('div');
     priceNumbers.classList.add('price-numbers');
@@ -188,6 +190,7 @@ const priceContainerRender = (item, li) => {
     // append the priceContainer to the li element
     li.append(priceContainer);
   }
+
 };
 
 const changeRestaurantLogo = (restaurantType) => {
