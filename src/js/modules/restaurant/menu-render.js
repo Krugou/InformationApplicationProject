@@ -115,14 +115,15 @@ const renderMenu = async (lang, campus) => {
     // Add a class to the new element
     p.classList.add('menu-item-title');
     // Add text to the element
-    p.textContent = 'Ei dataa';
+    const currentLang = languageSettings.getCurrentLanguage();
+    currentLang === 'en'? p.textContent = 'No data' : p.textContent = 'Ei dataa';
     // Append the paragraph element to the list item element
     li.append(p);
     // Append the list item element to the menu list element
     menuListElement.append(li);
     // Start a timer to call the renderMenu function
     menuTimer = setTimeout(() => {
-      renderMenu(lang, campus);
+      renderMenu(currentLang, campus);
     }, 3000);
   }
   finally {
