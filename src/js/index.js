@@ -1,6 +1,7 @@
 import campusInfo from '../../json/campuses.json';
 import '../styles/main.scss';
 import hslInit from './modules/hsl/hsl-init';
+import { hslTimer } from './modules/hsl/hsl-render';
 import paSystem from './modules/pa/Announcements';
 import renderMenu, { menuTimer } from './modules/restaurant/menu-render';
 import getCampusInfo from './modules/utils/campusinfo';
@@ -82,6 +83,8 @@ if (document.title === 'PWA') {
   campusSelector.addEventListener('change', () => {
     selectedCampus = document.querySelector('#domain-select').value;
     clearTimeout(menuTimer);
+    clearTimeout(hslTimer);
+
     fetchWeatherLocalorDefault(1, getCampusInfo(selectedCampus));
     hslInit.getStopsNearbyHsl();
     renderMenu(lang, selectedCampus);
