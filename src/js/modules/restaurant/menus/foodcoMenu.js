@@ -109,10 +109,10 @@ const getDietsFromMenu = (dailyMenu) => {
  * @returns meal names from array or a 'nodata' menu if data is undefined (this means API fetch failed)
  */
 const parseMenu = (dailyMenuObject) => {
-  const dailyMenu = dailyMenuObject.menu;
-  const date = dailyMenuObject.date;
-  const menuDate = date.getDate() + '.' + (date.getMonth()+1);
   try {
+    const dailyMenu = dailyMenuObject.menu;
+    const date = dailyMenuObject.date;
+    const menuDate = date.getDate() + '.' + (date.getMonth()+1);
     //const diets = [];
     //const diets2 = [];
     if (dailyMenu === undefined) {

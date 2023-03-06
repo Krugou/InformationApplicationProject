@@ -9,11 +9,12 @@ import sodexoMenu from './menus/sodexomenu';
  */
 let menuTimer;
 const getCurrentMenu = async (lang, campus) => {
+  let currentMenuInfo;
   try {
 
     let currentMenu = [];
     // Find the selectedmenus info from the allCampuses array
-    const currentMenuInfo = getCampusInfo(campus);
+     currentMenuInfo = getCampusInfo(campus);
     // console.log('🚀 ~ file: index.js:91 ~ getCurrentMenu ~ currentMenuInfo:', currentMenuInfo);
     // Get the correct menu and save it menu array
     if (currentMenuInfo.type === 'Food & Co') {
@@ -26,7 +27,7 @@ const getCurrentMenu = async (lang, campus) => {
     return { currentMenu, currentMenuInfo };
   } catch (err) {
     console.error(err);
-    return { currentMenu: [], currentMenuInfo: [] };
+    return { currentMenu: [], currentMenuInfo };
   }
 };
 /** Function for rendering a menu
@@ -52,18 +53,17 @@ const renderMenu = async (lang, campus) => {
     }
   }
 
-  // Get the current menu from the menuInfo object
-  const menu = menuObject.currentMenu;
 
   // Create variable for the restaurant's name
 
   let restaurantName;
-
-  // Get the restaurant type from the menuInfo object
-  const restaurantType = menuObject.currentMenuInfo.type;
-
+  let restaurantType;
   menuListElement.innerHTML = '';
   try {
+    // Get the current menu from the menuInfo object
+    const menu = menuObject.currentMenu;
+    // Get the restaurant type from the menuInfo object
+     restaurantType = menuObject.currentMenuInfo.type;
     for (let i = 0; i < menu.mealNames.length; i++) {
       // create list item for each meal
       const li = document.createElement('li');
@@ -103,8 +103,8 @@ const renderMenu = async (lang, campus) => {
 
     }
   } catch (err) {
-
-    restaurantName = menuObject.currentMenuInfo.name + ' ' + menuObject.currentMenu.menuDate;
+    console.log(err);
+    restaurantName = menuObject.currentMenuInfo.name;
     // Create a new list item element
     const li = document.createElement('li');
     // Add a class to the new element
