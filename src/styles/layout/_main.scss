@@ -201,11 +201,11 @@
 
 
             .hsl-container {
-              padding: 2em;
+              padding: 1em;
 
               .hsl-container-list {
                 flex-wrap: wrap;
-                padding: 15px;
+                padding: 10px;
                 gap: 20px;
 
                 .arrival-time {
@@ -227,6 +227,9 @@
 
         @media screen and (max-width: 1000px) {
           main {
+            .leftside {
+              flex: 1;
+            }
             .hsl-container {
               .hsl-container-list {
                 flex-direction: column;
