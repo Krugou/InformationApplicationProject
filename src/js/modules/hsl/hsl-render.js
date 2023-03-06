@@ -1,7 +1,7 @@
 import HSL from './hsl-data';
 let hslTimer;
 
-const HSLContainerRender = async (target, stop, lengthofdata) => {
+const HSLContainerRender = async (target, stop, lengthofdata, lang) => {
   // const timeoutTarget = target;
   // const timeoutStop = stop;
   // const timeoutLengthofdata = lengthofdata;
@@ -57,7 +57,7 @@ const HSLContainerRender = async (target, stop, lengthofdata) => {
       // Create an element for the address of the line
       const transitAddress = document.createElement('p');
       transitAddress.classList.add('transit-address');
-      transitAddress.textContent = `Pysäkki:${route.stopname}`;
+      lang === 'fi'? transitAddress.textContent = `Pysäkki:${route.stopname}` : transitAddress.textContent = `Stop:${route.stopname}`;
 
       // Create the transit line element and append it to the list
       const transitLine = document.createElement('p');

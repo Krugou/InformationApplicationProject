@@ -19,6 +19,7 @@ const changeLanguage = (selectedCampus) => {
   if (lang === 'fi') lang = 'en';
   else if (lang === 'en') lang = 'fi';
   renderMenu(lang, selectedCampus);
+  hslInit.getStopsNearbyHsl(lang);
 };
 if (document.title === 'DS') {
   // url params for language
@@ -32,7 +33,6 @@ if (document.title === 'DS') {
     selectedCampus = urlParams.get('campus');
     console.log('🚀 ~ file: index.js:26 ~ selectedCampus:', selectedCampus);
   }
-  console.log('dsds');
   setInterval(() => {
     changeLanguage(selectedCampus);
   }, 120000);
@@ -111,7 +111,7 @@ const initiate = async () => {
   renderElements.hslContainer(leftside);
   renderMenu(lang, selectedCampus);
 
-  hslInit.getStopsNearbyHsl();
+  hslInit.getStopsNearbyHsl(lang);
 };
 initiate();
 
