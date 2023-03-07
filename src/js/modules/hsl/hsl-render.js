@@ -53,9 +53,9 @@ const HSLContainerRender = async (target, stop, lengthofdata) => {
 
       // Choose icon based on the type of transport
       if (route.name.split('')[0] === 'M') { // Check if transport is a subway
-        transitImage.src = '../../assets/images/Metro.svg';
+        transitImage.src = './assets/images/Metro.svg';
       } else {
-        transitImage.src = '../../assets/images/Bussi.svg';
+        transitImage.src = './assets/images/Bussi.svg';
       }
       transitImage.alt = '';
       transitImage.classList.add('transit-svg');
