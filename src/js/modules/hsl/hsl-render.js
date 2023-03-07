@@ -1,6 +1,5 @@
 import languageSettings from '../utils/language';
 import HSL from './hsl-data';
-let hslTimer;
 /**
  *
  * @param {*} target
@@ -109,4 +108,3 @@ const HSLContainerRender = async (target, stop, lengthofdata) => {
 const hslRender = { HSLContainerRender };
 
 export default hslRender;
-export {hslTimer};
