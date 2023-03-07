@@ -7,7 +7,7 @@ module.exports = merge(common, {
   devtool: 'inline-source-map',
   devServer: {
     static: './dist',
-    open: ['ds.html', 'index.html'],
+    open: ['ds.html', 'pwa.html'],
   },
   plugins: [
     new webpack.DefinePlugin({

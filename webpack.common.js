@@ -38,12 +38,12 @@ module.exports = {
       meta: {
         viewport: 'width=device-width, initial-scale=1.0'
       },
-      template: './src/index.html',
+      template: './src/pwa.html',
       minify: {
         removeComments: true,
         collapseWhitespace: true
       },
-      filename: 'index.html',
+      filename: 'pwa.html',
       chunks: ['jak']
     }),
     new ESLintPlugin({})
