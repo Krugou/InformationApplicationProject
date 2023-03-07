@@ -1,7 +1,10 @@
-/**
- *  Render the video
- * @param {string} target
- * @returns {void}
+'use strict';
+/** Module for rendering some elements (video, hsl container) to the page
+ * @module renderElements
+ */
+
+/** Function for rendering specific videos to the page
+ *
  */
 const renderVideo = () => {
   const videos = ['video1', 'video2', 'video3'];
@@ -23,8 +26,8 @@ const renderVideo = () => {
   playNextVideo();
 };
 /**
- *  Render the HSL container
- * @param {*} target
+ *  Renders the HSL container
+ * @param {HTMLElement} target html element for appending
  */
 const hslContainer = (target) => {
   // <section class="hsl"> <h2>HSL</h2> <div class="hsl-list"></div></section >;
