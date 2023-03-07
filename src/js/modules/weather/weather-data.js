@@ -1,5 +1,14 @@
 'use strict';
+/** Module for fetching weather data
+ * @module weather-data
+ */
 import weatherSymbol from './weather-symbol';
+
+/** Function for setting coordinates used in weather fetch
+ *
+ * @param {number} hoursfromnow declares the hours of the forecast from now
+ * @param {object} campus object containing info about current campus
+ */
 const fetchWeatherLocalorDefault = async (hoursfromnow, campus) => {
   // if lat and lon are not defined, use default values
   let lat = campus.lat;
@@ -31,9 +40,9 @@ const fetchWeatherLocalorDefault = async (hoursfromnow, campus) => {
 
 /**
  *  Fetches weather data from FMI API
- * @param {*} lat
- * @param {*} lon
- * @param {*} hoursfromnow
+ * @param {float} lat latitude
+ * @param {float} lon longitude
+ * @param {number} hoursfromnow declares the hours of the forecast from now
  */
 const fetchWeather = async (lat, lon, hoursfromnow) => {
   let weatherData = 'https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::forecast::harmonie::surface::point::simple&latlon=' + lat + ',' + lon + '&parameters=temperature,windSpeedMS,WeatherSymbol3';
