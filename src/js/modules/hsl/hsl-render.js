@@ -13,12 +13,7 @@ import HSL from './hsl-data';
  * @param {*} lengthofdata declares how many routes are printed to page
  */
 const HSLContainerRender = async (target, stop, lengthofdata) => {
-  // const timeoutTarget = target;
-  // const timeoutStop = stop;
-  // const timeoutLengthofdata = lengthofdata;
 
-
-  // console.log('🚀 ~ file: hsl-render.js:5 ~ HSLContainerRender ~ lengthofdata:', lengthofdata);
   try {
 
     // Get the routes for the stop
@@ -27,7 +22,6 @@ const HSLContainerRender = async (target, stop, lengthofdata) => {
     while (routes.length > lengthofdata) {
       routes.pop();
     }
-    // target.innerHTML = '';
 
     // Create the container and append it to the target
     const hslContainer = document.createElement('ul');
@@ -37,7 +31,6 @@ const HSLContainerRender = async (target, stop, lengthofdata) => {
     // Loop through the routes
     for (const route of routes) {
 
-      // console.log('🚀 ~ file: hsl-render.js:17 ~ renderHSLData ~ route:', route);
       // Create a list element for the route
       const hslContainerList = document.createElement('li');
       hslContainerList.classList.add('hsl-container-list');
@@ -77,14 +70,11 @@ const HSLContainerRender = async (target, stop, lengthofdata) => {
 
       transitLine.textContent = `${route.name}`;
       transitLine.classList.add('transit-line');
-      //  hslContainerList.append(transitImage);
-      // hslContainerList.append(transitLine);
 
       // Create the transit line direction element and append it to the list
       const transitLineDirection = document.createElement('p');
       transitLineDirection.textContent = `${route.headsign}`;
       transitLineDirection.classList.add('transit-line-direction');
-      //hslContainerList.append(transitLineDirection);
 
       hslcontainerListHeader.append(transitImage);
       hslcontainerListHeaderRight.append(transitLine);

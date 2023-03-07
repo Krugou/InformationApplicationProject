@@ -1,16 +1,14 @@
+'use strict';
+/** Module for fetching and rendering announcements
+ * @module announcements
+ */
 import { doFetch } from '../network-proxy';
 import languageSettings from '../utils/language';
-// mockdata for announcements
-// const announcements = [{ title: 'Mr. Anderson', date: 'future', content: 'Welcome to the real world' }];
-// import announcements from '../../../../json/announcements.json';
-// console.log('🚀 ~ file: Announcements.js:5 ~ announcements:', announcements);
-
 
 /**
  * Fetches announcements from json file
  * @param {string} target - target element for announcements
  * @param {number} timeout - timeout for announcements
- * @returns {void}
  *
  */
 const getAnnouncements = async (target, timeout) => {
@@ -18,7 +16,7 @@ const getAnnouncements = async (target, timeout) => {
     console.log(target);
     const announcementsUrl = 'https://krugou.github.io/InformationApplicationProject/json/announcements.json';
     const announcements = await doFetch(announcementsUrl);
-
+    console.log(announcements);
     renderAnnouncements(target, announcements, timeout);
   } catch (error) {
     console.log('getAnnouncements', error);
@@ -28,16 +26,17 @@ const getAnnouncements = async (target, timeout) => {
   }
 };
 
+/**
+ *
+ * @param {HTMLElement} target target element for announcements
+ * @param {Array} announcements array containing announcement info
+ * @param {number} timeout timeout for announcements
+ */
 const renderAnnouncements = (target, announcements, timeout) => {
-  // loop through announcements and render them
-  // slideshow for all announcements
 
-
-  // const allAnnouncements = () => {
-  //   for (let i = 0; i < announcements.length; i++) {
-  //     renderAnnouncementsContainer(target, announcements, i);
-  //   }
-  // };
+  /** Function for selecting a random element and calling the render for it
+   *
+   */
   const randomAnnouncements = () => {
     const i = Math.floor(Math.random() * announcements.length);
     // console.log('🚀 ~ file: Announcements.js:32 ~ randomAnnouncements ~ i:', i);
@@ -52,18 +51,17 @@ const renderAnnouncements = (target, announcements, timeout) => {
 };
 /**
  * Clears announcements from DOM
- * @returns {void}
  *
  */
 const clearAnnouncements = () => {
   const announcementsContainer = document.querySelector('.announcements-container');
   announcementsContainer.remove();
 };
-/**
+/** Renders an announcement to the page
  *
- * @param {*} target - target element for announcements
- * @param {*} announcements - announcements array
- * @param {*} i - index of announcement
+ * @param {HTMLElement} target - target element for announcements
+ * @param {array} announcements - announcements array
+ * @param {number} i - index of announcement
  */
 const renderAnnouncementsContainer = (target, announcements, i) => {
 
