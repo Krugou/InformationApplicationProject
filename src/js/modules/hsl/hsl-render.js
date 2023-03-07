@@ -1,10 +1,16 @@
+'use strict';
+/** Module for rendering HSL data to the page
+ *  @module hsl-render
+ */
+
 import languageSettings from '../utils/language';
 import HSL from './hsl-data';
+
 /**
  *
- * @param {*} target
- * @param {*} stop
- * @param {*} lengthofdata
+ * @param {HTMLElement} target HTML element, where to append the render
+ * @param {number} stop id of HSL stop
+ * @param {*} lengthofdata declares how many routes are printed to page
  */
 const HSLContainerRender = async (target, stop, lengthofdata) => {
   // const timeoutTarget = target;
