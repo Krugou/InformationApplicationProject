@@ -41,7 +41,7 @@ const doFetch = async (url, useProxy = false, options) => {
   }
 };
 
-/** Funcition for getting the index of the weekday
+/** Function for getting the index of the weekday
  *
  * @returns API compatible index number of weekday
  */
