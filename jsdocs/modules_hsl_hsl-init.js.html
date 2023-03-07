@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: modules/hsl/hsl-init.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: modules/hsl/hsl-init.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+/** Module for initializing HSL functions
+ * @module hsl-init
+ */
+import campusInfo from '../../../../json/campuses.json';
+import hslRender from './hsl-render';
+
+const urlParams = new URLSearchParams(window.location.search);
+/**
+ *  Calls the functions for getting the HSL stops and rendering them
+ */
+const getStopsNearbyHsl = async () => {
+  const allCampuses = campusInfo.campuses;
+  let selectedCampus;
+
+  const dsElem = document.querySelector('#domain-select');
+  if (dsElem) {
+    selectedCampus = dsElem.value;
+  } else if (urlParams.has('campus')) {
+    selectedCampus = urlParams.get('campus');
+  } else {
+    // default campus
+    selectedCampus = 'Karamalmi';
+  }
+  const hsl = document.querySelector('.hsl-list');
+  if (hsl) {
+    hsl.innerHTML = '';
+  }
+  const selectedRestaurant = allCampuses.find((restaurant) => restaurant.name === selectedCampus)
+    || { name: 'Unknown campus' };
+
+  if (selectedRestaurant) {
+    if (selectedRestaurant.stops.length > 0) {
+      selectedRestaurant.stops.forEach((stop) => {
+        hslRender.HSLContainerRender(hsl, stop, 3);
+      });
+    } else {
+      hsl.innerHTML = 'No public transport available';
+    }
+  } else {
+    hsl.innerHTML = 'No target found';
+  }
+  // getLatestArrivalTime();
+};
+
+// const getLatestArrivalTime = async () => {
+
+
+//   let timeDifferenceInMilliseconds;
+//   const arrivalTimes = document.querySelectorAll('.arrival-time');
+//   // console.log('🚀 ~ file: index.js:95 ~ getLatestArrivalTime ~ arrivalTimes:', arrivalTimes);
+//   // if arrivaltimes is empty
+//   if (arrivalTimes.length === 0) {
+//     // wait 30 seconds and try again
+//     setTimeout(() => {
+//       getLatestArrivalTime();
+//     }, 30000);
+
+//   } else {
+//     // console.log('🚀 ~ file: index.js:97 ~ getLatestArrivalTime ~ arrivalTimes:', arrivalTimes);
+//     // get the current time
+//     const currentTime = new Date();
+//     // get the current hour
+//     const currentHour = currentTime.getHours();
+//     // get the current minutes
+//     const currentMinutes = currentTime.getMinutes();
+//     // check which arrival time is latest and get the first one
+//     let latestArrivalTime = null;
+//     let firstArrivalTime = null;
+
+
+//     for (let i = 0; i &lt; arrivalTimes.length; i++) {
+
+//       const arrivalTime = arrivalTimes[i].textContent.split(':');
+//       const arrivalHour = parseInt(arrivalTime[0]);
+//       const arrivalMinutes = parseInt(arrivalTime[1]);
+
+//       // Compare the arrival time with the current time
+//       if (arrivalHour > currentHour || (arrivalHour === currentHour &amp;&amp; arrivalMinutes >= currentMinutes) || arrivalHour >= currentHour &amp;&amp; arrivalHour &lt;= currentHour + 2) {
+//         if (!latestArrivalTime || (arrivalHour &lt; latestArrivalTime.hour || (arrivalHour === latestArrivalTime.hour &amp;&amp; arrivalMinutes &lt; latestArrivalTime.minutes))) {
+//           latestArrivalTime = { hour: arrivalHour, minutes: arrivalMinutes };
+//           console.log('🚀 ~ file: hsl-render.js:127 ~ HSLContainerRender ~ latestArrivalTime:', latestArrivalTime);
+//           if (!firstArrivalTime) {
+//             firstArrivalTime = arrivalTimes[i];
+//           }
+//         }
+//       }
+//     }
+
+//     if (firstArrivalTime) {
+
+//       // get the time difference between the current time and the first arrival time
+//       let timeDifference = (latestArrivalTime.hour - currentHour) * 60 + (latestArrivalTime.minutes - currentMinutes);
+//       // console.log('🚀 ~ file: hsl-render.js:140 ~ HSLContainerRender ~ timeDifference:', timeDifference);
+
+//       // convert the difference to milliseconds
+//       timeDifferenceInMilliseconds = timeDifference * 60000;
+//       console.log('🚀 ~ file: index.js:137 ~ getLatestArrivalTime ~ timeDifferenceInMilliseconds:', timeDifferenceInMilliseconds);
+//       if (timeDifferenceInMilliseconds &lt; 0) {
+//         timeDifferenceInMilliseconds = 60000;
+//       }
+//       setTimeout(() => {
+//         const hsl = document.querySelector('.hsl-list');
+//         if (hsl) {
+//           hsl.innerHTML = '';
+//         }
+//         getStopsNearbyHsl();
+//       }, timeDifferenceInMilliseconds);
+
+//     }
+//   }
+
+// };
+
+export default { getStopsNearbyHsl};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-announcements.html">announcements</a></li><li><a href="module-campusinfo.html">campusinfo</a></li><li><a href="module-diet-choices.html">diet-choices</a></li><li><a href="module-distance-data.html">distance-data</a></li><li><a href="module-foodcoMenu.html">foodcoMenu</a></li><li><a href="module-hsl-data.html">hsl-data</a></li><li><a href="module-hsl-init.html">hsl-init</a></li><li><a href="module-hsl-render.html">hsl-render</a></li><li><a href="module-menu-render.html">menu-render</a></li><li><a href="module-network-proxy.html">network-proxy</a></li><li><a href="module-renderElements.html">renderElements</a></li><li><a href="module-sodexoMenu.html">sodexoMenu</a></li><li><a href="module-sw.html">sw</a></li><li><a href="module-weather-data.html">weather-data</a></li><li><a href="module-weather-symbol.html">weather-symbol</a></li></ul><h3>Global</h3><ul><li><a href="global.html#changeCurrentLanguage">changeCurrentLanguage</a></li><li><a href="global.html#changeElementLanguages">changeElementLanguages</a></li><li><a href="global.html#changeLanguage">changeLanguage</a></li><li><a href="global.html#currentLanguage">currentLanguage</a></li><li><a href="global.html#getCurrentLanguage">getCurrentLanguage</a></li><li><a href="global.html#initiate">initiate</a></li><li><a href="global.html#loadSettings">loadSettings</a></li><li><a href="global.html#saveSettings">saveSettings</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Mar 07 2023 23:19:28 GMT+0200 (Itä-Euroopan normaaliaika)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

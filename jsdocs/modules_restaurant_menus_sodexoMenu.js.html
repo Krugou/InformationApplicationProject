@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: modules/restaurant/menus/sodexoMenu.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: modules/restaurant/menus/sodexoMenu.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+/**
+ * Module for Sodexo menu data parsing
+ * @module sodexoMenu
+ */
+
+import { doFetch, getWeekdayIndex, getNextMonday } from '../../network-proxy';
+
+const weeklyUrl = 'https://www.sodexo.fi/ruokalistat/output/weekly_json/';
+
+/** Function for getting Sodexo menu from next monday
+ *
+ * @param {number} restaurantId id of restaurant
+ * @returns object containing daily menu array and date of the menu
+ */
+const getMenuFromNextMonday = async (restaurantId) => {
+  try {
+    const monday = getNextMonday();
+    const menuUrl = `https://www.sodexo.fi/ruokalistat/output/daily_json/${restaurantId}/${monday}`;
+    console.log(menuUrl);
+    const menu = await doFetch(menuUrl, true);
+    const date = new Date(monday);
+    console.log(menu);
+    return { menu, date }; // Return monday's menu
+  }
+  catch (error) {
+    console.error('getMenuFromNextMonday', error);
+  }
+
+};
+
+/** Get daily menu from Sodexo API
+ *
+ * @param {number} restaurantid id of the restaurant
+ * @returns object containing daily menu array and date of the menu
+ */
+const getDailyMenu = async (restaurantId) => {
+  try {
+    const weekday = getWeekdayIndex();
+    const weeklyMenu = await doFetch(weeklyUrl + restaurantId);
+    const menu = weeklyMenu.mealdates[weekday];
+    // console.log('🚀 ~ file: sodexoMenu.js:21 ~ getDailyMenu ~ menu:', menu);
+    if (menu === undefined) {
+      if (weekday === 6 || weekday === 5) { // IF it's the weekend, fetch next mondays menu
+        return await getMenuFromNextMonday(restaurantId); // NEXT MONDAY
+      }
+    }
+    const date = new Date(); // return today's date
+    return { menu, date };
+  } catch (error) {
+    console.error('getDailyMenu error', error);
+  }
+
+};
+
+/** Function for parsing Sodexo menu
+ *
+ * @param {*} menuObject object containing daily Sodexo menu
+ * @param {*} lang selected language for meal titles
+ * @returns Object containing arrays of the menu's meals' names, diets, prices and the menu's date, or object containing only date array
+ */
+const parseMenu = (menuObject, lang) => {
+  const menu = menuObject.menu;
+  const date = menuObject.date;
+  const menuDate = date.getDate() + '.' + (date.getMonth() + 1);
+  if (menu === undefined) {
+    return { menuDate };
+  }
+  let mealNames = [];
+
+  if (lang === 'en') {
+    mealNames = Object.values(menu.courses).map((course) => {
+      return course.title_en;
+    });
+  }
+  else if (lang === 'fi') {
+    mealNames = Object.values(menu.courses).map((course) => {
+      return course.title_fi;
+    });
+  }
+  const mealDiets = Object.values(menu.courses).map((course) => {
+    return course.dietcodes;
+  });
+  const mealPrices = Object.values(menu.courses).map((course) => {
+    return course.price;
+  });
+  return { mealNames, mealDiets, mealPrices, menuDate };
+};
+
+const sodexoMenu = { getDailyMenu, parseMenu };
+export default sodexoMenu;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-announcements.html">announcements</a></li><li><a href="module-campusinfo.html">campusinfo</a></li><li><a href="module-diet-choices.html">diet-choices</a></li><li><a href="module-distance-data.html">distance-data</a></li><li><a href="module-foodcoMenu.html">foodcoMenu</a></li><li><a href="module-hsl-data.html">hsl-data</a></li><li><a href="module-hsl-init.html">hsl-init</a></li><li><a href="module-hsl-render.html">hsl-render</a></li><li><a href="module-menu-render.html">menu-render</a></li><li><a href="module-network-proxy.html">network-proxy</a></li><li><a href="module-renderElements.html">renderElements</a></li><li><a href="module-sodexoMenu.html">sodexoMenu</a></li><li><a href="module-sw.html">sw</a></li><li><a href="module-weather-data.html">weather-data</a></li><li><a href="module-weather-symbol.html">weather-symbol</a></li></ul><h3>Global</h3><ul><li><a href="global.html#changeCurrentLanguage">changeCurrentLanguage</a></li><li><a href="global.html#changeElementLanguages">changeElementLanguages</a></li><li><a href="global.html#changeLanguage">changeLanguage</a></li><li><a href="global.html#currentLanguage">currentLanguage</a></li><li><a href="global.html#getCurrentLanguage">getCurrentLanguage</a></li><li><a href="global.html#initiate">initiate</a></li><li><a href="global.html#loadSettings">loadSettings</a></li><li><a href="global.html#saveSettings">saveSettings</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Mar 07 2023 23:19:28 GMT+0200 (Itä-Euroopan normaaliaika)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
