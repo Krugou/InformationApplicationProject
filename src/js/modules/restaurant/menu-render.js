@@ -32,7 +32,9 @@ const getCurrentMenu = async (lang, campus) => {
   }
 };
 /** Function for rendering a menu
- *
+ *  @param {string} lang selected language for meal titles
+ * @param {string} campus selected campus
+ * @returns void
 */
 const renderMenu = async (lang, campus) => {
   // Create the restaurant name element
@@ -142,7 +144,11 @@ const renderMenu = async (lang, campus) => {
     changeRestaurantLogo(restaurantType);
   }
 };
-
+/** Function for rendering the price container
+ * @param {string} item price string
+ * @param {object} li list item element
+ * @returns void
+ * */
 const priceContainerRender = (item, li) => {
 
   if (item.match(/\d,\d\d/)) {
@@ -206,6 +212,10 @@ const priceContainerRender = (item, li) => {
   }
 
 };
+/** Function for changing the restaurant logo
+ * @param {string} restaurantType
+ * @returns void
+ * */
 
 const changeRestaurantLogo = (restaurantType) => {
   // Get the restaurant logo element

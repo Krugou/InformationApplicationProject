@@ -2,6 +2,11 @@ import campusInfo from '../../../../json/campuses.json';
 import hslRender from './hsl-render';
 
 const urlParams = new URLSearchParams(window.location.search);
+/**
+ *  Get the stops nearby the selected campus
+ * @returns {void}
+ *
+ */
 const getStopsNearbyHsl = async () => {
   const allCampuses = campusInfo.campuses;
   let selectedCampus;
@@ -35,6 +40,11 @@ const getStopsNearbyHsl = async () => {
   }
   getLatestArrivalTime();
 };
+/**
+ *  Get the latest arrival time
+ * @returns {void}
+ * 
+ */
 const getLatestArrivalTime = async () => {
 
 

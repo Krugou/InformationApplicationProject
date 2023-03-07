@@ -16,6 +16,10 @@ const campusInfo = doFetch(campusInfoUrl, true);
 //default language
 let lang = languageSettings.getCurrentLanguage();
 const oneHour = 60 * 60 * 1000;
+/**
+ *
+ * @param {*} selectedCampus
+ */
 const changeLanguage = (selectedCampus) => {
   try {
     if (lang === 'fi') lang = 'en';
@@ -115,6 +119,10 @@ if (document.title === 'PWA') {
 }
 
 const leftside = document.querySelector('.leftside');
+/**
+ * Initiates the application
+ * @returns {void}
+ */
 const initiate = async () => {
   // serviceWorkerFunction();
   loadSettings();

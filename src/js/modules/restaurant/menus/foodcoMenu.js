@@ -8,7 +8,12 @@
 import {
   doFetch, getWeekdayIndex, getNextMonday
 } from '../../network-proxy';
-
+/**
+ *
+ * @param {*} restaurantId
+ * @param {*} lang
+ * @returns
+ */
 const getMenuFromNextMonday = async (restaurantId, lang) => {
   try {
 
@@ -26,7 +31,12 @@ const getMenuFromNextMonday = async (restaurantId, lang) => {
   }
 };
 
-
+/**
+ *
+ * @param {*} restaurantId
+ * @param {*} lang
+ * @returns
+ */
 const getDailyMenu = async (restaurantId, lang) => {
 
   try {

@@ -29,7 +29,12 @@ const fetchWeatherLocalorDefault = async (hoursfromnow, campus) => {
   console.log(campus);
 };
 
-
+/**
+ *  Fetches weather data from FMI API
+ * @param {*} lat
+ * @param {*} lon
+ * @param {*} hoursfromnow
+ */
 const fetchWeather = async (lat, lon, hoursfromnow) => {
   let weatherData = 'https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::forecast::harmonie::surface::point::simple&latlon=' + lat + ',' + lon + '&parameters=temperature,windSpeedMS,WeatherSymbol3';
   console.log('🚀 ~ file: weather-data.js:34 ~ fetchWeather ~ weatherData', weatherData);

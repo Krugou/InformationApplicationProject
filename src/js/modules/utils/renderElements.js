@@ -1,4 +1,8 @@
-
+/**
+ *  Render the video
+ * @param {string} target
+ * @returns {void}
+ */
 const renderVideo = () => {
   const videos = ['video1', 'video2', 'video3'];
   let currentVideo = 0;
@@ -18,6 +22,10 @@ const renderVideo = () => {
   };
   playNextVideo();
 };
+/**
+ *  Render the HSL container
+ * @param {*} target
+ */
 const hslContainer = (target) => {
   // <section class="hsl"> <h2>HSL</h2> <div class="hsl-list"></div></section >;
 

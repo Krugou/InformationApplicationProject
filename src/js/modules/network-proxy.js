@@ -2,7 +2,13 @@
 
 
 // This function will be used to fetch data from the API
-
+/**
+ *
+ * @param {*} url
+ * @param {*} useProxy
+ * @param {*} options
+ * @returns
+ */
 const doFetch = async (url, useProxy = false, options) => {
   // If the useProxy parameter is true, the URL will be modified to include the allorigins proxy
   if (useProxy) {

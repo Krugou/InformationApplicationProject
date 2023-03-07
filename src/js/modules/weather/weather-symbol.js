@@ -1,5 +1,9 @@
 'use strict';
-
+/**
+ *
+ * @param {*} weatherSymbol
+ * @returns
+ */
 const weatherSymbol = weatherSymbol => {
 
   let weathericon = document.querySelector('#weather-info-img');

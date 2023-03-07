@@ -1,3 +1,7 @@
+/**
+ * @fileoverview Service Worker registration
+ * 
+ */
 const serviceWorkerFunction = () => {
   // eslint-disable-next-line no-undef
   // Check if service workers are supported

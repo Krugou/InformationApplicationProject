@@ -1,5 +1,16 @@
-// (G) Gluteeniton, (L) Laktoositon, (VL) Vähälaktoosinen, (M) Maidoton, (*) Suomalaisten ravitsemussuositusten mukainen, (Veg) Soveltuu vegaaniruokavalioon, (ILM) Ilmastoystävällinen, (VS) Sis. tuoretta valkosipulia, (A) Sis. Allergeeneja
 
+/**
+ * @param {string} dietInfo
+ * @returns {HTMLElement} <img> element
+ * @description
+ * Creates an <img> element with a class of 'diet-logo' and a src and alt attribute based on the dietInfo parameter.
+ * The dietInfo parameter is a string that contains information about the diet of the product.
+ * The dietInfo parameter can contain any of the following values:
+ * (G) Gluteeniton, (L) Laktoositon, (VL) Vähälaktoosinen, (M) Maidoton, (*) Suomalaisten ravitsemussuositusten mukainen, (Veg) Soveltuu vegaaniruokavalioon, (ILM) Ilmastoystävällinen, (VS) Sis. tuoretta valkosipulia, (A) Sis. Allergeeneja
+ * The function returns the new <img> element.
+ *
+ *
+ */
 
 const dietPreferences = (dietInfo) => {
 

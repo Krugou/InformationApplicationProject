@@ -1,7 +1,12 @@
 import languageSettings from '../utils/language';
 import HSL from './hsl-data';
 let hslTimer;
-
+/**
+ *
+ * @param {*} target
+ * @param {*} stop
+ * @param {*} lengthofdata
+ */
 const HSLContainerRender = async (target, stop, lengthofdata) => {
   // const timeoutTarget = target;
   // const timeoutStop = stop;

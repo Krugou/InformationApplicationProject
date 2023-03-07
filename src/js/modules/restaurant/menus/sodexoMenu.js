@@ -8,7 +8,11 @@ import { doFetch, getWeekdayIndex, getNextMonday } from '../../network-proxy';
 
 const weeklyUrl = 'https://www.sodexo.fi/ruokalistat/output/weekly_json/';
 
-
+/**
+ *
+ * @param {*} restaurantId
+ * @returns
+ */
 const getMenuFromNextMonday = async (restaurantId) => {
   try {
     const monday = getNextMonday();
