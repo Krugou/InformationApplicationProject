@@ -1,14 +1,22 @@
+'use strict';
+/** Module for rendering the menu
+ * @module menu-render
+ */
+
 import getCampusInfo from '../utils/campusinfo';
 import dietPreferences from '../utils/diet-choices';
 import getUserlocation from '../utils/distance-data';
 import languageSettings from '../utils/language';
 import foodcoData from './menus/foodcoMenu';
 import sodexoMenu from './menus/sodexomenu';
-/** Function for getting the selected menu
- *
- * @returns array containing meal menu
- */
+
 let menuTimer;
+/**  Function for getting the current menu
+ *
+ * @param {string} lang selected Ui language
+ * @param {string} campus selected campus
+ * @returns object containing menu and info, or empty menu and info (info about selected menu e.g campus name)
+ */
 const getCurrentMenu = async (lang, campus) => {
   let currentMenuInfo;
   try {
@@ -31,7 +39,7 @@ const getCurrentMenu = async (lang, campus) => {
     return { currentMenu: [], currentMenuInfo };
   }
 };
-/** Function for rendering a menu
+/** Function for a menu on the page
  *  @param {string} lang selected language for meal titles
  * @param {string} campus selected campus
  * @returns void
@@ -152,7 +160,6 @@ const renderMenu = async (lang, campus) => {
 /** Function for rendering the price container
  * @param {string} item price string
  * @param {object} li list item element
- * @returns void
  * */
 const priceContainerRender = (item, li) => {
 
@@ -218,8 +225,7 @@ const priceContainerRender = (item, li) => {
 
 };
 /** Function for changing the restaurant logo
- * @param {string} restaurantType
- * @returns void
+ * @param {string} restaurantType type of restaurant (e.g Sodexo or Foodco)
  * */
 
 const changeRestaurantLogo = (restaurantType) => {
