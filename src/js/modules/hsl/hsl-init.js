@@ -8,8 +8,6 @@ import hslRender from './hsl-render';
 const urlParams = new URLSearchParams(window.location.search);
 /**
  *  Calls the functions for getting the HSL stops and rendering them
- *
- *
  */
 const getStopsNearbyHsl = async () => {
   const allCampuses = campusInfo.campuses;
