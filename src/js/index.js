@@ -7,7 +7,7 @@ import renderMenu, { menuTimer } from './modules/restaurant/menu-render';
 import getCampusInfo from './modules/utils/campusinfo';
 import languageSettings from './modules/utils/language';
 import renderElements from './modules/utils/renderElements';
-// import serviceWorkerFunction from './modules/utils/sw';
+import serviceWorkerFunction from './modules/utils/sw';
 import fetchWeatherLocalorDefault from './modules/weather/weather-data';
 // default campus
 let selectedCampus = 'Karamalmi';
@@ -124,7 +124,7 @@ const leftside = document.querySelector('.leftside');
  * @returns {void}
  */
 const initiate = async () => {
-  // serviceWorkerFunction();
+  serviceWorkerFunction();
   loadSettings();
   fetchWeatherLocalorDefault(1, getCampusInfo(selectedCampus));
   paSystem.getAnnouncements(leftside, 1);

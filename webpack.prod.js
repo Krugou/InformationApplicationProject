@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const {merge} = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const TerserPlugin = require('terser-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
@@ -42,7 +42,7 @@ module.exports = merge(common, {
       publicPath: '.',
       icons: [
         {
-          src: path.resolve('src/assets/icon.png'),
+          src: path.resolve('src/assets/icon/icons8-information-pastel-glyph-96.png'),
           sizes: [96, 128, 192, 256, 384, 512]
         },
       ]
