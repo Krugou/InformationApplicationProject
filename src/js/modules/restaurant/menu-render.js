@@ -111,7 +111,7 @@ const renderMenu = async (lang, campus) => {
     }
   } catch (err) {
     console.log(err);
-    if (!menuObject.currentMenu.menuDate) { // Fetch failed
+    if (menuObject.currentMenu === undefined) { // Fetch failed
       restaurantName = menuObject.currentMenuInfo.name;
       menuTimer = setTimeout(() => {
         renderMenu(currentLang, campus);
