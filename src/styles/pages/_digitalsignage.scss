@@ -11,22 +11,26 @@
 
   header {
     justify-content: space-around;
-    margin: 0.5rem;
+    margin-top: 1rem;
 
     .weather-report {
       font-size: 20px;
     }
   }
   main {
-    padding: 2em 7em 4em 7em;
+    padding: 1em;
     column-gap: 6em;
+    justify-content: center;
 
     h2 {
       font-size: 18px;
+      padding: 10px;
+      margin:0;
     }
 
     .leftside {
-      flex:1;
+      flex:none;
+      width: 40%;
 
       .video {
         margin-bottom: 1.5em;
@@ -61,8 +65,10 @@
       }
     }
     .rightside {
+      flex: none;
+      width: 30%;
       #menu {
-        padding: 1em 2em 0em 2em;
+        padding: 5px 2em 0em 2em;
         margin:0;
         .menu-item {
 
