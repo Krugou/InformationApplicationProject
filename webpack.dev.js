@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 
@@ -6,7 +7,14 @@ module.exports = merge(common, {
   devtool: 'inline-source-map',
   devServer: {
     static: './dist',
-    open: [ 'ds.html', 'index.html'],
-  }
+    open: ['ds.html', 'index.html'],
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      APP_CONF: {
+        productionMode: false,
+      },
+    }),
+  ],
 });
 

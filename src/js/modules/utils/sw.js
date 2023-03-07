@@ -1,10 +1,10 @@
 /**
  * @fileoverview Service Worker registration
- * 
+ *
  */
 const serviceWorkerFunction = () => {
+  
   // eslint-disable-next-line no-undef
-  // Check if service workers are supported
   if (APP_CONF.productionMode && 'serviceWorker' in navigator) {
     // If supported, add load event listener
     window.addEventListener('load', () => {
