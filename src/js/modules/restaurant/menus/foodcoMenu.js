@@ -15,11 +15,8 @@ import {
  */
 const getMenuFromNextMonday = async (restaurantId, lang) => {
   try {
-
     const monday = getNextMonday();
-
     const menuUrl = 'https://www.compass-group.fi/menuapi/week-menus?costCenter=' + restaurantId + '&language=' + lang + '&date=' + monday;
-    console.log(menuUrl);
     const weeklyMenu = await doFetch(menuUrl, true);
     const menu = weeklyMenu.menus[0];
     const date = new Date(monday);
@@ -42,7 +39,6 @@ const getDailyMenu = async (restaurantId, lang) => {
     const weekday = getWeekdayIndex();
     const today = new Date().toISOString().split('T').shift();
     const menuUrl = 'https://www.compass-group.fi/menuapi/week-menus?costCenter=' + restaurantId + '&language=' + lang + '&date=' + today;
-    console.log(menuUrl);
     const weeklyMenu = await doFetch(menuUrl, true);
     const menu = weeklyMenu.menus[weekday];
     if (menu === undefined) {
@@ -64,7 +60,6 @@ const getDailyMenu = async (restaurantId, lang) => {
  * @returns diets by meal from menu
  */
 const getDietsFromMenu = (dailyMenu) => {
-
   let mealDiets = [];
   try {
     const mealComponentDiets = dailyMenu.menuPackages.map((menuPackage) => {

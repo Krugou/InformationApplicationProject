@@ -17,7 +17,6 @@ const getMenuFromNextMonday = async (restaurantId) => {
   try {
     const monday = getNextMonday();
     const menuUrl = `https://www.sodexo.fi/ruokalistat/output/daily_json/${restaurantId}/${monday}`;
-    console.log(menuUrl);
     const menu = await doFetch(menuUrl, true);
     const date = new Date(monday);
     console.log(menu);
@@ -50,7 +49,6 @@ const getDailyMenu = async (restaurantId) => {
   } catch (error) {
     console.error('getDailyMenu error', error);
   }
-
 };
 
 /** Function for parsing Sodexo menu

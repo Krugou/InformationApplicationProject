@@ -12,7 +12,6 @@ import sodexoMenu from './menus/sodexomenu';
 
 let menuTimer;
 /**  Function for getting the current menu
- *
  * @param {string} lang selected Ui language
  * @param {string} campus selected campus
  * @returns object containing menu and info, or empty menu and info (info about selected menu e.g campus name)
@@ -24,7 +23,6 @@ const getCurrentMenu = async (lang, campus) => {
     let currentMenu = [];
     // Find the selectedmenus info from the allCampuses array
      currentMenuInfo = getCampusInfo(campus);
-    // console.log('🚀 ~ file: index.js:91 ~ getCurrentMenu ~ currentMenuInfo:', currentMenuInfo);
     // Get the correct menu and save it menu array
     if (currentMenuInfo.type === 'Food & Co') {
       currentMenu = foodcoData.parseMenu(await foodcoData.getDailyMenu(currentMenuInfo.id, lang));
@@ -32,7 +30,6 @@ const getCurrentMenu = async (lang, campus) => {
     if (currentMenuInfo.type === 'Sodexo') {
       currentMenu = sodexoMenu.parseMenu(await sodexoMenu.getDailyMenu(currentMenuInfo.id), lang);
     }
-
     return { currentMenu, currentMenuInfo };
   } catch (err) {
     console.error(err);
@@ -57,15 +54,12 @@ const renderMenu = async (lang, campus) => {
   // if html title is pwa
   if (document.title === 'PWA') {
     const selectedCampus = document.querySelector('#domain-select').value;
-
     // If the selected campus has changed since fetching, don't render the menu
     if (selectedCampus !== menuObject.currentMenuInfo.name) {
       return;
     }
   }
-
-
-  // Create variable for the restaurant's name
+  // Create variable for the restaurant's name and type
 
   let restaurantName;
   let restaurantType;
@@ -143,11 +137,9 @@ const renderMenu = async (lang, campus) => {
     li.append(p);
     // Append the list item element to the menu list element
     menuListElement.append(li);
-    // Start a timer to call the renderMenu function
   }
   finally {
     if (document.title === 'PWA') {
-
       getUserlocation(getCampusInfo(campus));
     }
     // Set the restaurant name text content
@@ -160,7 +152,8 @@ const renderMenu = async (lang, campus) => {
 /** Function for rendering the price container
  * @param {string} item price string
  * @param {object} li list item element
- * */
+ *
+ */
 const priceContainerRender = (item, li) => {
 
   if (item.match(/\d,\d\d/)) {
@@ -175,8 +168,6 @@ const priceContainerRender = (item, li) => {
       if (!priceItem.includes('€')) {
         priceItem = priceItem + '€';
       }
-
-      // console.log('🚀 ~ file: index.js:322 ~ priceItems.forEach ~ priceItem:', priceItem);
 
 
       // create a p element and add the priceItem to it

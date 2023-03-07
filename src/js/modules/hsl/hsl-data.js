@@ -62,8 +62,6 @@ const getRoutesByStopId = async (id) => {
     body: getQueryForNextRidesByStopId(id),
   };
   const routeData = await doFetch(apiUrl, false, options);
-  // console.log('🚀 ~ file: hsl-data.js:49 ~ getRoutesByStopId ~ routeData:', routeData);
-
   return routeData.data.stop.stoptimesWithoutPatterns.map((route) => {
     return {
       stopname: routeData.data.stop.name,
