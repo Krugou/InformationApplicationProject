@@ -49,7 +49,7 @@ const getUserlocation = (campus) => {
   if (navigator.geolocation) {
     const distanceElement = document.querySelector('.distance');
     if (distanceElement) {
-      distanceElement.innerHTML = '';
+      distanceElement.remove();
     }
     navigator.geolocation.getCurrentPosition((position) => {
       const userLat = position.coords.latitude;
