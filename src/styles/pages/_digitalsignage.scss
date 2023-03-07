@@ -3,20 +3,91 @@
 // -----------------------------------------------------------------------------
 
 .digitalsignage {
-
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   height: 100vh;
-  margin: 1rem;
-  padding: 1rem;
   width: 100vw;
 
   header {
     justify-content: space-around;
     margin: 0.5rem;
-    padding: 0.5rem;
 
-   
+    .weather-report {
+      font-size: 20px;
+    }
+  }
+  main {
+    padding: 2em 7em 4em 7em;
+    column-gap: 6em;
+
+    h2 {
+      font-size: 18px;
+    }
+
+    .leftside {
+      flex:1;
+
+      .video {
+        margin-bottom: 1.5em;
+      }
+
+      .announcements-container {
+        padding-right: 2em;
+        padding-left: 2em;
+
+        .announcements-container-header {
+          font-size: 15px;
+        }
+        .announcements-container-content {
+
+          .announcements-container-content-text {
+            font-size: 15px;
+          }
+        }
+      }
+      .hsl-list {
+
+        .hsl-container {
+          margin: 0px 0px 16px 0px;
+          padding-right: 2em;
+          font-size: 1rem;
+
+          .hsl-container-list {
+            font-size: 12px;
+            padding: 4px 4px 4px 12px;
+          }
+        }
+      }
+    }
+    .rightside {
+      #menu {
+        padding: 1em 2em 0em 2em;
+        margin:0;
+        .menu-item {
+
+          .diet-container {
+
+            .diet-logo {
+              width: 2.5em;
+            }
+          }
+        }
+
+        li {
+          font-size: 14px;
+          .price-container {
+            margin:5px;
+          }
+        }
+      }
+      figure {
+
+        .restaurant-logo {
+          width: 5em;
+        }
+      }
+    }
   }
 
 
