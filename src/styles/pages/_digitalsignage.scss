@@ -19,7 +19,7 @@
   }
   main {
     padding: 1em;
-    column-gap: 6em;
+    column-gap: 3em;
     justify-content: center;
 
     h2 {
@@ -30,7 +30,7 @@
 
     .leftside {
       flex:none;
-      width: 40%;
+      width: 30%;
 
       .video {
         margin-bottom: 1.5em;
@@ -66,16 +66,28 @@
     }
     .rightside {
       flex: none;
-      width: 30%;
+      width: 65%;
+      height: fit-content;
+      display:flex;
+      flex-wrap:wrap;
+      align-items: center;
+      justify-content: center;
+
       #menu {
         padding: 5px 2em 0em 2em;
         margin:0;
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: 30px;
+        align-items: end;
         .menu-item {
 
           .diet-container {
+            gap:15px;
 
             .diet-logo {
               width: 2.5em;
+              margin:0;
             }
           }
         }
