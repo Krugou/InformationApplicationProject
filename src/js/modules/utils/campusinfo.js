@@ -1,8 +1,12 @@
+'use strict';
+/** Module for campus info
+ * @module campusinfo
+ */
 import campusInfo from '../../../../json/campuses.json';
 
-/** Function for getting info of the selected campus
+/** Function for filtering and getting the info of the selected campus
  *
- * @returns object with campus info
+ * @returns object containing campus info
  */
 const allCampuses = campusInfo.campuses;
 
