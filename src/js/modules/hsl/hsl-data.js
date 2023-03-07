@@ -1,3 +1,7 @@
+'use strict';
+/** Module for fetching data from HSL api
+ *
+ */
 import { doFetch } from '../network-proxy';
 
 const apiUrl =
@@ -5,8 +9,8 @@ const apiUrl =
 
 /**
  *  Get next rides by stop id
- * @param {*} id
- * @returns
+ * @param {number} id id of HSL stop
+ * @returns GraphQL query string
  */
 const getQueryForNextRidesByStopId = (id) => {
   return `{
@@ -36,8 +40,8 @@ const getQueryForNextRidesByStopId = (id) => {
 
 /**
  *  Convert seconds to hours and minutes
- * @param {*} seconds
- * @returns
+ * @param {number} seconds time in seconds
+ * @returns time in hours and minutes
  */
 const convertTime = (seconds) => {
   const hours = Math.floor(seconds / 3600);
@@ -46,8 +50,8 @@ const convertTime = (seconds) => {
 };
 /**
  *
- * @param {*} id
- * @returns
+ * @param {number} id id of HSL stop
+ * @returns Object containing route data of a HSL stop
  */
 const getRoutesByStopId = async (id) => {
   const options = {

@@ -4,12 +4,12 @@
  */
 import campusInfo from '../../../../json/campuses.json';
 
+const allCampuses = campusInfo.campuses;
+
 /** Function for filtering and getting the info of the selected campus
  *
  * @returns object containing campus info
  */
-const allCampuses = campusInfo.campuses;
-
 // Create a function that takes the selectedCampus as a parameter
 const getCampusInfo = (selectedCampus) => {
   // Create a new variable that stores the filtered results of the allCampuses array
