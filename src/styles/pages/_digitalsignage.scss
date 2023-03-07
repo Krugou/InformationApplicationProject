@@ -33,7 +33,7 @@
       width: 30%;
 
       .video {
-        margin-bottom: 1.5em;
+        margin-bottom: 0em;
       }
 
       .announcements-container {
@@ -74,7 +74,7 @@
       justify-content: center;
 
       #menu {
-        padding: 5px 2em 0em 2em;
+        padding: 5px 2em 1em 2em;
         margin:0;
         display:grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -84,6 +84,7 @@
 
           .diet-container {
             gap:15px;
+            padding:5px;
 
             .diet-logo {
               width: 2.5em;
@@ -93,13 +94,15 @@
         }
 
         li {
-          font-size: 14px;
+          font-size: 12px;
+          margin-bottom:0em;
           .price-container {
             margin:5px;
           }
         }
       }
       figure {
+        margin:5px;
 
         .restaurant-logo {
           width: 5em;
