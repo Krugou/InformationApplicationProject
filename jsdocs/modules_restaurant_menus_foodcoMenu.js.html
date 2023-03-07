@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: modules/restaurant/menus/foodcoMenu.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: modules/restaurant/menus/foodcoMenu.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+/** Module for Foodco/Fazer menu data parsing
+ * @module foodcoMenu
+ */
+
+import {
+  doFetch, getWeekdayIndex, getNextMonday
+} from '../../network-proxy';
+
+
+/** Function for getting Fazer/Foodco menu from next monday
+ * @param {number} restaurantId id of restaurant
+ * @param {string} lang selected UI language
+ * @returns object containing daily menu array and date of the menu
+ */
+const getMenuFromNextMonday = async (restaurantId, lang) => {
+  try {
+
+    const monday = getNextMonday();
+
+    const menuUrl = 'https://www.compass-group.fi/menuapi/week-menus?costCenter=' + restaurantId + '&amp;language=' + lang + '&amp;date=' + monday;
+    console.log(menuUrl);
+    const weeklyMenu = await doFetch(menuUrl, true);
+    const menu = weeklyMenu.menus[0];
+    const date = new Date(monday);
+    return {menu, date}; // Return monday's menu
+  }
+  catch (error){
+    console.error('getMenuFromNextMonday', error);
+  }
+};
+
+/** Returns daily Fazer/Foodco menu
+ *
+ * @param {number} restaurantId id of restaurant
+ * @param {string} lang selected UI language
+ * @returns object containing daily menu array and date of the menu
+ */
+const getDailyMenu = async (restaurantId, lang) => {
+
+  try {
+    const weekday = getWeekdayIndex();
+    const today = new Date().toISOString().split('T').shift();
+    const menuUrl = 'https://www.compass-group.fi/menuapi/week-menus?costCenter=' + restaurantId + '&amp;language=' + lang + '&amp;date=' + today;
+    console.log(menuUrl);
+    const weeklyMenu = await doFetch(menuUrl, true);
+    const menu = weeklyMenu.menus[weekday];
+    if (menu === undefined) {
+      if (weekday === 6 || weekday === 5) { // IF it's the weekend, fetch next mondays menu
+        return await getMenuFromNextMonday(restaurantId, lang); // NEXT MONDAY
+      }
+    }
+    const date = new Date(); // return today's date
+    return {menu, date};
+  } catch (error) {
+    console.error('getDailyMenu', error);
+  }
+};
+
+
+/** Function for getting diets from Fazer/Foodco menu
+ *
+ * @param {Array} dailyMenu array containing daily Fazer/Foodco menu
+ * @returns diets by meal from menu
+ */
+const getDietsFromMenu = (dailyMenu) => {
+
+  let mealDiets = [];
+  try {
+    const mealComponentDiets = dailyMenu.menuPackages.map((menuPackage) => {
+      return menuPackage.meals.map((mealItem) => {
+        return mealItem.diets;
+      }).join();
+    });
+
+    const mealComponentCount = dailyMenu.menuPackages.map((menuPackage) => {
+      return menuPackage.meals.map((mealItem) => {
+        return mealItem.diets;
+      });
+    });
+
+    for (let i = 0; i &lt; mealComponentDiets.length; i++) {
+      let thisMealsDiets = [];
+      mealComponentDiets[i].split(',').forEach(element => {
+        // if the diet is present in all the elements of the mealarray, push it to an array
+        if (mealComponentDiets[i].split(',').filter(x => x === element).length === mealComponentCount[i].length &amp;&amp; thisMealsDiets.includes(element) === false) {
+          thisMealsDiets.push(element);
+          mealDiets[i] = [...thisMealsDiets].join();
+        }
+      });
+    }
+    return mealDiets;
+  } catch (error) {
+    console.error(error, 'getDietsFromComponents error');
+  }
+};
+
+
+/** Function for parsing fazer menu
+ * @param {object} dailyMenuObject Object containing daily menu and the menu's date
+ * @returns Object containing arrays of the menu's meals' names, diets, prices and the menu's date, or object containing only date array
+ */
+const parseMenu = (dailyMenuObject) => {
+  try {
+    const dailyMenu = dailyMenuObject.menu;
+    const date = dailyMenuObject.date;
+    const menuDate = date.getDate() + '.' + (date.getMonth()+1);
+
+    if (dailyMenu === undefined) {
+      return {menuDate};
+    }
+    const mealNames = dailyMenu.menuPackages.map((menuPackage) => {
+      return menuPackage.meals.map((mealItem) => {
+        return mealItem.name;
+      }).join(', ');
+    });
+    const mealPrices = dailyMenu.menuPackages.map((menuPackage) => {
+      return menuPackage.price;
+    });
+
+    const mealDiets = getDietsFromMenu(dailyMenu);
+
+    for (let i = 0; i &lt; mealPrices.length; i++) {
+      if (mealPrices[i] === '') {
+        mealPrices[i] = 'Ei hintaa';
+      }
+    }
+    return {mealNames, mealDiets, mealPrices, menuDate};
+  }
+  catch (error) {
+    console.error(error, 'parseMenu Error food co');
+  }
+};
+
+
+const foodcoData = { getDailyMenu, parseMenu };
+
+export default foodcoData;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-announcements.html">announcements</a></li><li><a href="module-campusinfo.html">campusinfo</a></li><li><a href="module-diet-choices.html">diet-choices</a></li><li><a href="module-distance-data.html">distance-data</a></li><li><a href="module-foodcoMenu.html">foodcoMenu</a></li><li><a href="module-hsl-data.html">hsl-data</a></li><li><a href="module-hsl-init.html">hsl-init</a></li><li><a href="module-hsl-render.html">hsl-render</a></li><li><a href="module-menu-render.html">menu-render</a></li><li><a href="module-network-proxy.html">network-proxy</a></li><li><a href="module-renderElements.html">renderElements</a></li><li><a href="module-sodexoMenu.html">sodexoMenu</a></li><li><a href="module-sw.html">sw</a></li><li><a href="module-weather-data.html">weather-data</a></li><li><a href="module-weather-symbol.html">weather-symbol</a></li></ul><h3>Global</h3><ul><li><a href="global.html#changeCurrentLanguage">changeCurrentLanguage</a></li><li><a href="global.html#changeElementLanguages">changeElementLanguages</a></li><li><a href="global.html#changeLanguage">changeLanguage</a></li><li><a href="global.html#currentLanguage">currentLanguage</a></li><li><a href="global.html#getCurrentLanguage">getCurrentLanguage</a></li><li><a href="global.html#initiate">initiate</a></li><li><a href="global.html#loadSettings">loadSettings</a></li><li><a href="global.html#saveSettings">saveSettings</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Mar 07 2023 23:19:28 GMT+0200 (Itä-Euroopan normaaliaika)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

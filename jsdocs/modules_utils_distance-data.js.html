@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: modules/utils/distance-data.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: modules/utils/distance-data.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+/** Module for getting distance (user's distance to campus) and rendering it to the page
+ * @module distance-data
+ */
+
+/**
+ * Calculate the distance between two points on the earth
+ * @param {number} lat1 - Latitude of the first point
+ * @param {number} lon1 - Longitude of the first point
+ * @param {number} lat2 - Latitude of the second point
+ * @param {number} lon2 - Longitude of the second point
+ * @returns {number} - Distance in meters
+ */
+const geoLocationDistanceBirdsEye = (lat1, lon1, lat2, lon2) => {
+  // If the coordinates are identical, the distance is zero
+  if (lat1 === lat2 &amp;&amp; lon1 === lon2) {
+    return 0;
+  }
+  // Radius of the earth in meters
+  const R = 6371000;
+  // Calculate the change in latitude and longitude
+  let dLat = deg2rad(lat2 - lat1);
+  let dLon = deg2rad(lon2 - lon1);
+  // Calculate the haversine of the distance
+  let a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2)
+    ;
+  // Calculate the angular distance in radians
+  let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  // Calculate the distance in meters
+  let d = R * c;
+  return d;
+};
+/**
+ * Convert degrees to radians
+ * @param {number} deg - Degrees
+ * @returns {number} - Radians
+ */
+
+
+const deg2rad = (deg) => {
+  // Convert degrees to radians
+  return deg * (Math.PI / 180);
+};
+/**
+  * Get user location
+  * @param {object} campus - campus object
+  * @returns {number} - distance in meters
+  */
+const getUserlocation = (campus) => {
+  if (navigator.geolocation) {
+    const distanceElement = document.querySelector('.distance');
+    if (distanceElement) {
+      distanceElement.remove();
+    }
+    navigator.geolocation.getCurrentPosition((position) => {
+      const userLat = position.coords.latitude;
+      const userLon = position.coords.longitude;
+      const campusLat = campus.lat;
+      const campusLon = campus.lon;
+      // console.log all
+
+      const distance = geoLocationDistanceBirdsEye(userLat, userLon, campusLat, campusLon);
+      // math floor distance to 0 decimals
+      const distanceRounded = Math.floor(distance);
+      // get class rightside
+      const rightSide = document.querySelector('.rightside');
+      // create  h2
+      const h2 = document.createElement('h2');
+      h2.classList.add('distance');
+      // create textnode
+      h2.innerHTML = ` ${distanceRounded} M &lt;svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">   &lt;path fill="ff5000" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/>&lt;/svg>
+`;
+      // append p to rightside
+      rightSide.prepend(h2);
+
+
+    }
+    );
+  }
+};
+
+export default getUserlocation;
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-announcements.html">announcements</a></li><li><a href="module-campusinfo.html">campusinfo</a></li><li><a href="module-diet-choices.html">diet-choices</a></li><li><a href="module-distance-data.html">distance-data</a></li><li><a href="module-foodcoMenu.html">foodcoMenu</a></li><li><a href="module-hsl-data.html">hsl-data</a></li><li><a href="module-hsl-init.html">hsl-init</a></li><li><a href="module-hsl-render.html">hsl-render</a></li><li><a href="module-menu-render.html">menu-render</a></li><li><a href="module-network-proxy.html">network-proxy</a></li><li><a href="module-renderElements.html">renderElements</a></li><li><a href="module-sodexoMenu.html">sodexoMenu</a></li><li><a href="module-sw.html">sw</a></li><li><a href="module-weather-data.html">weather-data</a></li><li><a href="module-weather-symbol.html">weather-symbol</a></li></ul><h3>Global</h3><ul><li><a href="global.html#changeCurrentLanguage">changeCurrentLanguage</a></li><li><a href="global.html#changeElementLanguages">changeElementLanguages</a></li><li><a href="global.html#changeLanguage">changeLanguage</a></li><li><a href="global.html#currentLanguage">currentLanguage</a></li><li><a href="global.html#getCurrentLanguage">getCurrentLanguage</a></li><li><a href="global.html#initiate">initiate</a></li><li><a href="global.html#loadSettings">loadSettings</a></li><li><a href="global.html#saveSettings">saveSettings</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Mar 07 2023 23:19:28 GMT+0200 (Itä-Euroopan normaaliaika)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
