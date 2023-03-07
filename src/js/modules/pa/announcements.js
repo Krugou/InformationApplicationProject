@@ -57,7 +57,7 @@ const renderAnnouncements = (target, announcements, timeout) => {
  */
 const clearAnnouncements = () => {
   const announcementsContainer = document.querySelector('.announcements-container');
-  announcementsContainer.innerHTML = '';
+  announcementsContainer.remove();
 };
 /**
  *
