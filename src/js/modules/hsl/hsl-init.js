@@ -102,6 +102,10 @@ const getLatestArrivalTime = async () => {
         timeDifferenceInMilliseconds = 60000;
       }
       setTimeout(() => {
+        const hsl = document.querySelector('.hsl-list');
+        if (hsl) {
+          hsl.innerHTML = '';
+        }
         getStopsNearbyHsl();
       }, timeDifferenceInMilliseconds);
 
