@@ -40,7 +40,6 @@ import sodexoMenu from './menus/sodexomenu';
 
 let menuTimer;
 /**  Function for getting the current menu
- *
  * @param {string} lang selected Ui language
  * @param {string} campus selected campus
  * @returns object containing menu and info, or empty menu and info (info about selected menu e.g campus name)
@@ -52,7 +51,6 @@ const getCurrentMenu = async (lang, campus) => {
     let currentMenu = [];
     // Find the selectedmenus info from the allCampuses array
      currentMenuInfo = getCampusInfo(campus);
-    // console.log('🚀 ~ file: index.js:91 ~ getCurrentMenu ~ currentMenuInfo:', currentMenuInfo);
     // Get the correct menu and save it menu array
     if (currentMenuInfo.type === 'Food &amp; Co') {
       currentMenu = foodcoData.parseMenu(await foodcoData.getDailyMenu(currentMenuInfo.id, lang));
@@ -60,7 +58,6 @@ const getCurrentMenu = async (lang, campus) => {
     if (currentMenuInfo.type === 'Sodexo') {
       currentMenu = sodexoMenu.parseMenu(await sodexoMenu.getDailyMenu(currentMenuInfo.id), lang);
     }
-
     return { currentMenu, currentMenuInfo };
   } catch (err) {
     console.error(err);
@@ -85,15 +82,12 @@ const renderMenu = async (lang, campus) => {
   // if html title is pwa
   if (document.title === 'PWA') {
     const selectedCampus = document.querySelector('#domain-select').value;
-
     // If the selected campus has changed since fetching, don't render the menu
     if (selectedCampus !== menuObject.currentMenuInfo.name) {
       return;
     }
   }
-
-
-  // Create variable for the restaurant's name
+  // Create variable for the restaurant's name and type
 
   let restaurantName;
   let restaurantType;
@@ -171,11 +165,9 @@ const renderMenu = async (lang, campus) => {
     li.append(p);
     // Append the list item element to the menu list element
     menuListElement.append(li);
-    // Start a timer to call the renderMenu function
   }
   finally {
     if (document.title === 'PWA') {
-
       getUserlocation(getCampusInfo(campus));
     }
     // Set the restaurant name text content
@@ -188,7 +180,8 @@ const renderMenu = async (lang, campus) => {
 /** Function for rendering the price container
  * @param {string} item price string
  * @param {object} li list item element
- * */
+ *
+ */
 const priceContainerRender = (item, li) => {
 
   if (item.match(/\d,\d\d/)) {
@@ -203,8 +196,6 @@ const priceContainerRender = (item, li) => {
       if (!priceItem.includes('€')) {
         priceItem = priceItem + '€';
       }
-
-      // console.log('🚀 ~ file: index.js:322 ~ priceItems.forEach ~ priceItem:', priceItem);
 
 
       // create a p element and add the priceItem to it
@@ -287,13 +278,13 @@ export {menuTimer};
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-announcements.html">announcements</a></li><li><a href="module-campusinfo.html">campusinfo</a></li><li><a href="module-diet-choices.html">diet-choices</a></li><li><a href="module-distance-data.html">distance-data</a></li><li><a href="module-foodcoMenu.html">foodcoMenu</a></li><li><a href="module-hsl-data.html">hsl-data</a></li><li><a href="module-hsl-init.html">hsl-init</a></li><li><a href="module-hsl-render.html">hsl-render</a></li><li><a href="module-menu-render.html">menu-render</a></li><li><a href="module-network-proxy.html">network-proxy</a></li><li><a href="module-renderElements.html">renderElements</a></li><li><a href="module-sodexoMenu.html">sodexoMenu</a></li><li><a href="module-sw.html">sw</a></li><li><a href="module-weather-data.html">weather-data</a></li><li><a href="module-weather-symbol.html">weather-symbol</a></li></ul><h3>Global</h3><ul><li><a href="global.html#changeCurrentLanguage">changeCurrentLanguage</a></li><li><a href="global.html#changeElementLanguages">changeElementLanguages</a></li><li><a href="global.html#changeLanguage">changeLanguage</a></li><li><a href="global.html#currentLanguage">currentLanguage</a></li><li><a href="global.html#getCurrentLanguage">getCurrentLanguage</a></li><li><a href="global.html#initiate">initiate</a></li><li><a href="global.html#loadSettings">loadSettings</a></li><li><a href="global.html#saveSettings">saveSettings</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-announcements.html">announcements</a></li><li><a href="module-campusinfo.html">campusinfo</a></li><li><a href="module-diet-choices.html">diet-choices</a></li><li><a href="module-distance-data.html">distance-data</a></li><li><a href="module-foodcoMenu.html">foodcoMenu</a></li><li><a href="module-hsl-data.html">hsl-data</a></li><li><a href="module-hsl-init.html">hsl-init</a></li><li><a href="module-hsl-render.html">hsl-render</a></li><li><a href="module-language.html">language</a></li><li><a href="module-menu-render.html">menu-render</a></li><li><a href="module-network-proxy.html">network-proxy</a></li><li><a href="module-renderElements.html">renderElements</a></li><li><a href="module-sodexoMenu.html">sodexoMenu</a></li><li><a href="module-sw.html">sw</a></li><li><a href="module-weather-data.html">weather-data</a></li><li><a href="module-weather-symbol.html">weather-symbol</a></li></ul><h3>Global</h3><ul><li><a href="global.html#changeLanguage">changeLanguage</a></li><li><a href="global.html#initiate">initiate</a></li><li><a href="global.html#loadSettings">loadSettings</a></li><li><a href="global.html#saveSettings">saveSettings</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Mar 07 2023 23:19:28 GMT+0200 (Itä-Euroopan normaaliaika)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Mar 07 2023 23:24:54 GMT+0200 (Itä-Euroopan normaaliaika)
 </footer>
 
 <script> prettyPrint(); </script>
