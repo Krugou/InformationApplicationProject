@@ -1,8 +1,10 @@
 'use strict';
-/**
- *
- * @param {*} weatherSymbol
- * @returns
+/** Module for creating weather symbol icons
+ * @module weather-symbol
+ */
+
+/** Renders weather symbols based on data
+ * @returns weather info
  */
 const weatherSymbol = weatherSymbol => {
 
