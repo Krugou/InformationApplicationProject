@@ -106,7 +106,10 @@ const renderMenu = async (lang, campus) => {
         li.append(dietContainer);
       });
 
-      const mealPrices = menu.mealPrices[i];
+      let mealPrices = menu.mealPrices[i];
+      if (mealPrices === 'Ei hintaa' && restaurantType === 'Food & Co') {
+        mealPrices = '2,95/6,50/7,85';
+      }
       priceContainerRender(mealPrices, li);
       restaurantName = menuObject.currentMenuInfo.name + ' ' + menuObject.currentMenu.menuDate;
 
