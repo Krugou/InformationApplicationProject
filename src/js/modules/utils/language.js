@@ -1,8 +1,10 @@
-
+'use strict';
+/** Module for global language control
+ *
+ */
 let currentLanguage = 'fi';
 /**
  *  Changes element languages
- * @returns {void}
  *
  */
 const changeElementLanguages = () => {
@@ -11,16 +13,15 @@ if (document.title === 'PWA'){
   currentLanguage === 'fi'? saveButton.textContent = 'Tallenna' : saveButton.textContent ='Save view';
 }
 };
-/**
+/** Changes the global language setting
  *
- * @param {*} lang
+ * @param {string} lang language
  */
 const changeCurrentLanguage = (lang) => {
-  console.log(lang, 'jepjep');
   currentLanguage = lang;
   changeElementLanguages();
 };
-/**
+/** Gets the current global language
  *
  * @returns {string} current language
  */
