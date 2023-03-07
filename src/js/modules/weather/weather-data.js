@@ -90,7 +90,7 @@ const fetchWeather = async (lat, lon, hoursfromnow) => {
         weatherInfo.appendChild(weatherSymbolInfo);
 
 
-        weatherSymbol(WeatherSymbol);
+        weatherSymbolInfo.alt = weatherSymbol(WeatherSymbol);
 
       } catch (error) {
         console.log(error);
