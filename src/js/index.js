@@ -50,7 +50,7 @@ if (document.title === 'DS') {
   }
   setInterval(() => {
     changeLanguage(selectedCampus);
-  }, 120000);
+  }, 12000);
   setInterval(() => {
     fetchWeatherLocalorDefault(1, getCampusInfo(selectedCampus));
   }, oneHour);

@@ -43,7 +43,7 @@ const getDailyMenu = async (restaurantId, lang) => {
     const weekday = getWeekdayIndex();
     const today = new Date().toISOString().split('T').shift();
     // console.log('🚀 ~ file: foodcoMenu.js:31 ~ getDailyMenu ~ getNextMonday(new Date(\'2023-05-01\')):', getNextMonday(new Date('2023-05-01')));
-    //const today = '2023-03-08'; //Kovakoodattuna testaamiseen
+    //const today = '2023-03-13'; //Kovakoodattuna testaamiseen
     const menuUrl = 'https://www.compass-group.fi/menuapi/week-menus?costCenter=' + restaurantId + '&language=' + lang + '&date=' + today;
     console.log(menuUrl);
     const weeklyMenu = await doFetch(menuUrl, true);

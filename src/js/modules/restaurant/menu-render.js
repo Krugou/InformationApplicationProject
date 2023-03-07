@@ -111,7 +111,15 @@ const renderMenu = async (lang, campus) => {
     }
   } catch (err) {
     console.log(err);
-    restaurantName = menuObject.currentMenuInfo.name;
+    if (!menuObject.currentMenu.menuDate) { // Fetch failed
+      restaurantName = menuObject.currentMenuInfo.name;
+      menuTimer = setTimeout(() => {
+        renderMenu(currentLang, campus);
+      }, 1000);
+
+    } else { // Fetch didn't fail but data isn't available
+    restaurantName = menuObject.currentMenuInfo.name + ' ' + menuObject.currentMenu.menuDate;
+    }
     // Create a new list item element
     const li = document.createElement('li');
     // Add a class to the new element
@@ -128,9 +136,6 @@ const renderMenu = async (lang, campus) => {
     // Append the list item element to the menu list element
     menuListElement.append(li);
     // Start a timer to call the renderMenu function
-    menuTimer = setTimeout(() => {
-      renderMenu(currentLang, campus);
-    }, 1000);
   }
   finally {
     if (document.title === 'PWA') {
