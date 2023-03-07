@@ -70,6 +70,8 @@ const loadSettings = () => {
   if (document.title === 'PWA') {
     try {
       selectedCampus = (JSON.parse(localStorage.campus));
+      lang = (JSON.parse(localStorage.lang));
+    languageSettings.changeCurrentLanguage(lang);
       document.querySelector('#domain-select').value = selectedCampus;
     } catch (error) {
       selectedCampus = document.querySelector('#domain-select').value;
@@ -80,7 +82,10 @@ const saveSettings = () => {
   if (document.title === 'PWA') {
     const settings = {};
     settings.campus = selectedCampus;
+    settings.lang = lang;
     localStorage.setItem('campus', JSON.stringify(settings.campus));
+    localStorage.setItem('lang', JSON.stringify(settings.lang));
+
   }
 };
 if (document.title === 'PWA') {
