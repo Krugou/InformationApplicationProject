@@ -8,10 +8,10 @@ import { doFetch, getWeekdayIndex, getNextMonday } from '../../network-proxy';
 
 const weeklyUrl = 'https://www.sodexo.fi/ruokalistat/output/weekly_json/';
 
-/**
+/** Function for getting Sodexo menu from next monday
  *
- * @param {*} restaurantId
- * @returns
+ * @param {number} restaurantId id of restaurant
+ * @returns object containing daily menu array and date of the menu
  */
 const getMenuFromNextMonday = async (restaurantId) => {
   try {
@@ -32,7 +32,7 @@ const getMenuFromNextMonday = async (restaurantId) => {
 /** Get daily menu from Sodexo API
  *
  * @param {number} restaurantid id of the restaurant
- * @returns Menu array
+ * @returns object containing daily menu array and date of the menu
  */
 const getDailyMenu = async (restaurantId) => {
   try {
@@ -55,9 +55,9 @@ const getDailyMenu = async (restaurantId) => {
 
 /** Function for parsing Sodexo menu
  *
- * @param {*} menu object containing daily Sodexo menu
+ * @param {*} menuObject object containing daily Sodexo menu
  * @param {*} lang selected language for meal titles
- * @returns meal names, price and allergies or a 'nodata' menu if data is undefined (this means API fetch failed)
+ * @returns Object containing arrays of the menu's meals' names, diets, prices and the menu's date, or object containing only date array
  */
 const parseMenu = (menuObject, lang) => {
   const menu = menuObject.menu;
@@ -70,22 +70,18 @@ const parseMenu = (menuObject, lang) => {
 
   if (lang === 'en') {
     mealNames = Object.values(menu.courses).map((course) => {
-      // console.log('🚀 ~ file: sodexoMenu.js:48 ~ coursesEn ~ course:', course);
       return course.title_en;
     });
   }
   else if (lang === 'fi') {
     mealNames = Object.values(menu.courses).map((course) => {
-      // console.log('🚀 ~ file: sodexoMenu.js:49 ~ coursesFi ~ course:', course);
       return course.title_fi;
     });
   }
   const mealDiets = Object.values(menu.courses).map((course) => {
-    // console.log('🚀 ~ file: sodexoMenu.js:49 ~ coursesFi ~ course:', course);
     return course.dietcodes;
   });
   const mealPrices = Object.values(menu.courses).map((course) => {
-    // console.log('🚀 ~ file: sodexoMenu.js:49 ~ coursesFi ~ course:', course);
     return course.price;
   });
   return { mealNames, mealDiets, mealPrices, menuDate };

@@ -1,5 +1,5 @@
 'use strict';
-/**
+/** Module for Foodco/Fazer menu data parsing
  * @module foodcoMenu
  */
 
@@ -8,7 +8,7 @@ import {
 } from '../../network-proxy';
 
 
-/** Returns Fazer/Foodco menu from next monday
+/** Function for getting Fazer/Foodco menu from next monday
  * @param {number} restaurantId id of restaurant
  * @param {string} lang selected UI language
  * @returns object containing daily menu array and date of the menu
@@ -98,7 +98,7 @@ const getDietsFromMenu = (dailyMenu) => {
 
 /** Function for parsing fazer menu
  * @param {object} dailyMenuObject Object containing daily menu and the menu's date
- * @returns Object containing arrays of the menu's meals' names, diets, prices and the menu's date
+ * @returns Object containing arrays of the menu's meals' names, diets, prices and the menu's date, or object containing only date array
  */
 const parseMenu = (dailyMenuObject) => {
   try {
