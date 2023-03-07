@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --config=jest.config.js",
     "start": "webpack serve --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js",
+    "docs": "jsdoc src -r -d docs"
   },
   "keywords": [],
   "author": "KaarleH,Krugou,Jonsson-123",
