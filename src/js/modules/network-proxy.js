@@ -1,13 +1,14 @@
 'use strict';
+/** Module for fetch operations, proxy declaration and  misc time functions
+ * @module network-proxy
+ */
 
-
-// This function will be used to fetch data from the API
 /**
- *
- * @param {*} url
- * @param {*} useProxy
- * @param {*} options
- * @returns
+ * This function will be used to fetch data from the API
+ * @param {string} url fetch url
+ * @param {boolean} useProxy value declaring whether to use proxy
+ * @param {object} options fetch options
+ * @returns fetch response as json data
  */
 const doFetch = async (url, useProxy = false, options) => {
   // If the useProxy parameter is true, the URL will be modified to include the allorigins proxy
@@ -40,7 +41,7 @@ const doFetch = async (url, useProxy = false, options) => {
   }
 };
 
-/**
+/** Funcition for getting the index of the weekday
  *
  * @returns API compatible index number of weekday
  */
