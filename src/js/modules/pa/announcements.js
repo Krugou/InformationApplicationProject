@@ -13,10 +13,8 @@ import languageSettings from '../utils/language';
  */
 const getAnnouncements = async (target, timeout) => {
   try {
-    console.log(target);
     const announcementsUrl = 'https://krugou.github.io/InformationApplicationProject/json/announcements.json';
     const announcements = await doFetch(announcementsUrl);
-    console.log(announcements);
     renderAnnouncements(target, announcements, timeout);
   } catch (error) {
     console.log('getAnnouncements', error);
@@ -39,7 +37,6 @@ const renderAnnouncements = (target, announcements, timeout) => {
    */
   const randomAnnouncements = () => {
     const i = Math.floor(Math.random() * announcements.length);
-    // console.log('🚀 ~ file: Announcements.js:32 ~ randomAnnouncements ~ i:', i);
     renderAnnouncementsContainer(target, announcements, i);
     setTimeout(() => {
       clearAnnouncements();
