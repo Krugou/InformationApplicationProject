@@ -1,3 +1,8 @@
+'use strict';
+/** Module for getting distance (user's distance to campus) and rendering it to the page
+ * @module distance-data
+ */
+
 /**
  * Calculate the distance between two points on the earth
  * @param {number} lat1 - Latitude of the first point
@@ -5,7 +10,6 @@
  * @param {number} lat2 - Latitude of the second point
  * @param {number} lon2 - Longitude of the second point
  * @returns {number} - Distance in meters
-
  */
 const geoLocationDistanceBirdsEye = (lat1, lon1, lat2, lon2) => {
   // If the coordinates are identical, the distance is zero
