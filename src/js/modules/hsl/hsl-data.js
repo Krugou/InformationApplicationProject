@@ -1,6 +1,6 @@
 'use strict';
 /** Module for fetching data from HSL api
- *
+ * @module hsl-data
  */
 import { doFetch } from '../network-proxy';
 

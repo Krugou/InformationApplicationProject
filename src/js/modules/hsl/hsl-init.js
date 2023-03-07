@@ -1,10 +1,14 @@
+'use strict';
+/** Module for initializing HSL functions
+ * @module hsl-init
+ */
 import campusInfo from '../../../../json/campuses.json';
 import hslRender from './hsl-render';
 
 const urlParams = new URLSearchParams(window.location.search);
 /**
- *  Get the stops nearby the selected campus
- * @returns {void}
+ *  Calls the functions for getting the HSL stops and rendering them
+ *
  *
  */
 const getStopsNearbyHsl = async () => {
@@ -40,11 +44,7 @@ const getStopsNearbyHsl = async () => {
   }
   // getLatestArrivalTime();
 };
-/**
- *  Get the latest arrival time
- * @returns {void}
- * 
- */
+
 // const getLatestArrivalTime = async () => {
 
 
