@@ -1,6 +1,6 @@
 'use strict';
 /** Module for global language control
- *
+ * @module language
  */
 let currentLanguage = 'fi';
 /**
