@@ -60,7 +60,7 @@ const getDailyMenu = async (restaurantId) => {
 const parseMenu = (menuObject, lang) => {
   const menu = menuObject.menu;
   const date = menuObject.date;
-  const menuDate = date.getDate() + '.' + (date.getMonth() + 1);
+  const menuDate = date.getDate() + '.' + (date.getMonth() + 2);
   if (menu === undefined) {
     return { menuDate };
   }
