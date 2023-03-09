@@ -23,6 +23,8 @@ const dietPreferences = (dietInfo) => {
   // Add a class of 'diet-logo' to the <img> element
   logo.classList.add('diet-logo');
 
+  logo.src = './assets/logos/diets/finland.png';
+
   if (dietInfo.includes('G')) {
     // Set the source and alt attributes of the img element
 
@@ -113,6 +115,7 @@ const dietPreferences = (dietInfo) => {
     return logo;
 
   }
+  return logo;
 };
 
 export default dietPreferences;

@@ -13,7 +13,7 @@ import renderElements from './modules/utils/renderElements';
 import serviceWorkerFunction from './modules/utils/sw';
 import fetchWeatherLocalorDefault from './modules/weather/weather-data';
 // default campus
-let selectedCampus = 'Karamalmi';
+let selectedCampus = 'Myyrmäki';
 const campusInfoUrl = 'https://krugou.github.io/InformationApplicationProject/json/campuses.json';
 const campusInfo = doFetch(campusInfoUrl, true);
 //default language
